@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scenes/World.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 74, 36 )
+
+[node name="Node" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Stage" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 2, 75 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 86, 324 )
+speed = 280.0
+
+[node name="Ball" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 101, 321 )
+initial_speed = 140
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 573, 282 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Panel" type="Panel" parent="StaticBody2D/CollisionShape2D"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -75.0
+margin/top = -37.0
+margin/right = 74.0
+margin/bottom = 36.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
