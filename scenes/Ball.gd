@@ -10,7 +10,13 @@ var current_power_up = ''
 
 onready var sound = get_node("SamplePlayer2D")
 
-
+func _play_sound(collider):
+	if collider.get("is_player"):
+		sound.play("player_hit")
+	elif collider.get("is_enemy"):
+		sound.play("enemy_hit")
+	else:
+		sound.play("wall_hit")
 
 
 func _ready():
@@ -30,8 +36,8 @@ func _process(delta):
 
 			HUD.out(get_collision_pos().y - self.get_pos().y)
 			
-			
-		sound.play("wall_hit")		
+		_play_sound(collider)
+		#sound.play("wall_hit")		
 		var collision_normal = self.get_collision_normal()
 		var x_coll = round(collision_normal.x)
 		var y_coll = round(collision_normal.y)
