@@ -5,19 +5,13 @@ export(float) var initial_speed = 140
 var initial_direction = Vector2(1, 0.2)
 
 var current_speed = 0
+var rotation_speed = 70
 var current_direction = Vector2(0,0)
 var current_power_up = ''
 
+var is_player = true
+
 onready var sound = get_node("SamplePlayer2D")
-
-func _play_sound(collider):
-	if collider.get("is_player"):
-		sound.play("player_hit")
-	elif collider.get("is_enemy"):
-		sound.play("enemy_hit")
-	else:
-		sound.play("wall_hit")
-
 
 func _ready():
 	set_collision_margin(1)
@@ -27,6 +21,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
+	#self.rotate(rotation_speed * delta)
 	self.move(current_direction * current_speed * delta)
 	#self.move_and_slide(current_direction * current_speed, self.get_collision_normal())
 	if self.is_colliding():
@@ -49,6 +44,13 @@ func _process(delta):
 		elif x_coll == 0 and (y_coll == 1 or y_coll == -1):
 			self.current_direction = Vector2(self.current_direction.x, -self.current_direction.y)
 		
+func _play_sound(collider):
+	if collider.get("is_player"):
+		sound.play("player_hit")
+
+	elif collider.get("is_wall"):
+		sound.play("wall_hit")
+
 
 func _input(event):
 	if event.is_action_released("faster"):

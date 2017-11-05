@@ -10,6 +10,7 @@ func _ready():
 	
 func _process():
 	pass
+	
 
 
 func _on_Timer_timeout():

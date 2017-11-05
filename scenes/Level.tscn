@@ -66,6 +66,7 @@ angular_damp = 1.0
 
 [node name="WestCollision" type="CollisionShape2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 24, 280 )
 shape = SubResource( 1 )
 trigger = false
@@ -80,7 +81,6 @@ _update_shape_index = 1
 
 [node name="EastCollision" type="CollisionShape2D" parent="."]
 
-visibility/visible = false
 transform/pos = Vector2( 992, 280 )
 shape = SubResource( 3 )
 trigger = false

@@ -1,15 +1,13 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://scenes/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Level.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=5]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 74, 36 )
+[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sound/crow_1.wav" type="Sample" id=5]
+[ext_resource path="res://assets/sound/default_enemy_hit.wav" type="Sample" id=6]
+[ext_resource path="res://scenes/Block.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=8]
 
 [node name="Node" type="Node"]
 
@@ -26,49 +24,75 @@ wait_time = 1.0
 one_shot = false
 autostart = true
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 86, 324 )
-speed = 280.0
-
-[node name="Ball" parent="." instance=ExtResource( 4 )]
+[node name="Ball" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 101, 321 )
 
-[node name="Enemy" parent="." instance=ExtResource( 5 )]
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 639, 258 )
+transform/pos = Vector2( 639, 257 )
+hit_sound = ExtResource( 5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Enemy"]
+[node name="Enemy 2" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -17, -11 )
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
+transform/pos = Vector2( 312, 414 )
+hit_sound = ExtResource( 6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/StaticBody2D"]
+[node name="Enemy 3" parent="." instance=ExtResource( 4 )]
 
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
+transform/pos = Vector2( 470, 234 )
+hit_sound = ExtResource( 6 )
 
-[node name="Panel" type="Panel" parent="Enemy/StaticBody2D/CollisionShape2D"]
+[node name="Block" parent="." instance=ExtResource( 7 )]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -75.0
-margin/top = -37.0
-margin/right = 74.0
-margin/bottom = 36.0
+transform/pos = Vector2( 285.499, 266.67 )
+
+[node name="Block 2" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 285.007, 286.267 )
+
+[node name="Block 3" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 284.451, 246.044 )
+
+[node name="Block 4" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 282.945, 225.606 )
+
+[node name="Block5" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 557.418, 338.262 )
+block_type = "INDESTRUCTABLE"
+
+[node name="Block6" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 566.377, 371.657 )
+block_type = "INDESTRUCTABLE"
+
+[node name="Block7" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 594.885, 404.237 )
+block_type = "INDESTRUCTABLE"
+
+[node name="Block8" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 489.015, 478.103 )
+block_type = "RABIUM"
+
+[node name="Block9" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 430.938, 495.207 )
+block_type = "RABIUM"
+
+[node name="Block10" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 490.644, 513.941 )
+block_type = "RABIUM"
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 75.6651, 317.551 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
