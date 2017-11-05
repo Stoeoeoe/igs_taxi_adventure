@@ -23,7 +23,9 @@ extents = Vector2( 27, 280 )
 custom_solver_bias = 0.0
 extents = Vector2( 510, 27 )
 
-[node name="Level" type="StaticBody2D"]
+[node name="Level" type="StaticBody2D" groups=[
+"wall",
+]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )

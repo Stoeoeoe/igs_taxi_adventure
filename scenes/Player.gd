@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 export(float) var speed = 1
 var move_vector = Vector2(0,0)
-var is_player = true
 
 func _ready():
 	set_process(true)

@@ -7,7 +7,7 @@ onready var sample_player = get_node("SamplePlayer2D")
 onready var sprites = get_node("AnimatedSprite")
 onready var sprite = get_node("Sprite")
 
-var is_enemy = true
+
 
 func _ready():
 	var sample_library = SampleLibrary.new()
@@ -23,6 +23,6 @@ func _ready():
 
 
 func _on_enemy_hit( body ):
-	if body.get("is_player"):
+	if body.is_in_group("ball"):
 		sample_player.play("hit_sound")
 		pass # replace with function body

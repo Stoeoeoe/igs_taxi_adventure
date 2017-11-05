@@ -4,7 +4,7 @@ extends Node2D
 export(String, "EAST", "WEST", "SOUTH", "NORTH") var entry_side
 
 onready var frame = get_node("Frame")
-var is_wall = true
+
 
 func _ready():
 	Globals.set("entry_side", entry_side)

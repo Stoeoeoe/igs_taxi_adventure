@@ -23,7 +23,8 @@ func _ready():
 
 
 func _on_block_hit( body ):
-	if body.get("is_player"):
+	HUD.out(body.get_groups())
+	if body.is_in_group("ball"):
 		if block_type == "DEFAULT" or block_type == "RABIUM":
 			animation_player.play("DestructionAnim")
 			sample_player.play("block_destructable")

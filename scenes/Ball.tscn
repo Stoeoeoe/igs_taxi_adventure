@@ -41,7 +41,9 @@ samples/wall_hit = {
 "sample": ExtResource( 5 )
 }
 
-[node name="Ball" type="KinematicBody2D"]
+[node name="Ball" type="KinematicBody2D" groups=[
+"ball",
+]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
