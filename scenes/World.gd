@@ -5,8 +5,9 @@ extends Node
 # var b = "textvar"
 
 func _ready():
+	randomize()
 	set_process(true)
-
+	
 	
 func _process():
 	pass

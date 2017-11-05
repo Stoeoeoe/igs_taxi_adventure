@@ -21,13 +21,21 @@ func _ready():
 	elif block_type == "RABIUM":
 		sprite.set_texture(preload("../assets/imgs/blocks/rabium_block.png"))
 
-
 func _on_block_hit( body ):
 	HUD.out(body.get_groups())
 	if body.is_in_group("ball"):
 		if block_type == "DEFAULT" or block_type == "RABIUM":
 			animation_player.play("DestructionAnim")
+			
 			sample_player.play("block_destructable")
 			
 		if block_type == "INDESTRUCTABLE":
 			sample_player.play("block_indestructable")			
+
+func _on_AnimationPlayer_finished():
+	if animation_player.get_current_animation() == "DestructionAnim":
+		execute_block_action()
+		queue_free()
+
+func execute_block_action():
+	pass

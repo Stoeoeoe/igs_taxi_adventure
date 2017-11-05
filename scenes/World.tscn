@@ -65,10 +65,14 @@ transform/pos = Vector2( 282.945, 225.606 )
 transform/pos = Vector2( 557.418, 338.262 )
 block_type = "INDESTRUCTABLE"
 
+[node name="Block11" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 557.418, 338.262 )
+block_type = "INDESTRUCTABLE"
+
 [node name="Block6" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 566.377, 371.657 )
-block_type = "INDESTRUCTABLE"
+transform/pos = Vector2( 255.236, 330.117 )
 
 [node name="Block7" parent="." instance=ExtResource( 7 )]
 

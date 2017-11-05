@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export(int) var id = 0
 export(float) var initial_speed = 140
-var initial_direction = Vector2(1, 0.2)
+var initial_direction = Vector2(1, 1)
 
 var current_speed = 0
 var rotation_speed = 70
@@ -12,6 +12,7 @@ var current_power_up = ''
 onready var sound = get_node("SamplePlayer2D")
 
 func _ready():
+	initial_direction = Vector2(1, rand_range(0, 1))
 	set_collision_margin(1)
 	set_process_input(true)
 	self.current_direction = initial_direction
