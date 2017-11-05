@@ -22,3 +22,6 @@ func out(new_log_entry):
 	for entry in log_entries:
 		log_string += entry + "\n"
 	get_node("RootControl/LogEntries").set_text(log_string)
+	
+func toggle_hide():
+	get_node("RootControl").set_hidden(get_node("RootControl").is_visible())

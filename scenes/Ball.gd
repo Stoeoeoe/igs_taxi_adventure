@@ -46,7 +46,8 @@ func _process(delta):
 			var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
 			set_pos(new_position)
 
-		
+func kill():
+	HUD.out("You head esplode")		
 
 func launch():
 	self.initial_direction = Vector2(1, rand_range(0, 1))
@@ -100,3 +101,4 @@ func _input(event):
 		self.current_speed *= 2
 	if event.is_action_released("slower"):
 		self.current_speed *= 0.5
+		

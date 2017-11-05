@@ -1,12 +1,7 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/stage_frame_west.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 27, 280 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -23,23 +18,30 @@ extents = Vector2( 27, 280 )
 custom_solver_bias = 0.0
 extents = Vector2( 510, 27 )
 
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20, 461.269 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 550, 20 )
+
 [node name="Level" type="KinematicBody2D" groups=[
 "wall",
 ]]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 24, 280 )
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 512, 32 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 512, 32 )
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 992, 279.642 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, 992, 279.642 )
+shapes/2/shape = SubResource( 4 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 512, 536 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 512, 536 )
-shapes/3/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
@@ -55,41 +57,75 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="Killzone" type="Area2D" parent="."]
 
 input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -35, 384 )
+shapes/0/trigger = true
+shapes/1/shape = SubResource( 6 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 512, -35 )
+shapes/1/trigger = true
+shapes/2/shape = SubResource( 6 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 512, 803 )
+shapes/2/trigger = true
+shapes/3/shape = SubResource( 5 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 1059, 384 )
+shapes/3/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="WestCollision" type="CollisionShape2D" parent="."]
+[node name="WestKillZoneShape" type="CollisionShape2D" parent="Killzone"]
 
-visibility/visible = false
-transform/pos = Vector2( 24, 280 )
-shape = SubResource( 1 )
-trigger = false
+transform/pos = Vector2( -35, 384 )
+shape = SubResource( 5 )
+trigger = true
 _update_shape_index = 0
+
+[node name="NorthKillZoneShape" type="CollisionShape2D" parent="Killzone"]
+
+transform/pos = Vector2( 512, -35 )
+shape = SubResource( 6 )
+trigger = true
+_update_shape_index = 1
+
+[node name="SouthKillZoneShape" type="CollisionShape2D" parent="Killzone"]
+
+transform/pos = Vector2( 512, 803 )
+shape = SubResource( 6 )
+trigger = true
+_update_shape_index = 2
+
+[node name="EastKillZoneShape" type="CollisionShape2D" parent="Killzone"]
+
+transform/pos = Vector2( 1059, 384 )
+shape = SubResource( 5 )
+trigger = true
+_update_shape_index = 3
 
 [node name="NorthCollision" type="CollisionShape2D" parent="."]
 
 transform/pos = Vector2( 512, 32 )
 shape = SubResource( 2 )
 trigger = false
-_update_shape_index = 1
+_update_shape_index = 0
 
 [node name="EastCollision" type="CollisionShape2D" parent="."]
 
 transform/pos = Vector2( 992, 279.642 )
 shape = SubResource( 3 )
 trigger = false
-_update_shape_index = 2
+_update_shape_index = 1
 
 [node name="SouthCollision" type="CollisionShape2D" parent="."]
 
 transform/pos = Vector2( 512, 536 )
 shape = SubResource( 4 )
 trigger = false
-_update_shape_index = 3
+_update_shape_index = 2
+
+[connection signal="body_enter" from="Killzone" to="." method="_on_Killzone_body_enter"]
 
 

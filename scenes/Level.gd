@@ -11,10 +11,14 @@ func _ready():
 	
 	if entry_side == 'EAST':
 		frame.set_texture(preload('../assets/imgs/stage_frame_east.png'))
-		get_node("EastCollision").hide()
+		remove_child(get_node("EastCollision"))
 	elif entry_side == 'WEST':
 		frame.set_texture(preload('../assets/imgs/stage_frame_west.png'))
-		get_node("WestCollision").hide()
+		remove_child(get_node("WestCollision"))
 			
 func _process(delta):
 	pass
+
+func _on_Killzone_body_enter( body ):
+	if body.is_in_group("ball"):
+		body.kill()

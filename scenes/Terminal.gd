@@ -2,36 +2,65 @@ tool
 
 extends Panel
 
-export(Color) var bg_color setget set_bg_color, get_bg_color
-export(Color) var font_color = Color("FF46CA42")
+onready var label = get_node("RichTextLabel")
+onready var sample_player = get_node("SamplePlayer2D") 
+var sounds = ["key_1", "key_2", "key_3", "key_4", "key_5"] 
+
+export(int) var maximum_lines = 36
+export(int) var time_between_keystrokes = 0.06
+
+var lines = []
+var lines_string = ""
+
+var is_writing = false
+var text = ""
+var time_since_last_keystroke = 0
+
 
 func _init():
 	pass
 	
-	
 func _ready():
-	# https://github.com/godotengine/godot/blob/2.1/scene/resources/default_theme/default_theme.cpp
-	var theme = Theme.new()
-	var style_box = StyleBoxFlat.new()
-	var dark_bg_color = bg_color.linear_interpolate("ffffffff", 0.2)
-	var light_bg_color = bg_color.linear_interpolate("00000000", 0.2)
-	style_box.set_bg_color(bg_color)
-	style_box.set_dark_color(dark_bg_color)
-	style_box.set_light_color(light_bg_color)
+	HUD.toggle_hide()
+	set_process(true)
+	
+	start_writing(
+	"You   can use the shader by just copying the CRTDisplayShader.shd to your project\n" +
+	"(it's the Shader raw code). But if you don't know how to setup the shader material,\n" +
+	"you can just use the CRTViewportDisplay:")
 
-	theme.set_color("font_color", "Label", font_color)
-	theme.set_stylebox("panel", "Panel", style_box)
-	self.set_theme(theme)
-#	theme.set_color("font_color_pressed", font_color)
-#	var flat_stylebox = StyleBoxFlat.new()
-#	self.add_style_override("panel", flat_stylebox)
-	pass
+func _process(delta):
+	time_since_last_keystroke += delta
+	if is_writing:
+		if time_since_last_keystroke >= time_between_keystrokes:
+			time_since_last_keystroke = 0
+			if text.length() > 0:
+				var character = text[0]
+			label.set_text(label.get_text() + text[0])
+			text = text.right(1).left(text.length())
+			play_sound()
+			
+func start_writing(text):
+	self.text = text
+	self.is_writing = true
 	
-func get_bg_color():
-	return bg_color
+func stop_writing():
+	self.is_writing = false
+
+func play_sound():
+	var sound = sounds[rand_range(0, sounds.size())-1]
+	sample_player.play(sound)
+	sample_player.stop_all()
 	
-func set_bg_color(new_bg_color):
-	bg_color = new_bg_color
-#	var color = rand_range(0, 255)
-#	self.get_stylebox("panel").set_bg_color(Color(color, color, color))
+func write_new_line(new_line):
+	new_line = str(new_line)
+	# Delete last log entry if log too long
+	if lines.size() >= maximum_lines:
+		lines.pop_front()
 	
+	lines.push_back(new_line)
+	
+	lines_string = ""
+	for line in lines:
+		lines_string += line + "\n"
+	label.set_text(lines_string + "█")
