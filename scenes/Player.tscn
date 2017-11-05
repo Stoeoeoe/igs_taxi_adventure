@@ -20,7 +20,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4, 20 )
+extents = Vector2( 5, 21 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -35,20 +35,12 @@ collision/layers = 3
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-speed = 1
+speed = 400
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
 frames = SubResource( 2 )
 animation = "default"
-
-[node name="Area2D" type="Area2D" parent="."]
-
-input/pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -60,7 +52,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -0.107319 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -69,8 +61,11 @@ angular_damp = 1.0
 
 [node name="PlayerInteractionShape" type="CollisionShape2D" parent="InteractionArea"]
 
+transform/pos = Vector2( 0, -0.107319 )
 shape = SubResource( 3 )
 trigger = true
 _update_shape_index = 0
+
+[connection signal="body_enter" from="InteractionArea" to="." method="_on_InteractionArea_body_enter"]
 
 

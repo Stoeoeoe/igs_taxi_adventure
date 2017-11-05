@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scenes/Ball.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/standard_ball.png" type="Texture" id=2]
@@ -40,6 +40,11 @@ samples/wall_hit = {
 "priority": 0,
 "sample": ExtResource( 5 )
 }
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 6.78641
 
 [node name="Ball" type="KinematicBody2D" groups=[
 "ball",
@@ -95,18 +100,27 @@ config/polyphony = 1
 config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
+[node name="InteractionArea" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+
+shape = SubResource( 4 )
+trigger = true
+_update_shape_index = 0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
-
-[node name="Area2D" type="Area2D" parent="CollisionShape2D"]
-
-input/pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 
 

@@ -4,9 +4,9 @@
 [ext_resource path="res://assets/imgs/blocks/rabium_block.png" type="Texture" id=2]
 [ext_resource path="res://assets/sound/block_destructable.wav" type="Sample" id=3]
 [ext_resource path="res://assets/sound/block_indestructable.wav" type="Sample" id=4]
-[ext_resource path="res://assets/imgs/destruction_noise.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/blocks/destruction_noise_block.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 15, 7.5 )
@@ -16,7 +16,7 @@ extents = Vector2( 15, 7.5 )
 custom_solver_bias = 0.0
 extents = Vector2( 15.5, 8 )
 
-[sub_resource type="SampleLibrary" id=7]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/block_destructable = {
 "db": 0.0,
@@ -53,24 +53,24 @@ tracks/0/keys = {
 "values": [  ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:visibility/opacity")
+tracks/1/path = NodePath("DestructionNoise:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
+"times": FloatArray( 0, 0.6 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DestructionNoise:visibility/opacity")
+tracks/2/path = NodePath("Sprite:visibility/opacity")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
+"times": FloatArray( 0, 0.4 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0 ]
+"values": [ 1.0, 0.0 ]
 }
 
 [node name="Block" type="StaticBody2D" groups=[
@@ -78,7 +78,7 @@ tracks/2/keys = {
 ]]
 
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.5, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -117,7 +117,7 @@ _update_shape_index = 0
 
 visibility/visible = false
 transform/pos = Vector2( -0.5, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
@@ -129,7 +129,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 7 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -175,8 +175,7 @@ autoplay = ""
 
 [node name="DestructionNoise" type="Sprite" parent="."]
 
-visibility/opacity = 0.0
-visibility/blend_mode = 2
+visibility/behind_parent = true
 texture = ExtResource( 5 )
 
 [connection signal="body_enter" from="BlockEffectArea" to="." method="_on_block_hit"]
