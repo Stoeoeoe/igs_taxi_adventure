@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/ParallaxClouds.tscn" type="PackedScene" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="ParallaxClouds 2" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -159.122, 681.246 )
+transform/scale = Vector2( 1.28817, 2.1183 )
+z/z = 1
+speed = 200
+color = Color( 0.875, 0.714355, 0.714355, 1 )
+
+[node name="ParallaxClouds1" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -56.4123, 572.599 )
+transform/scale = Vector2( 1.1436, 2.06245 )
+color = Color( 0.824219, 0.495819, 0.495819, 1 )
+
+[node name="ParallaxClouds" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 0, 644.773 )
+transform/scale = Vector2( 1, 2.06245 )
+speed = 100
+
+
