@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ParallaxClouds.tscn" type="PackedScene" id=2]
 
 [node name="Control" type="Control"]
 
@@ -113,5 +114,10 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Exit"
 flat = false
+
+[node name="ParallaxClouds" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -0.902496, 727.107 )
+padding = 0
 
 

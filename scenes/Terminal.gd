@@ -7,7 +7,7 @@ onready var sample_player = get_node("SamplePlayer2D")
 var sounds = ["key_1", "key_2", "key_3", "key_4", "key_5"] 
 
 export(int) var maximum_lines = 36
-export(int) var time_between_keystrokes = 0.06
+export(int) var time_between_keystrokes = 0.15
 
 var lines = []
 var lines_string = ""

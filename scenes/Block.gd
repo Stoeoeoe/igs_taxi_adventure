@@ -35,6 +35,7 @@ func _on_block_hit( body ):
 func _on_AnimationPlayer_finished():
 	if animation_player.get_current_animation() == "DestructionAnim":
 		execute_block_action()
+		hide()
 		queue_free()
 
 func execute_block_action():

@@ -91,4 +91,42 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Score" type="Label" parent="RootControl"]
+
+anchor/left = 1
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -660.0
+margin/top = 10.0
+margin/right = -760.0
+margin/bottom = -20.0
+text = "Score:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ScoreLabel" type="Label" parent="RootControl"]
+
+anchor/left = 1
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -750.0
+margin/top = 10.0
+margin/right = -980.0
+margin/bottom = -20.0
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 
