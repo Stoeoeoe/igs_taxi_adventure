@@ -89,28 +89,18 @@ block_type = "indestructable"
 
 [node name="Block22" parent="Blocks" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 200, 324 )
+transform/pos = Vector2( 199, 350 )
 block_type = "regular"
 
 [node name="Block23" parent="Blocks" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 199, 516 )
-block_type = "rabium"
+transform/pos = Vector2( 197, 383 )
+block_type = "regular"
 
 [node name="Block17" parent="Blocks" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 752, 282 )
 block_type = "indestructable"
-
-[node name="Block22 2" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 304 )
-block_type = "regular"
-
-[node name="Block223" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 496 )
-block_type = "rabium"
 
 [node name="Block25 2" parent="Blocks" instance=ExtResource( 7 )]
 
@@ -122,16 +112,6 @@ block_type = "indestructable"
 transform/pos = Vector2( 752, 262 )
 block_type = "indestructable"
 
-[node name="Block22 3" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 284 )
-block_type = "regular"
-
-[node name="Block224" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 476 )
-block_type = "rabium"
-
 [node name="Block25 4" parent="Blocks" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 752, 482 )
@@ -141,16 +121,6 @@ block_type = "indestructable"
 
 transform/pos = Vector2( 752, 242 )
 block_type = "indestructable"
-
-[node name="Block22 4" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 264 )
-block_type = "regular"
-
-[node name="Block225" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 456 )
-block_type = "rabium"
 
 [node name="Block25 9" parent="Blocks" instance=ExtResource( 7 )]
 
@@ -162,45 +132,15 @@ block_type = "indestructable"
 transform/pos = Vector2( 792, 225 )
 block_type = "indestructable"
 
-[node name="Block22 5" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 243 )
-block_type = "regular"
-
-[node name="Block226" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 435 )
-block_type = "rabium"
-
 [node name="Block25 5" parent="Blocks" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 752, 442 )
 block_type = "indestructable"
 
-[node name="Block22 6" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 224 )
-block_type = "regular"
-
-[node name="Block227" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 416 )
-block_type = "rabium"
-
 [node name="Block25 6" parent="Blocks" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 752, 422 )
 block_type = "indestructable"
-
-[node name="Block26" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 200, 224 )
-block_type = "regular"
-
-[node name="Block27" parent="Blocks" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 199, 416 )
-block_type = "rabium"
 
 [node name="CRTOverlay" type="CanvasLayer" parent="."]
 
@@ -212,8 +152,10 @@ scale = Vector2( 1, 1 )
 [node name="TextureFrame1" parent="CRTOverlay" instance=ExtResource( 8 )]
 
 material/material = SubResource( 2 )
-margin/top = -1.0
-margin/bottom = 1.0
+margin/left = 1.0
+margin/top = -2.0
+margin/right = -1.0
+margin/bottom = 2.0
 
 [node name="Sprite" type="Sprite" parent="CRTOverlay"]
 

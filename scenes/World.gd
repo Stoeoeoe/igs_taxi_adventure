@@ -25,6 +25,11 @@ func initialize_game():
 	self.add_child(player)
 	self.add_child(ball)
 	
+	var all_blocks = get_node("Blocks").get_children()
+	for block in all_blocks:
+		if block.block_data.victory_relevant:
+			GameState.number_of_blocks_to_be_destroyed += 1
+	
 	
 func _process():
 	pass

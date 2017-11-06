@@ -1,5 +1,3 @@
-tool
-
 extends Panel
 
 onready var label = get_node("RichTextLabel")
@@ -8,7 +6,7 @@ onready var sample_player = get_node("SamplePlayer2D")
 var sounds = ["blip1"] 
 
 export(int) var maximum_lines = 36
-export(int) var time_between_keystrokes = 0.08
+export(int) var time_between_keystrokes = 0.05
 
 var lines = []
 var lines_string = ""
@@ -17,18 +15,18 @@ var is_writing = false
 var text = ""
 var time_since_last_keystroke = 0
 
+var delay_regex
 
 func _init():
-	pass
+	delay_regex = RegEx.new()
+	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")
 	
 func _ready():
 	HUD.toggle_hide()
 	set_process(true)
 	
 	start_writing(
-	"You   can use the shader by just copying the CRTDisplayShader.shd to your project\n" +
-	"(it's the Shader raw code). But if you don't know how to setup the shader material,\n" +
-	"you can just use the CRTViewportDisplay:")
+	"""2023 AD – Beta Hyperspace{0.4}\nThe interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex.""")
 
 func _process(delta):
 	time_since_last_keystroke += delta
@@ -36,10 +34,18 @@ func _process(delta):
 		if time_since_last_keystroke >= time_between_keystrokes:
 			time_since_last_keystroke = 0
 			if text.length() > 0:
-				var character = text[0]
-			label.set_text(label.get_text() + text[0])
-			text = text.right(1).left(text.length())
-			play_sound()
+				# Pause
+				var delay_pos = delay_regex.find(text)
+				if delay_pos == 0:
+					var delay = delay_regex.get_capture(1)
+					time_since_last_keystroke -= float(delay)
+					text = delay_regex.get_capture(2)
+				else:					
+					var character = text[0]
+					label.set_text(label.get_text() + text[0])
+					if not text[0] == " ":
+						play_sound()
+					text = text.right(1).left(text.length())
 			
 func start_writing(text):
 	self.text = text
