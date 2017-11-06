@@ -72,6 +72,16 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Overlay:visibility/opacity")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 0.4 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [node name="Block" type="StaticBody2D" groups=[
 "is_block",
@@ -93,6 +103,8 @@ block_type = "DEFAULT"
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+
+[node name="Overlay" type="Sprite" parent="."]
 
 [node name="BlockEffectArea" type="Area2D" parent="."]
 

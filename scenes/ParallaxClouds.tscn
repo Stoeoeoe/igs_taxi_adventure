@@ -1,27 +1,17 @@
 [gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://scenes/ParallaxClouds.gd" type="Script" id=1]
-[ext_resource path="res://assets/imgs/clouds1.png" type="Texture" id=2]
+[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=2]
 
 [node name="ParallaxClouds" type="Node2D"]
 
 script/script = ExtResource( 1 )
-speed = 50
-image = ExtResource( 2 )
-movement_direction = "RIGHT"
-color = Color( 1, 1, 1, 1 )
-padding = 0
 
-[node name="Placeholder" type="Panel" parent="."]
+[node name="Placeholder" type="Sprite" parent="."]
 
-anchor/right = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = -966.0
-margin/bottom = 40.0
+visibility/opacity = 0.3
+transform/scale = Vector2( 1024, 50 )
+texture = ExtResource( 2 )
+centered = false
 
 

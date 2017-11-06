@@ -1,3 +1,4 @@
+#tool
 extends Node2D
 
 export(int, 0, 9999) var speed = 20
@@ -6,10 +7,16 @@ export(String, "RIGHT", "LEFT") var movement_direction = "RIGHT"
 export(Color) var color = Color(1,1,1)
 export(int, 0, 9999) var padding = 0
 
+export(Color) var placerholder_color = Color(0,0,0) setget set_placeholder_color
+
 var direction = 1
 var screen_width = 0
 var number_of_elements = 0
 var texture_width = 0
+
+func set_placeholder_color(color):
+	placerholder_color = color
+	get_node("Placeholder").set_modulate(placerholder_color)
 
 func _ready():
 	get_node("Placeholder").queue_free()

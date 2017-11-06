@@ -118,6 +118,5 @@ flat = false
 [node name="ParallaxClouds" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -0.902496, 727.107 )
-padding = 0
 
 
