@@ -46,6 +46,8 @@ func _on_AnimationPlayer_finished():
 		queue_free()
 
 func execute_block_action():
+	if block_data.victory_relevant:
+		GameState.remove_block()
 	if self.score > 0:
 		GameState.add_score(score)
 	pass
