@@ -7,10 +7,10 @@
 
 [node name="ParallaxClouds 2" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -159.122, 681.246 )
+transform/pos = Vector2( -25.693, 681.246 )
 transform/scale = Vector2( 1, 2.1183 )
 z/z = 1
-speed = 80.0
+speed = 120.0
 scale = Vector2( 1.3, 1 )
 
 [node name="ParallaxClouds4" parent="." instance=ExtResource( 1 )]
@@ -18,15 +18,15 @@ scale = Vector2( 1.3, 1 )
 transform/pos = Vector2( -116.228, 200.45 )
 transform/scale = Vector2( 1, 2.1183 )
 z/z = -1
+speed = 50.0
 color = Color( 0.828125, 0.420532, 0.420532, 1 )
 scale = Vector2( 3.1, -1 )
 
 [node name="ParallaxClouds5" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -98.0515, 261.551 )
+transform/pos = Vector2( -158.472, 261.551 )
 transform/scale = Vector2( 1, 2.1183 )
 z/z = -3
-speed = 10.0
 color = Color( 0.601563, 0.173889, 0.173889, 1 )
 scale = Vector2( 3.5, -1 )
 
@@ -34,15 +34,15 @@ scale = Vector2( 3.5, -1 )
 
 transform/pos = Vector2( -56.4123, 639.221 )
 transform/scale = Vector2( 1, 2.06245 )
-speed = 40.0
+speed = 66.0
 color = Color( 0.6875, 0.602947, 0.27124, 1 )
 scale = Vector2( 0.7, 1 )
 
 [node name="ParallaxClouds4 2" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -22.6068, 160.697 )
+transform/pos = Vector2( -52.8171, 153.144 )
 transform/scale = Vector2( 1, 2.06245 )
-speed = 40.0
+speed = 70.0
 color = Color( 0.777344, 0.72653, 0.312759, 1 )
 scale = Vector2( 2.5, -1 )
 
@@ -51,15 +51,16 @@ scale = Vector2( 2.5, -1 )
 transform/pos = Vector2( -129.632, 565.618 )
 transform/scale = Vector2( 1, 2.06245 )
 z/z = -2
+speed = 55.0
 color = Color( 0.742188, 0.391388, 0.391388, 1 )
 scale = Vector2( 1.75, 1 )
 
 [node name="ParallaxClouds2" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( -102.367, 506.092 )
+transform/pos = Vector2( -162.788, 503.574 )
 transform/scale = Vector2( 1, 2.47432 )
 z/z = -6
-speed = 10.0
+speed = 25.0
 color = Color( 0.484375, 0.187317, 0.187317, 1 )
 scale = Vector2( 2.1, 1 )
 
@@ -68,7 +69,7 @@ scale = Vector2( 2.1, 1 )
 transform/pos = Vector2( -20.5398, 82.55 )
 transform/scale = Vector2( 1, 2.06245 )
 z/z = 1
-speed = 80.0
+speed = 125.0
 scale = Vector2( 1.5, -1 )
 
 [node name="Sprite" type="Sprite" parent="."]

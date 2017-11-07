@@ -26,7 +26,7 @@ func _ready():
 	get_node("Placeholder").queue_free()
 	texture_width = image.get_width() * scale.x
 	screen_width = OS.get_window_size().width
-	number_of_elements = ceil(screen_width / texture_width) + 1
+	number_of_elements = ceil(screen_width / texture_width) + 2
 	
 	direction = 1 if movement_direction == "RIGHT" else -1
 	
