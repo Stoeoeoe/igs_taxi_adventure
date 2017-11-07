@@ -29,7 +29,7 @@ func _ready():
 		sprite.set_texture(preload("../assets/imgs/blocks/rabium_block.png"))
 
 func _on_block_hit( body ):
-	HUD.out(body.get_groups())
+	HUD.write(body.get_groups())
 	if body.is_in_group("ball"):
 		execute_block_action()
 		if block_type == "regular" or block_type == "rabium":

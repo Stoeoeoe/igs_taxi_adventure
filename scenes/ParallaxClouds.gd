@@ -1,7 +1,7 @@
 #tool
 extends Node2D
 
-export(float, 1.0, 9999.0) var speed = 20.0
+export(float) var speed = 20.0
 export(Texture) var image = preload("res://assets/imgs/clouds1.png")
 export(String, "RIGHT", "LEFT") var movement_direction = "RIGHT"
 export(Color) var color = Color(1,1,1)
@@ -38,8 +38,6 @@ func _ready():
 		sprite.set_modulate(color)
 		add_child(sprite)
 	
-	
-	HUD.toggle_hide()
 	set_process(true)
 
 

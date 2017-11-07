@@ -5,7 +5,7 @@ export(float) var initial_speed = 140
 
 var initial_margin_to_player = 20
 
-var initial_direction = Vector2(1, 0)
+var initial_direction = Vector2(1, 0.25)
 
 var ball_launched = false
 var current_player = null
@@ -47,7 +47,8 @@ func _process(delta):
 			set_pos(new_position)
 
 func kill():
-	HUD.out("You head esplode")		
+	hide()
+	queue_free()
 
 func launch():
 	self.initial_direction = Vector2(1, rand_range(0, 1))
@@ -72,7 +73,6 @@ func default_bouncing(bounce_variation = Vector(0,0)):
 	var collision_normal = self.get_collision_normal()
 	var x_coll = round(collision_normal.x)
 	var y_coll = round(collision_normal.y)
-	HUD.out(Vector2(x_coll, y_coll))	
 	
 	# Touched east
 	if (x_coll == -1 or x_coll == 1) and y_coll == 0:

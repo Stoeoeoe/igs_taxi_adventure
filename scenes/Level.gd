@@ -19,6 +19,14 @@ func _ready():
 func _process(delta):
 	pass
 
+# Out of the Kill zone == DEAD
 func _on_Killzone_body_enter( body ):
 	if body.is_in_group("ball"):
+		var remaining_balls = get_tree().get_nodes_in_group("ball").size() - 1
 		body.kill()
+		if remaining_balls == 0:
+			GameState.remove_life()
+			if GameState.remaining_lives > 0:	
+				get_tree().call_group(0, "player", "kill")
+				get_tree().call_group(0, "world", "respawn_ball")
+				HUD.write("RESPAWN")

@@ -25,8 +25,6 @@ func _process(delta):
 		move_vector = Vector2(0, abs(speed) * delta )
 		self.move(move_vector)
 
-func _on_InteractionArea_body_enter( body ):
-	if is_colliding() and body.is_in_group("ball"):
-		HUD.out(self.get_collision_pos())
-	
-	pass # replace with function bodywwwwwww
+func kill():
+	hide()
+	queue_free()
