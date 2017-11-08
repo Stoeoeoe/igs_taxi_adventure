@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scenes/Block.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/blocks/rabium_block.png" type="Texture" id=2]
@@ -38,7 +38,24 @@ colors = ColorArray( 0, 0, 0, 1, 0.96875, 1, 0, 1, 0.96875, 1, 0, 1, 1, 1, 1, 0,
 
 [sub_resource type="Animation" id=5]
 
-resource/name = "DestructionAnim"
+resource/name = "BaseAnimation"
+length = 1.0
+loop = false
+step = 0.083
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource/name = "DestructionAnimation"
 length = 1.0
 loop = false
 step = 0.1
@@ -98,7 +115,7 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script/script = ExtResource( 1 )
-block_type = "DEFAULT"
+block_type = "regular"
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -179,7 +196,8 @@ color/color_ramp = SubResource( 4 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/DestructionAnim = SubResource( 5 )
+anims/BaseAnimation = SubResource( 5 )
+anims/DestructionAnimation = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -188,6 +206,7 @@ autoplay = ""
 [node name="DestructionNoise" type="Sprite" parent="."]
 
 visibility/behind_parent = true
+transform/pos = Vector2( 0, -0.263519 )
 texture = ExtResource( 5 )
 
 [connection signal="body_enter" from="BlockEffectArea" to="." method="_on_block_hit"]

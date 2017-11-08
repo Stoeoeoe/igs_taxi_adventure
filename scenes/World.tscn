@@ -83,22 +83,20 @@ stream/buffering_ms = 500
 
 [node name="Blocks" type="Node2D" parent="."]
 
-editor/display_folded = true
-
 [node name="Block16" parent="Blocks" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 752, 302 )
 block_type = "indestructable"
 
-[node name="Block22" parent="Blocks" instance=ExtResource( 7 )]
+[node name="Block21" parent="Blocks" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 199, 350 )
-block_type = "regular"
+transform/pos = Vector2( 752, 302 )
+block_type = "indestructable"
 
-[node name="Block23" parent="Blocks" instance=ExtResource( 7 )]
+[node name="Block25" parent="Blocks" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 197, 383 )
-block_type = "regular"
+transform/pos = Vector2( 752, 302 )
+block_type = "indestructable"
 
 [node name="Block17" parent="Blocks" instance=ExtResource( 7 )]
 
@@ -139,6 +137,12 @@ block_type = "indestructable"
 
 transform/pos = Vector2( 752, 442 )
 block_type = "indestructable"
+
+[node name="Block256" parent="Blocks" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 236, 470 )
+transform/scale = Vector2( 2, 2 )
+block_type = "rabium"
 
 [node name="Block25 6" parent="Blocks" instance=ExtResource( 7 )]
 
