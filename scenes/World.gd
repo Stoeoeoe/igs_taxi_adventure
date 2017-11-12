@@ -11,6 +11,7 @@ func _ready():
 	
 	
 func initialize_game():
+	HUD.show_hud()
 	respawn_ball()
 	
 	# Create and count victory-relevant blocks

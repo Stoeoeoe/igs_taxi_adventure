@@ -38,6 +38,9 @@ func remove_life():
 	var first_child = get_node("RootControl/LifeBox").get_child(0)
 	get_node("RootControl/LifeBox").remove_child(first_child)
 	
+func show_hud():
+	get_node("RootControl").set_hidden(false)
+	
 func toggle_hide():
 	get_node("RootControl").set_hidden(get_node("RootControl").is_visible())
 

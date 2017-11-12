@@ -7,3 +7,4 @@ extends Node
 func _ready():
 	HUD.deactivate()
 	pass
+	get_node("AnimationPlayer").play("ShakeTrack")

@@ -66,6 +66,4 @@ shape = SubResource( 3 )
 trigger = true
 _update_shape_index = 0
 
-[connection signal="body_enter" from="InteractionArea" to="." method="_on_InteractionArea_body_enter"]
-
 

@@ -1,18 +1,27 @@
+#tool
 extends StaticBody2D
 
-#export(Sample) var hit_sound
-#export(Texture) var default_texture = load("assets/imgs/blocks/default_block.png")
 onready var sample_player = get_node("SamplePlayer2D")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 
+export(String, "regular", "indestructable", "rabium") var block_type = "regular" setget set_block_type
 var block_data = null
-export(String, "regular", "indestructable", "rabium") var block_type = "regular"
-
 var score = 0
 
 func _ready():
-	block_data = data.get_item("blockdata", block_type)
+	create_block()
+	
+func set_block_type(new_blocktype):
+	block_type = new_blocktype
+	create_block()
+	
+func create_block():
+	if get_tree().is_editor_hint():
+		block_data = Globals.get("item_manager").get_item("blockdata", block_type)
+	else:
+		pass
+		block_data = data.get_item("blockdata", block_type)
 	sprite.set_texture(load(block_data.background_sprite))
 
 	sprite.set_hframes(block_data.animation_h_frames)
@@ -24,9 +33,6 @@ func _ready():
 	sprite.set_modulate(block_data.block_color)
 	if block_data.overlay:
 		get_node("Overlay").set_texture(load(block_data.overlay))
-#	var sample_library = SampleLibrary.new()
-#	sample_player.set_sample_library(sample_library)
-#	sample_player.get_sample_library().add_sample("hit_sound", hit_sound)
 	
 
 func _on_block_hit( body ):
@@ -53,10 +59,6 @@ func create_base_sprite_animation(frames, speed):
 	animation.track_insert_key(0, speed, frames + 1)
 	animation.set_loop(true)
 	animation_player.play("BaseAnimation")
-	
-	
-	
-
 
 func execute_block_action():
 	if block_data.victory_relevant:
@@ -64,3 +66,4 @@ func execute_block_action():
 	if self.score > 0:
 		GameState.add_score(score)
 	pass
+	

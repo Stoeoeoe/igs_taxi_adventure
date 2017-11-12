@@ -1,29 +1,58 @@
-#tool
+tool
 extends Node2D
 
-export(float) var speed = 20.0
-export(Texture) var image = preload("res://assets/imgs/clouds1.png")
-export(String, "RIGHT", "LEFT") var movement_direction = "RIGHT"
-export(Color) var color = Color(1,1,1)
-export(int, 0, 9999) var padding = 0
-#export(float, -999.0,999.0) var scale_y = 1.0
-#export(float, -999.0,999.0) var scale_x = 1.0
-export(Vector2) var scale = Vector2(1,1)
+export(float) var speed = 20.0 setget set_speed
+export(Texture) var image = preload("res://assets/imgs/cutscenes/clouds1.png") setget set_image
+export(String, "RIGHT", "LEFT") var movement_direction = "RIGHT" setget set_movement_direction
+export(Color) var color = Color(1,1,1) setget set_color
+export(int, 0, 9999) var padding = 0 setget set_padding
+export(Vector2) var scale = Vector2(1,1) setget set_scale
 
-export(Color) var placerholder_color = Color(0,0,0) setget set_placeholder_color
+
+
 
 var direction = 1
 var screen_width = 0
 var number_of_elements = 0
 var texture_width = 0
 
-func set_placeholder_color(color):
-	placerholder_color = color
-	if get_node("Placeholder") != null:
-		get_node("Placeholder").set_modulate(placerholder_color)
+func _get_item_rect():
+	screen_width = OS.get_window_size().width
+	return Rect2(0, 0-image.get_height()/2 * scale.y, 1080 * scale.x, image.get_height() * scale.y)
+
+func set_color(new_color):
+	color = new_color
+	create_sprites()
+
+
+func set_image(new_image):
+	image = new_image
+	create_sprites()
+		
+func set_speed(new_speed):
+	speed = new_speed
+	create_sprites()
+		
+func set_movement_direction(new_movement_direction):
+	movement_direction = new_movement_direction
+	create_sprites()
+		
+func set_padding(new_padding):
+	padding = new_padding
+	create_sprites()
+		
+func set_scale(new_scale):
+	scale = new_scale
+	create_sprites()
 
 func _ready():
-	get_node("Placeholder").queue_free()
+	create_sprites()
+	set_process(true)
+	
+func create_sprites():
+	for child in get_children():
+		if child extends Sprite:
+			remove_child(child)
 	texture_width = image.get_width() * scale.x
 	screen_width = OS.get_window_size().width
 	number_of_elements = ceil(screen_width / texture_width) + 2
@@ -38,13 +67,15 @@ func _ready():
 		sprite.set_modulate(color)
 		add_child(sprite)
 	
-	set_process(true)
+
 
 
 func _process(delta):
 	var number_of_pixels_moved = (delta * speed * direction) #ceil((delta * speed * direction)/100)
 	if number_of_pixels_moved >= 1:
 		number_of_pixels_moved = ceil(number_of_pixels_moved)
+	var children = get_children()		
+	children.remove(0)				# First element: Placeholder
 	for child in get_children():
 		if child extends Sprite:
 			var old_position = child.get_pos()

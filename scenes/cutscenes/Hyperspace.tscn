@@ -1,119 +1,211 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
-[ext_resource path="res://scenes/ParallaxClouds.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=3]
-[ext_resource path="res://scenes/FrameCycler.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/imgs/jet_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://scenes/IGSCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ParallaxClouds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=4]
+[ext_resource path="res://scenes/FrameCycler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=7]
+[ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=8]
 
-[node name="Node" type="Node"]
+[sub_resource type="Animation" id=1]
+
+resource/name = "ShakeTrack"
+length = 10.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ship:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1050, 408 ), Vector2( 336, 408 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SamplePlayer2D:play/play")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 2,
+"values": [ "SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("IGSCamera:zoom")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 6, 6.2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.1, 0.1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("IGSCamera:transform/pos")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 6, 6.2 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 384 ), Vector2( 512, 384 ), Vector2( 361, 419 ) ]
+}
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+
+[node name="Hyperspace" type="Node"]
 
 script/script = ExtResource( 1 )
 
-[node name="ParallaxClouds 2" parent="." instance=ExtResource( 2 )]
+[node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( -25.693, 681.246 )
-transform/scale = Vector2( 1, 2.1183 )
+transform/pos = Vector2( 512, 384 )
+offset = Vector2( 2.95825, -2.63214 )
+current = true
+shake_amount = 3.0
+is_shaking = true
+
+[node name="Upper1" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -21, 84 )
+z/z = 2
+speed = 125.0
+scale = Vector2( 1, -2.1183 )
+
+[node name="Upper2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -22, 156 )
 z/z = 1
-speed = 120.0
-scale = Vector2( 1.3, 1 )
+speed = 80.0
+color = Color( 0.824219, 0.666458, 0.666458, 1 )
+scale = Vector2( 1, -2.1183 )
 
-[node name="ParallaxClouds4" parent="." instance=ExtResource( 2 )]
+[node name="Upper3" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -116.228, 200.45 )
-transform/scale = Vector2( 1, 2.1183 )
 z/z = -1
 speed = 50.0
-color = Color( 0.828125, 0.420532, 0.420532, 1 )
-scale = Vector2( 3.1, -1 )
+color = Color( 0.582031, 0.247818, 0.247818, 1 )
+scale = Vector2( 1, -2.1183 )
 
-[node name="ParallaxClouds5" parent="." instance=ExtResource( 2 )]
+[node name="Upper4" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -158.472, 261.551 )
-transform/scale = Vector2( 1, 2.1183 )
 z/z = -3
-color = Color( 0.601563, 0.173889, 0.173889, 1 )
-scale = Vector2( 3.5, -1 )
+color = Color( 0.558594, 0.106918, 0.106918, 1 )
+scale = Vector2( 1, -2.1183 )
 
-[node name="ParallaxClouds1" parent="." instance=ExtResource( 2 )]
+[node name="Lower1" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( -56.4123, 639.221 )
-transform/scale = Vector2( 1, 2.06245 )
-speed = 66.0
-color = Color( 0.6875, 0.602947, 0.27124, 1 )
-scale = Vector2( 0.7, 1 )
-
-[node name="ParallaxClouds4 2" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( -52.8171, 153.144 )
-transform/scale = Vector2( 1, 2.06245 )
-speed = 70.0
-color = Color( 0.777344, 0.72653, 0.312759, 1 )
-scale = Vector2( 2.5, -1 )
-
-[node name="ParallaxClouds" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( -129.632, 565.618 )
-transform/scale = Vector2( 1, 2.06245 )
-z/z = -2
-speed = 55.0
-color = Color( 0.742188, 0.391388, 0.391388, 1 )
-scale = Vector2( 1.75, 1 )
-
-[node name="ParallaxClouds2" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( -162.788, 503.574 )
-transform/scale = Vector2( 1, 2.47432 )
-z/z = -6
-speed = 25.0
-color = Color( 0.484375, 0.187317, 0.187317, 1 )
-scale = Vector2( 2.1, 1 )
-
-[node name="ParallaxClouds4 3" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( -20.5398, 82.55 )
-transform/scale = Vector2( 1, 2.06245 )
+transform/pos = Vector2( -25.693, 681.246 )
 z/z = 1
 speed = 125.0
-scale = Vector2( 1.5, -1 )
+scale = Vector2( 1, 2.1183 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Lower3" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -129.632, 565.618 )
+z/z = -2
+speed = 50.0
+color = Color( 0.582031, 0.247818, 0.247818, 1 )
+scale = Vector2( 1, 2.1183 )
+
+[node name="Lower2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -56.4123, 639.221 )
+speed = 80.0
+color = Color( 0.824219, 0.666458, 0.666458, 1 )
+scale = Vector2( 1, 2.1183 )
+
+[node name="Lower4" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -164, 504 )
+z/z = -6
+color = Color( 0.558594, 0.106918, 0.106918, 1 )
+scale = Vector2( 1, 2.1183 )
+
+[node name="Backdrop" type="Sprite" parent="."]
 
 transform/pos = Vector2( -38.9387, 205.467 )
 transform/scale = Vector2( 1151.94, 454.414 )
 z/z = -8
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 centered = false
 modulate = Color( 0.351563, 0.0453186, 0.0453186, 1 )
 
-[node name="Node2D 2" type="Node2D" parent="."]
+[node name="Ship" type="Node2D" parent="."]
 
-transform/pos = Vector2( 276.047, 407.903 )
+transform/pos = Vector2( 1050, 408 )
 
-[node name="Node2D 2 2" parent="Node2D 2" instance=ExtResource( 4 )]
+[node name="Node2D 2 2" parent="Ship" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 425.619, -51.7357 )
+transform/pos = Vector2( 424.953, -52.903 )
 transform/scale = Vector2( 10.6455, 1.85449 )
-image = ExtResource( 5 )
-HFrames = 8
+texture = ExtResource( 6 )
+frame = 0
+duration = 2.0
+image = ExtResource( 6 )
 
-[node name="Node2D 23" parent="Node2D 2" instance=ExtResource( 4 )]
+[node name="Node2D 23" parent="Ship" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 429.303, 10.8788 )
 transform/scale = Vector2( 10.6455, 1.85449 )
-image = ExtResource( 5 )
-HFrames = 8
+texture = ExtResource( 6 )
+frame = 0
+duration = 2.0
+image = ExtResource( 6 )
 
-[node name="Node2D24" parent="Node2D 2" instance=ExtResource( 4 )]
+[node name="Node2D24" parent="Ship" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 434.827, -24.726 )
+transform/pos = Vector2( 434.953, -28.903 )
 transform/scale = Vector2( 10.7798, 2.08468 )
-image = ExtResource( 5 )
-HFrames = 8
+texture = ExtResource( 6 )
+frame = 0
+duration = 2.0
+image = ExtResource( 6 )
 
-[node name="Node2D" parent="Node2D 2" instance=ExtResource( 4 )]
+[node name="Node2D" parent="Ship" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 11.9214, -165.552 )
+transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
+texture = ExtResource( 7 )
+frame = 0
+region_rect = Rect2( 316, 68, 99, 7 )
+duration = 2.0
+image = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/ShakeTrack = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.0
 
 
