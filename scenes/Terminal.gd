@@ -18,6 +18,7 @@ var time_since_last_keystroke = 0
 var delay_regex
 
 func _init():
+<<<<<<< Updated upstream
 	delay_regex = RegEx.new()
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")
 	
@@ -47,27 +48,51 @@ func _process(delta):
 						play_sound()
 					text = text.right(1).left(text.length())
 			
+=======
+ pass
+ 
+func _ready():
+ HUD.toggle_hide()
+ set_process(true)
+ 
+ start_writing(
+ "2023 AD – Beta Hyperspace"
+)
+
+func _process(delta):
+ time_since_last_keystroke += delta
+ if is_writing:
+  if time_since_last_keystroke >= time_between_keystrokes:
+   time_since_last_keystroke = 0
+   if text.length() > 0:
+    var character = text[0]
+   label.set_text(label.get_text() + text[0])
+   if not text[0] == " ":
+    play_sound()
+   text = text.right(1).left(text.length())
+   
+>>>>>>> Stashed changes
 func start_writing(text):
-	self.text = text
-	self.is_writing = true
-	
+ self.text = text
+ self.is_writing = true
+ 
 func stop_writing():
-	self.is_writing = false
+ self.is_writing = false
 
 func play_sound():
-	var sound = sounds[rand_range(0, sounds.size())-1]
-	sample_player.play(sound)
-	sample_player.stop_all()
-	
+ var sound = sounds[rand_range(0, sounds.size())-1]
+ sample_player.play(sound)
+ sample_player.stop_all()
+ 
 func write_new_line(new_line):
-	new_line = str(new_line)
-	# Delete last log entry if log too long
-	if lines.size() >= maximum_lines:
-		lines.pop_front()
-	
-	lines.push_back(new_line)
-	
-	lines_string = ""
-	for line in lines:
-		lines_string += line + "\n"
-	label.set_text(lines_string + "█")
+ new_line = str(new_line)
+ # Delete last log entry if log too long
+ if lines.size() >= maximum_lines:
+  lines.pop_front()
+ 
+ lines.push_back(new_line)
+ 
+ lines_string = ""
+ for line in lines:
+  lines_string += line + "\n"
+ label.set_text(lines_string + "█")
