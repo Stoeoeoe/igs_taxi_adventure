@@ -81,12 +81,10 @@ stream/buffering_ms = 500
 [node name="Block" parent="Blocks" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 241, 348 )
-block_type = "regular"
 
 [node name="Block1" parent="Blocks" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 241, 379 )
-block_type = "regular"
 
 [node name="CRTOverlay" type="CanvasLayer" parent="."]
 
