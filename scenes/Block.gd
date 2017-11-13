@@ -14,14 +14,14 @@ func _ready():
 	
 func set_block_type(new_blocktype):
 	block_type = new_blocktype
-	create_block()
+	#create_block()
 	
 func create_block():
-	if get_tree().is_editor_hint():
-		block_data = Globals.get("item_manager").get_item("blockdata", block_type)
-	else:
-		pass
-		block_data = data.get_item("blockdata", block_type)
+	#if get_tree().is_editor_hint():
+	#	block_data = Globals.get("item_manager").get_item("blockdata", block_type)
+	#else:
+	#	pass
+	block_data = data.get_item("blockdata", block_type)
 	sprite.set_texture(load(block_data.background_sprite))
 
 	sprite.set_hframes(block_data.animation_h_frames)

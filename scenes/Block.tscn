@@ -115,6 +115,7 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 script/script = ExtResource( 1 )
+block_type = "regular"
 
 [node name="Sprite" type="Sprite" parent="."]
 
