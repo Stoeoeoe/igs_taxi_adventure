@@ -1,6 +1,7 @@
-extends Panel
+extends CanvasLayer
 
-onready var label = get_node("RichTextLabel")
+onready var background = get_node("Background")
+onready var label = get_node("Background/RichTextLabel")
 onready var sample_player = get_node("SamplePlayer2D") 
 #var sounds = ["key_1", "key_2", "key_3", "key_4", "key_5"] 
 var sounds = ["blip1"] 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=1]
 
-[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/Terminal.gd" type="Script" id=2]
-[ext_resource path="res://assets/sound/blip1.wav" type="Sample" id=3]
-[ext_resource path="res://scenes/CRT_frame.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Terminal.gd" type="Script" id=1]
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/CRT_frame.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sound/blip1.wav" type="Sample" id=4]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -11,25 +11,34 @@ samples/blip1 = {
 "db": -6.29,
 "pitch": 1.1,
 "priority": 0,
-"sample": ExtResource( 3 )
+"sample": ExtResource( 4 )
 }
 
-[node name="Background" type="Panel"]
+[node name="Background" type="CanvasLayer"]
 
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+maximum_lines = 36
+time_between_keystrokes = 0.05
+
+[node name="Background" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 1 )
+theme/theme = ExtResource( 2 )
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 1024.0
-margin/bottom = 768.0
-script/script = ExtResource( 2 )
-maximum_lines = 36
-time_between_keystrokes = 0.05
+margin/right = 0.0
+margin/bottom = 0.0
 
-[node name="LineVBox" type="VBoxContainer" parent="."]
+[node name="LineVBox" type="VBoxContainer" parent="Background"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -43,7 +52,7 @@ margin/right = 10.0
 margin/bottom = 10.0
 alignment = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -60,6 +69,8 @@ bbcode/bbcode = ""
 visible_characters = -1
 percent_visible = 1.0
 
+[node name="CRT" parent="Background" instance=ExtResource( 3 )]
+
 [node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
 
 params/volume_db = 0.0
@@ -70,18 +81,5 @@ params/attenuation/distance_exp = 1.0
 config/polyphony = 0
 config/samples = SubResource( 1 )
 config/pitch_random = 0.0
-
-[node name="SamplePlayer2D_OLD" type="SamplePlayer2D" parent="."]
-
-params/volume_db = 0.0
-params/pitch_scale = 1.0
-params/attenuation/min_distance = 1.0
-params/attenuation/max_distance = 2048.0
-params/attenuation/distance_exp = 1.0
-config/polyphony = 0
-config/samples = SubResource( 1 )
-config/pitch_random = 0.05
-
-[node name="TextureFrame" parent="." instance=ExtResource( 4 )]
 
 

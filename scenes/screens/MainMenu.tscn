@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=2]
 
 [node name="Control" type="Control"]
 
@@ -9,13 +9,14 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-script/script = ExtResource( 1 )
+script/script = ExtResource( 2 )
 
-[node name="Panel" type="Panel" parent="."]
+[node name="MainMenu" type="Panel" parent="."]
 
 anchor/right = 1
 anchor/bottom = 1
@@ -23,13 +24,15 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 3
-theme/theme = ExtResource( 2 )
 margin/left = 0.0
 margin/top = 0.0
 margin/right = -984.0
 margin/bottom = -728.0
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
 
 anchor/left = 3
 anchor/right = 3
@@ -44,7 +47,7 @@ margin/right = -200.0
 margin/bottom = 200.0
 alignment = 0
 
-[node name="StartButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -53,88 +56,111 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 25.0
+margin/bottom = 21.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Save the World"
 flat = false
 
-[node name="Button1" type="Button" parent="Panel/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 29.0
+margin/top = 25.0
 margin/right = 400.0
-margin/bottom = 54.0
+margin/bottom = 46.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+text = "Settings"
 flat = false
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+[node name="HighscoreButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 58.0
+margin/top = 50.0
 margin/right = 400.0
-margin/bottom = 83.0
+margin/bottom = 71.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+text = "Highscore"
 flat = false
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+[node name="CreditsAndLicensesButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 87.0
+margin/top = 75.0
 margin/right = 400.0
-margin/bottom = 112.0
+margin/bottom = 96.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+text = "Credits and Licenses"
 flat = false
 
-[node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 116.0
+margin/top = 100.0
 margin/right = 400.0
-margin/bottom = 141.0
+margin/bottom = 121.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Land Ship"
 flat = false
 
-[node name="WindowDialog" type="WindowDialog" parent="."]
+[node name="SettingsMenu" type="Panel" parent="."]
 
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/horizontal = 3
+size_flags/vertical = 3
+theme/theme = ExtResource( 1 )
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 290.0
-margin/bottom = 136.0
-popup/exclusive = true
-window/title = ""
+margin/right = -984.0
+margin/bottom = -728.0
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowDialog"]
+[node name="GridContainer" type="VBoxContainer" parent="SettingsMenu"]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 1
+size_flags/vertical = 1
+margin/left = 227.0
+margin/top = 115.0
+margin/right = -226.0
+margin/bottom = 115.0
+alignment = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/GridContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -142,10 +168,117 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 199.0
-margin/bottom = 167.0
+margin/right = 453.0
+margin/bottom = 28.0
 alignment = 0
 
-[connection signal="pressed" from="Panel/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[node name="CRTEffectLabel" type="Label" parent="SettingsMenu/GridContainer/HBoxContainer"]
+
+rect/min_size = Vector2( 250, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 4.0
+margin/right = 250.0
+margin/bottom = 23.0
+text = "CRT Effect"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CRTEffect" type="CheckBox" parent="SettingsMenu/GridContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 254.0
+margin/top = 0.0
+margin/right = 453.0
+margin/bottom = 28.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="SettingsMenu/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 32.0
+margin/right = 453.0
+margin/bottom = 51.0
+alignment = 0
+
+[node name="CRTStrengthLabel" type="Label" parent="SettingsMenu/GridContainer/HBoxContainer1"]
+
+rect/min_size = Vector2( 250, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 19.0
+text = "CRT Strength"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CRTStrength" type="HSlider" parent="SettingsMenu/GridContainer/HBoxContainer1"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 254.0
+margin/top = 6.0
+margin/right = 453.0
+margin/bottom = 12.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.01
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
+[node name="SaveChangesButton" type="Button" parent="SettingsMenu/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 66.0
+margin/right = 453.0
+margin/bottom = 87.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save Changes"
+flat = false
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/CreditsAndLicensesButton" to="." method="_on_CreditsAndLicensesButton_pressed"]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+
+[connection signal="pressed" from="SettingsMenu/GridContainer/SaveChangesButton" to="." method="_on_SaveChangesButton_pressed"]
 
 
