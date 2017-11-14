@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
 [ext_resource path="res://scenes/IGSCamera.tscn" type="PackedScene" id=2]
@@ -7,13 +7,14 @@
 [ext_resource path="res://scenes/FrameCycler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=6]
 [ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=8]
+[ext_resource path="res://assets/imgs/cutscenes/lightning_combined.png" type="Texture" id=8]
+[ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=9]
 
 [sub_resource type="Animation" id=1]
 
 resource/name = "ShakeTrack"
 length = 50.0
-loop = false
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ship:transform/pos")
@@ -62,7 +63,7 @@ samples/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
 }
 
 [node name="Hyperspace" type="Node"]
@@ -72,7 +73,7 @@ script/script = ExtResource( 1 )
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 512, 384 )
-offset = Vector2( 2.50266, 2.24454 )
+offset = Vector2( -1.88386, -0.0397766 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -147,14 +148,13 @@ modulate = Color( 0.351563, 0.0453186, 0.0453186, 1 )
 
 [node name="Ship" type="Node2D" parent="."]
 
-transform/pos = Vector2( 260.135, 408 )
+transform/pos = Vector2( 345.294, 408 )
 
 [node name="ShipSprite" parent="Ship" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 6 )
-frame = 9
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -162,10 +162,10 @@ duration = 2.0
 
 transform/pos = Vector2( 435, -3.00002 )
 transform/scale = Vector2( 3, 1.5 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 5
+frame = 2
 duration = 0.42
 hframes = 9
 
@@ -173,10 +173,10 @@ hframes = 9
 
 transform/pos = Vector2( 403, -47 )
 transform/scale = Vector2( 3, 1.5 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 2
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -184,10 +184,10 @@ hframes = 9
 
 transform/pos = Vector2( 397, -28 )
 transform/scale = Vector2( 3, 1.5 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 1
+frame = 3
 duration = 0.39
 hframes = 9
 
@@ -196,10 +196,10 @@ hframes = 9
 visibility/opacity = 0.5
 transform/pos = Vector2( 431, -6 )
 transform/scale = Vector2( 4.0125, 1.6 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 3
+frame = 1
 duration = 0.36
 hframes = 9
 
@@ -208,10 +208,10 @@ hframes = 9
 visibility/opacity = 0.5
 transform/pos = Vector2( 399, -50 )
 transform/scale = Vector2( 4.0125, 1.6 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 2
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -220,10 +220,10 @@ hframes = 9
 visibility/opacity = 0.5
 transform/pos = Vector2( 393, -31 )
 transform/scale = Vector2( 4.0125, 1.6 )
-z/z = -3
+z/z = -1
 texture = ExtResource( 7 )
 hframes = 9
-frame = 0
+frame = 5
 duration = 0.4
 hframes = 9
 
@@ -262,9 +262,20 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="Lightnings" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 9.27258, 253.45 )
+transform/scale = Vector2( 1, 1.03213 )
+z/z = -3
+texture = ExtResource( 8 )
+hframes = 4
+frame = 1
+duration = 2.0
+hframes = 4
+
 [node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
 
-transform/pos = Vector2( 493.741, 367.049 )
+transform/pos = Vector2( 495.592, 367.049 )
 transform/scale = Vector2( 16.4294, 12.4703 )
 params/volume_db = 0.0
 params/pitch_scale = 1.0

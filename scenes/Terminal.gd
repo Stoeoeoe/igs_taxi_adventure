@@ -18,7 +18,6 @@ var time_since_last_keystroke = 0
 var delay_regex
 
 func _init():
-<<<<<<< Updated upstream
 	delay_regex = RegEx.new()
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")
 	
@@ -48,30 +47,8 @@ func _process(delta):
 						play_sound()
 					text = text.right(1).left(text.length())
 			
-=======
  pass
- 
-func _ready():
- HUD.toggle_hide()
- set_process(true)
- 
- start_writing(
- "2023 AD – Beta Hyperspace"
-)
 
-func _process(delta):
- time_since_last_keystroke += delta
- if is_writing:
-  if time_since_last_keystroke >= time_between_keystrokes:
-   time_since_last_keystroke = 0
-   if text.length() > 0:
-    var character = text[0]
-   label.set_text(label.get_text() + text[0])
-   if not text[0] == " ":
-    play_sound()
-   text = text.right(1).left(text.length())
-   
->>>>>>> Stashed changes
 func start_writing(text):
  self.text = text
  self.is_writing = true
