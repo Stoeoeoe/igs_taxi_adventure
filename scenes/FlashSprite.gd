@@ -1,4 +1,5 @@
 tool
+signal flash
 
 extends Sprite
 
@@ -16,17 +17,19 @@ export (Vector2) var scale_max = Vector2(1,1) setget set_scale_max
 export (bool) var randomize_time = false setget set_randomize_time
 export (bool) var randomize_scale = false setget set_randomize_scale
 export (bool) var randomize_pause = false setget set_randomize_pause
+export (bool) var randomize_frames = false setget set_randomize_frames
 export (int, "STATIC", "FADE_IN_FROM_ZERO", "FADE_IN_FROM_MIN", "FADE_IN_FROM_MAX") var scale_fade_in_mode = 0
 export (int, "STATIC", "FADE_OUT_TO_ZERO", "FADE_OUT_TO_MIN", "FADE_OUT_TO_MAX") var scale_fade_out_mode = 0
 export (bool) var replay = true setget set_replay
 
 
-var attack
-var sustain
-var decay
-var scale
-var pause
-var transition_factor
+var attack = 0
+var sustain = 0
+var decay = 0
+var scale = 0
+var pause = 0
+var transition_factor = 0
+var frame_number = 1
 var attack_started = false
 var sustain_started = false
 var decay_started = false
@@ -45,6 +48,11 @@ func set_randomize_scale(new_randomize_scale):
 func set_randomize_pause(new_randomize_pause):
 	randomize_pause = new_randomize_pause
 	play()	
+
+func set_randomize_frames(new_randomize_frames):
+	randomize_frames = new_randomize_frames
+	play()	
+
 
 func set_attack_time(new_attack_time):
 	attack_time = new_attack_time
@@ -98,6 +106,7 @@ func set_replay(new_replay):
 func _ready():
 	set_process(true)
 	base_scale = get_scale()
+	frame_number = get_hframes() * get_vframes()
 	play()
 
 func _process(delta):
@@ -112,6 +121,7 @@ func _process(delta):
 	elif decay_started:
 		if time_since_last_framechange >= decay:
 			time_since_last_framechange = 0.0
+			set_opacity(0.0)
 			pause_started = true;
 		else:
 			set_opacity( 1 - (time_since_last_framechange / decay))
@@ -133,16 +143,18 @@ func _process(delta):
 	#print(get_opacity())
 	
 func play():
+	emit_signal("flash")
+	if randomize_frames and frame_number > 1:
+		set_frame(rand_range(1, frame_number))
 	attack = get_randomized_value(attack_time, attack_variance, randomize_time)
 	sustain = get_randomized_value(sustain_time, sustain_variance, randomize_time)
 	decay = get_randomized_value(decay_time, decay_variance, randomize_time)
 	pause = get_randomized_value(pause_duration, pause_variance, randomize_pause)
+	
 	if randomize_scale == false:
 		scale = base_scale
 	else:
 		scale = Vector2(get_randomized_value((scale_max.x + scale_min.x)/2, scale_max.x - scale_min.x, randomize_scale), get_randomized_value((scale_max.y + scale_min.y)/2, scale_max.y - scale_min.y, randomize_scale))
-		#scale = Vector2(get_randomized_value(scale_min.x, scale_max.x - scale_min.x, randomize_scale), get_randomized_value(scale_min.y, scale_max.y - scale_min.y, randomize_scale))
-	
 	attack_started = true
 	sustain_started = false
 	decay_started = false
@@ -151,8 +163,6 @@ func play():
 	#calculate_scale()
 	set_opacity(0.0);
 	time_since_last_framechange = 0.0
-
-	pass
 	
 func stop(show_sprite):
 	if show_sprite:
@@ -168,6 +178,7 @@ func stop(show_sprite):
 func calculate_scale():
 	if decay_started:
 		if scale_fade_out_mode == 0 or decay == 0: # STATIC
+			set_scale(scale)
 			return
 		transition_factor = 1-(time_since_last_framechange / decay) # 0-1
 		#print(transition_factor)
@@ -180,6 +191,7 @@ func calculate_scale():
 
 	elif attack_started:
 		if scale_fade_in_mode == 0 or attack == 0: # STATIC
+			set_scale(scale)
 			return
 		transition_factor = time_since_last_framechange / attack # 0-1
 		#print(transition_factor)
