@@ -1,8 +1,6 @@
 tool
-signal flash
 
 extends Sprite
-
 
 export (float) var attack_time = 0.1 setget set_attack_time 
 export (float) var sustain_time = 3.0 setget set_sustain_time 
@@ -22,6 +20,7 @@ export (int, "STATIC", "FADE_IN_FROM_ZERO", "FADE_IN_FROM_MIN", "FADE_IN_FROM_MA
 export (int, "STATIC", "FADE_OUT_TO_ZERO", "FADE_OUT_TO_MIN", "FADE_OUT_TO_MAX") var scale_fade_out_mode = 0
 export (bool) var replay = true setget set_replay
 
+signal flash
 
 var attack = 0
 var sustain = 0
@@ -39,60 +38,60 @@ var base_scale = Vector2(1,1)
 
 func set_randomize_time(new_randomize_time):
 	randomize_time = new_randomize_time
-	play()
+#	play()
 	
 func set_randomize_scale(new_randomize_scale):
 	randomize_scale = new_randomize_scale
-	play()	
+#	play()	
 	
 func set_randomize_pause(new_randomize_pause):
 	randomize_pause = new_randomize_pause
-	play()	
+#	play()	
 
 func set_randomize_frames(new_randomize_frames):
 	randomize_frames = new_randomize_frames
-	play()	
+#	play()	
 
 
 func set_attack_time(new_attack_time):
 	attack_time = new_attack_time
-	play()
+#	play()
 	
 func set_sustain_time(new_sustain_time):
 	sustain_time = new_sustain_time
-	play()	
+#	play()	
 
 func set_decay_time(new_decay_time):
 	decay_time = new_decay_time
-	play()	
+#	play()	
 
 func set_attack_variance(new_attack_variance):
 	attack_variance = new_attack_variance
-	play()
+#	play()
 	
 func set_sustain_variance(new_sustain_variance):
 	sustain_variance = new_sustain_variance
-	play()	
+#	play()	
 
 func set_decay_variance(new_decay_variance):
 	decay_variance = new_decay_variance
-	play()	
+#	play()	
 	
 func set_pause_variance(new_pause_variance):
 	pause_variance = new_pause_variance
-	play()		
+#	play()		
 	
 func set_pause_duration(new_pause_duration):
 	pause_duration = new_pause_duration
-	play()
+#	play()
 	
 func set_scale_min(new_scale_min):
 	scale_min = new_scale_min
-	play()
+#	play()
 	
 func set_scale_max(new_scale_max):
 	scale_max = new_scale_max
-	play()
+#	play()
 
 	
 func set_replay(new_replay):
@@ -110,7 +109,6 @@ func _ready():
 	play()
 
 func _process(delta):
-	#print(delta)
 	time_since_last_framechange += delta
 	if pause_started:
 		if time_since_last_framechange >= pause:
