@@ -2,6 +2,7 @@ tool
 
 extends Sprite
 
+
 export (float) var attack_time = 0.1 setget set_attack_time 
 export (float) var sustain_time = 3.0 setget set_sustain_time 
 export (float) var decay_time = 0.5 setget set_decay_time 
@@ -15,6 +16,8 @@ export (Vector2) var scale_max = Vector2(1,1) setget set_scale_max
 export (bool) var randomize_time = false setget set_randomize_time
 export (bool) var randomize_scale = false setget set_randomize_scale
 export (bool) var randomize_pause = false setget set_randomize_pause
+export (int, "STATIC", "FADE_IN_FROM_ZERO", "FADE_IN_FROM_MIN", "FADE_IN_FROM_MAX") var scale_fade_in_mode = 0
+export (int, "STATIC", "FADE_OUT_TO_ZERO", "FADE_OUT_TO_MIN", "FADE_OUT_TO_MAX") var scale_fade_out_mode = 0
 export (bool) var replay = true setget set_replay
 
 
@@ -23,12 +26,25 @@ var sustain
 var decay
 var scale
 var pause
+var transition_factor
 var attack_started = false
 var sustain_started = false
 var decay_started = false
 var pause_started = false
 var time_since_last_framechange = 0.0
 var base_scale = Vector2(1,1)
+
+func set_randomize_time(new_randomize_time):
+	randomize_time = new_randomize_time
+	play()
+	
+func set_randomize_scale(new_randomize_scale):
+	randomize_scale = new_randomize_scale
+	play()	
+	
+func set_randomize_pause(new_randomize_pause):
+	randomize_pause = new_randomize_pause
+	play()	
 
 func set_attack_time(new_attack_time):
 	attack_time = new_attack_time
@@ -69,18 +85,7 @@ func set_scale_min(new_scale_min):
 func set_scale_max(new_scale_max):
 	scale_max = new_scale_max
 	play()
-	
-func set_randomize_time(new_randomize_time):
-	randomize_time = new_randomize_time
-	play()
-	
-func set_randomize_scale(new_randomize_scale):
-	randomize_scale = new_randomize_scale
-	play()	
-	
-func set_randomize_pause(new_randomize_pause):
-	randomize_pause = new_randomize_pause
-	play()	
+
 	
 func set_replay(new_replay):
 	replay = new_replay
@@ -110,6 +115,7 @@ func _process(delta):
 			pause_started = true;
 		else:
 			set_opacity( 1 - (time_since_last_framechange / decay))
+			calculate_scale()
 	elif sustain_started:
 		if time_since_last_framechange >= sustain:
 			time_since_last_framechange = 0.0
@@ -123,6 +129,7 @@ func _process(delta):
 			#print("######################## SUSTAIN")
 		else:
 			set_opacity(time_since_last_framechange / attack)
+			calculate_scale()
 	#print(get_opacity())
 	
 func play():
@@ -130,13 +137,18 @@ func play():
 	sustain = get_randomized_value(sustain_time, sustain_variance, randomize_time)
 	decay = get_randomized_value(decay_time, decay_variance, randomize_time)
 	pause = get_randomized_value(pause_duration, pause_variance, randomize_pause)
-	scale = Vector2(get_randomized_value((scale_max.x + scale_min.x)/2, scale_max.x - scale_min.x, randomize_scale), get_randomized_value((scale_max.y + scale_min.y)/2, scale_max.y - scale_min.y, randomize_scale))
+	if randomize_scale == false:
+		scale = base_scale
+	else:
+		scale = Vector2(get_randomized_value((scale_max.x + scale_min.x)/2, scale_max.x - scale_min.x, randomize_scale), get_randomized_value((scale_max.y + scale_min.y)/2, scale_max.y - scale_min.y, randomize_scale))
+		#scale = Vector2(get_randomized_value(scale_min.x, scale_max.x - scale_min.x, randomize_scale), get_randomized_value(scale_min.y, scale_max.y - scale_min.y, randomize_scale))
 	
 	attack_started = true
 	sustain_started = false
 	decay_started = false
 	pause_started = false
-	set_scale(scale)
+	#set_scale(scale)
+	#calculate_scale()
 	set_opacity(0.0);
 	time_since_last_framechange = 0.0
 
@@ -152,6 +164,32 @@ func stop(show_sprite):
 	decay_started = false
 	pause_started = false;
 	set_scale(base_scale)
+	
+func calculate_scale():
+	if decay_started:
+		if scale_fade_out_mode == 0 or decay == 0: # STATIC
+			return
+		transition_factor = 1-(time_since_last_framechange / decay) # 0-1
+		#print(transition_factor)
+		if scale_fade_out_mode == 1: # TO 0
+			set_scale(Vector2(transition_factor * scale.x, transition_factor * scale.y))
+		elif scale_fade_out_mode == 2: # TO MIN
+			set_scale( Vector2((transition_factor * (scale.x - scale_min.x)) + scale_min.x, (transition_factor * (scale.y - scale_min.y)) + scale_min.y) )
+		elif scale_fade_out_mode == 3: # TO MAX
+			set_scale( Vector2(scale_max.x -(transition_factor * (scale_max.x - scale.x)) , scale_max.y - (transition_factor * (scale_max.y - scale.y))) )
+
+	elif attack_started:
+		if scale_fade_in_mode == 0 or attack == 0: # STATIC
+			return
+		transition_factor = time_since_last_framechange / attack # 0-1
+		#print(transition_factor)
+		if scale_fade_in_mode == 1: # FROM 0
+			set_scale(Vector2(transition_factor * scale.x, transition_factor * scale.y))
+		elif scale_fade_in_mode == 2: # FROM MIN
+			set_scale( Vector2((transition_factor * (scale.x - scale_min.x)) + scale_min.x, (transition_factor * (scale.y - scale_min.y)) + scale_min.y) )
+		elif scale_fade_in_mode == 3: # FROM MAX
+			set_scale( Vector2(scale_max.x -(transition_factor * (scale_max.x - scale.x)) , scale_max.y - (transition_factor * (scale_max.y - scale.y))) )
+
 	
 func get_randomized_value(base_value, variance, is_randomized):
 	if is_randomized:

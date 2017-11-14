@@ -5,23 +5,26 @@
 
 [node name="Sprite" type="Sprite"]
 
-visibility/opacity = 0.99404
-transform/scale = Vector2( 0.556074, 0.938899 )
+visibility/opacity = 0.494035
+transform/pos = Vector2( 70.9801, 72.7725 )
+transform/scale = Vector2( 0.928199, 0.914193 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
-attack_time = 0.25
-sustain_time = 1.0
-decay_time = 1.0
-pause_duration = 2.0
+attack_time = 1.0
+sustain_time = 2.0
+decay_time = 3.0
+pause_duration = 1.5
 attack_variance = 0.5
 sustain_variance = 4.0
 decay_variance = 2.0
 pause_variance = 4.0
 scale_min = Vector2( 0.5, 0.5 )
 scale_max = Vector2( 1, 1 )
-randomize_time = true
+randomize_time = false
 randomize_scale = true
-randomize_pause = true
+randomize_pause = false
+scale_fade_in_mode = 1
+scale_fade_out_mode = 3
 replay = true
 
 
