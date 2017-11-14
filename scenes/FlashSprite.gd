@@ -20,7 +20,8 @@ export (int, "STATIC", "FADE_IN_FROM_ZERO", "FADE_IN_FROM_MIN", "FADE_IN_FROM_MA
 export (int, "STATIC", "FADE_OUT_TO_ZERO", "FADE_OUT_TO_MIN", "FADE_OUT_TO_MAX") var scale_fade_out_mode = 0
 export (bool) var replay = true setget set_replay
 
-signal flash
+signal flash_start
+signal flash_end
 
 var attack = 0
 var sustain = 0
@@ -121,6 +122,7 @@ func _process(delta):
 			time_since_last_framechange = 0.0
 			set_opacity(0.0)
 			pause_started = true;
+			emit_signal("flash_end")
 		else:
 			set_opacity( 1 - (time_since_last_framechange / decay))
 			calculate_scale()
@@ -141,7 +143,7 @@ func _process(delta):
 	#print(get_opacity())
 	
 func play():
-	emit_signal("flash")
+	emit_signal("flash_start")
 	if randomize_frames and frame_number > 1:
 		set_frame(rand_range(1, frame_number))
 	attack = get_randomized_value(attack_time, attack_variance, randomize_time)

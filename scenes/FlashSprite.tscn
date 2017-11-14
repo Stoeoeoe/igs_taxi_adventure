@@ -5,9 +5,9 @@
 
 [node name="Sprite" type="Sprite"]
 
-visibility/opacity = 0.475029
+visibility/opacity = 0.983927
 transform/pos = Vector2( 70.9801, 72.7725 )
-transform/scale = Vector2( 0.976427, 0.808851 )
+transform/scale = Vector2( 0.807372, 0.50716 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 attack_time = 1.0
