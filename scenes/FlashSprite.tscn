@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/FlashSprite.gd" type="Script" id=2]
+
+[node name="Sprite" type="Sprite"]
+
+visibility/opacity = 0.0
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+attack_time = 0.1
+sustain_time = 3.0
+decay_time = 0.5
+attack_variance = 0.0
+sustain_varaince = 0.0
+decay_variance = 0.0
+scale_min = Vector2( 1, 1 )
+scale_max = Vector2( 1, 1 )
+randomize_time = false
+randomize_scale = false
+replay = true
+randomize_blink_size = true
+randomize_blink_time = true
+
+

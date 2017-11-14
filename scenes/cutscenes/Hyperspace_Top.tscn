@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scenes/Terminal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+
+show_background = true
+
+[node name="Hyperspace" parent="." instance=ExtResource( 2 )]
+
+
