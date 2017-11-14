@@ -1,4 +1,4 @@
-#tool
+
 extends StaticBody2D
 
 onready var sample_player = get_node("SamplePlayer2D")
@@ -14,13 +14,9 @@ func _ready():
 	
 func set_block_type(new_blocktype):
 	block_type = new_blocktype
-	#create_block()
+
 	
 func create_block():
-	#if get_tree().is_editor_hint():
-	#	block_data = Globals.get("item_manager").get_item("blockdata", block_type)
-	#else:
-	#	pass
 	block_data = data.get_item("blockdata", block_type)
 	sprite.set_texture(load(block_data.background_sprite))
 

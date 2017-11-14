@@ -1,18 +1,32 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scenes/PowerUp.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/particles/test_particles.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="PowerUp" type="KinematicBody2D"]
+[node name="PowerUp" type="KinematicBody2D" groups=[
+"powerup",
+]]
 
-input/pickable = false
+input/pickable = true
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
+script/script = ExtResource( 1 )
+powerup_id = "test_powerup"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="Particles2D" parent="." instance=ExtResource( 3 )]
+
+[node name="EffectArea" type="Area2D" parent="."]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -23,7 +37,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea"]
 
 shape = SubResource( 1 )
 trigger = false
