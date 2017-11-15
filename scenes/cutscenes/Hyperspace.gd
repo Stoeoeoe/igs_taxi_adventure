@@ -14,6 +14,7 @@ var ship_flash_length = 0.15
 var flash_started = false
 var original_color = Color()
 var time_delta = 0.0
+var ratio2 = 0.0
 var ratio = 0.0
 var lightning_pos = 0;
 var screen_width = 1024
@@ -29,7 +30,11 @@ func _process(delta):
 	if flash_started:
 		time_delta += delta
 		ratio = time_delta / flash_length
+		ratio2 = time_delta  /ship_flash_length
 		bg.set_modulate(Color(1 - (1-original_color.r)*ratio, 1 - (1-original_color.g)*ratio, 1 - (1-original_color.b)*ratio))
+		flash_screen.set_modulate(Color(1 - (1-original_color.r)*ratio2, 1 - (1-original_color.g)*ratio2, 1 - (1-original_color.b)*ratio2))
+		
+		
 		if time_delta >= flash_length:
 			bg.set_modulate(original_color)
 			flash_started = false
