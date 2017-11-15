@@ -10,7 +10,7 @@ onready var ship = get_node("Ship/ShipSprite")
 onready var engine = get_node("Ship/Engine")
 
 var flash_length = 0.5
-var ship_flash_length = 0.15
+var ship_flash_length = 0.2
 var flash_started = false
 var original_color = Color()
 var time_delta = 0.0
@@ -32,8 +32,9 @@ func _process(delta):
 		ratio = time_delta / flash_length
 		ratio2 = time_delta  /ship_flash_length
 		bg.set_modulate(Color(1 - (1-original_color.r)*ratio, 1 - (1-original_color.g)*ratio, 1 - (1-original_color.b)*ratio))
-		flash_screen.set_modulate(Color(1 - (1-original_color.r)*ratio2, 1 - (1-original_color.g)*ratio2, 1 - (1-original_color.b)*ratio2))
-		
+		flash_screen.set_modulate(Color(1 - ratio2, 1 - ratio2, 1 - ratio2))
+		ship.set_modulate(Color(ratio2,ratio2,ratio2))
+		engine.set_opacity(ratio2)
 		
 		if time_delta >= flash_length:
 			bg.set_modulate(original_color)
@@ -48,7 +49,10 @@ func _process(delta):
 
 func _on_Lightning_flash_start():
 	if sound_player:
+		sound_player.set_default_pitch_scale(rand_range(0.6,1.2))
 		sound_player.play("thunder1")
+		
+		#sound_player.set_pitch_scale(0,rand_range(0.1,10))
 		bg.set_modulate(Color(1,1,1))
 		time_delta = 0.0
 		flash_started = true

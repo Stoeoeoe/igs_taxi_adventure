@@ -114,7 +114,7 @@ script/script = ExtResource( 1 )
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 502.888, 386.112 )
-offset = Vector2( 2.99344, 0.67496 )
+offset = Vector2( -1.40303, -0.651327 )
 current = true
 zoom = Vector2( 0.948148, 0.948148 )
 shake_amount = 3.0
@@ -193,12 +193,12 @@ modulate = Color( 0.351563, 0.0453186, 0.0453186, 1 )
 
 visibility/opacity = 0.0
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.583735, 0.629935 )
+transform/scale = Vector2( 0.537231, 0.644647 )
 z/z = -8
 texture = ExtResource( 6 )
 centered = false
 hframes = 4
-frame = 3
+frame = 1
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -221,7 +221,7 @@ transform/pos = Vector2( 1050, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 8 )
-frame = 7
+frame = 5
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -234,6 +234,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
+frame = 5
 duration = 0.42
 hframes = 9
 
@@ -244,7 +245,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 4
+frame = 5
 duration = 0.41
 hframes = 9
 
@@ -255,7 +256,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 3
+frame = 5
 duration = 0.39
 hframes = 9
 
@@ -267,7 +268,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 7
+frame = 1
 duration = 0.36
 hframes = 9
 
@@ -279,7 +280,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 4
+frame = 5
 duration = 0.41
 hframes = 9
 
@@ -291,7 +292,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 1
+frame = 0
 duration = 0.4
 hframes = 9
 
@@ -334,18 +335,18 @@ autoplay = ""
 
 config/polyphony = 1
 config/samples = SubResource( 2 )
-default/volume_db = 12.0
+default/volume_db = 0.0
 default/pitch_scale = 0.75
 default/pan = 0.0
 default/depth = 0.0
 default/height = 0.0
-default/filter/type = 2
-default/filter/cutoff = 200.0
-default/filter/resonance = 3.04
-default/filter/gain = 2.0
-default/reverb_room = 2
-default/reverb_send = 0.16
-default/chorus_send = 0.86
+default/filter/type = 1
+default/filter/cutoff = 1500.0
+default/filter/resonance = 1.5
+default/filter/gain = 1.0
+default/reverb_room = 0
+default/reverb_send = 0.0
+default/chorus_send = 1.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -355,10 +356,10 @@ color = Color( 0.740741, 0.740741, 0.740741, 1 )
 
 config/polyphony = 4
 config/samples = SubResource( 3 )
-default/volume_db = 0.0
-default/pitch_scale = 0.75
+default/volume_db = 3.0
+default/pitch_scale = 1.0
 default/pan = 0.0
-default/depth = -1.0
+default/depth = 1.0
 default/height = 1.0
 default/filter/type = 1
 default/filter/cutoff = 300.0
