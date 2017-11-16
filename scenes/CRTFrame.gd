@@ -12,5 +12,3 @@ func _ready():
 		hide()
 	else:
 		show()
-	
-	self.set_opacity(crt_strength)

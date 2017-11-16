@@ -1,13 +1,34 @@
+tool
+
 extends CanvasLayer
 
 onready var background = get_node("Background")
 onready var label = get_node("Background/RichTextLabel")
-onready var sample_player = get_node("SamplePlayer2D") 
+onready var sample_player = get_node("SamplePlayer") 
 #var sounds = ["key_1", "key_2", "key_3", "key_4", "key_5"] 
-var sounds = ["blip1"] 
+var fallback_sound = "blip1" 
 
-export(int) var maximum_lines = 36
-export(int) var time_between_keystrokes = 0.05
+export(int) var maximum_lines = 36 setget set_maximum_lines
+export(int) var time_between_keystrokes = 0.05 setget set_time_between_keystrokes
+export(StringArray) var sounds = StringArray(["blip1"]) setget set_sounds
+export(bool) var show_backbround = true setget set_show_background
+
+func set_maximum_lines(new_maximum_lines):
+	maximum_lines = new_maximum_lines
+
+func set_time_between_keystrokes(new_time_between_keystrokes):
+	time_between_keystrokes = new_time_between_keystrokes
+
+func set_sounds(new_sounds):
+	sounds = new_sounds
+	
+func set_show_background(new_show_background):
+	show_backbround = new_show_background
+	if show_backbround:
+		get_node("Background/CRT").set_opacity(1)
+	else:
+		get_node("Background/CRT").set_opacity(0)	
+	
 
 var lines = []
 var lines_string = ""
@@ -24,6 +45,8 @@ func _init():
 	
 func _ready():
 	HUD.toggle_hide()
+	if sounds.size() == 0:
+		sounds = StringArray([fallback_sound])
 	set_process(true)
 	
 	start_writing(
@@ -59,8 +82,9 @@ func stop_writing():
 
 func play_sound():
  var sound = sounds[rand_range(0, sounds.size())-1]
+ #sample_player.play(sound)
  sample_player.play(sound)
- sample_player.stop_all()
+ #sample_player.stop_all()
  
 func write_new_line(new_line):
  new_line = str(new_line)
