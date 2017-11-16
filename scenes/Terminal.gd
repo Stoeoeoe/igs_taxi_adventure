@@ -1,17 +1,15 @@
 tool
-
 extends CanvasLayer
 
 onready var background = get_node("Background")
 onready var label = get_node("Background/RichTextLabel")
 onready var sample_player = get_node("SamplePlayer") 
-#var sounds = ["key_1", "key_2", "key_3", "key_4", "key_5"] 
 var fallback_sound = "blip1" 
 
 export(int) var maximum_lines = 36 setget set_maximum_lines
 export(int) var time_between_keystrokes = 0.05 setget set_time_between_keystrokes
-export(StringArray) var sounds = StringArray(["blip1"]) setget set_sounds
-export(bool) var show_backbround = true setget set_show_background
+export(StringArray) var sounds setget set_sounds
+export(bool) var show_background = true setget set_show_background
 
 func set_maximum_lines(new_maximum_lines):
 	maximum_lines = new_maximum_lines
@@ -23,8 +21,8 @@ func set_sounds(new_sounds):
 	sounds = new_sounds
 	
 func set_show_background(new_show_background):
-	show_backbround = new_show_background
-	if show_backbround:
+	show_background = new_show_background
+	if show_background:
 		get_node("Background/CRT").set_opacity(1)
 	else:
 		get_node("Background/CRT").set_opacity(0)	
@@ -39,12 +37,11 @@ var time_since_last_keystroke = 0
 
 var delay_regex
 
-func _init():
+func _init(): 
 	delay_regex = RegEx.new()
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")
 	
 func _ready():
-	HUD.toggle_hide()
 	if sounds.size() == 0:
 		sounds = StringArray([fallback_sound])
 	set_process(true)
@@ -70,8 +67,6 @@ func _process(delta):
 					if not text[0] == " ":
 						play_sound()
 					text = text.right(1).left(text.length())
-			
- pass
 
 func start_writing(text):
  self.text = text

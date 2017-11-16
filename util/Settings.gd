@@ -5,7 +5,7 @@ const CONFIG_LOCATION = "user://game_settings.cfg"
 # Settings
 var crt = false
 
-func read_config():
+static func read_config():
 	var config = ConfigFile.new()
 	var err = config.load(CONFIG_LOCATION)
 	if err == OK:
@@ -15,7 +15,7 @@ func read_config():
 				Globals.set("settings." + section + "." +  key, config.get_value(section, key, default_value))
 	
 	
-func update_config(group, key, value):
+static func update_config(group, key, value):
 	var config = ConfigFile.new()
 	var err = config.load(CONFIG_LOCATION)
 	if err == OK:

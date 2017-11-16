@@ -9,6 +9,7 @@ func _ready():
 	set_process(true)
 	Globals.set("entry_side", entry_side)
 	
+	
 	if entry_side == 'EAST':
 		frame.set_texture(preload('../assets/imgs/stage_frame_east.png'))
 		remove_child(get_node("EastCollision"))

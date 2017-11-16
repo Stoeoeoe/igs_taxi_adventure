@@ -8,7 +8,8 @@ func _ready():
 	randomize()
 	set_process(true)
 	initialize_game()
-	
+	var show_crt = Globals.get("settings.visual.crt")
+	print(show_crt)
 	
 func initialize_game():
 	HUD.show_hud()
