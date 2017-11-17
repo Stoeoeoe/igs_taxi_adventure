@@ -1,15 +1,16 @@
-tool
+#tool
 extends CanvasLayer
 
 onready var background = get_node("Background")
-onready var label = get_node("Background/RichTextLabel")
+onready var label = get_node("RichTextLabel")
 onready var sample_player = get_node("SamplePlayer") 
 var fallback_sound = "blip1" 
 
 export(int) var maximum_lines = 36 setget set_maximum_lines
 export(int) var time_between_keystrokes = 0.05 setget set_time_between_keystrokes
 export(StringArray) var sounds setget set_sounds
-export(bool) var show_background = true setget set_show_background
+export(bool) var show_background = true
+export(String, MULTILINE) var message = "le zomgue" 
 
 func set_maximum_lines(new_maximum_lines):
 	maximum_lines = new_maximum_lines
@@ -20,12 +21,6 @@ func set_time_between_keystrokes(new_time_between_keystrokes):
 func set_sounds(new_sounds):
 	sounds = new_sounds
 	
-func set_show_background(new_show_background):
-	show_background = new_show_background
-	if show_background:
-		get_node("Background/CRT").set_opacity(1)
-	else:
-		get_node("Background/CRT").set_opacity(0)	
 	
 
 var lines = []
@@ -42,12 +37,19 @@ func _init():
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")
 	
 func _ready():
-	if sounds.size() == 0:
+	if sounds != null or sounds.size() == 0:
 		sounds = StringArray([fallback_sound])
+		
+	if show_background:
+		background.show()
+	else:
+		background.hide()
+		
 	set_process(true)
 	
-	start_writing(
-	"""2023 AD – Beta Hyperspace{0.4}\nThe interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex.""")
+	start_writing(message)
+	
+	#"""2023 AD – Beta Hyperspace{0.4}\nThe interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex.""")
 
 func _process(delta):
 	time_since_last_keystroke += delta

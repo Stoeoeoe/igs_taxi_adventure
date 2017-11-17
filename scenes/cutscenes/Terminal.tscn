@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Terminal.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=2]
-[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sound/blip1.wav" type="Sample" id=4]
-
-
-
-
+[ext_resource path="res://assets/sound/blip1.wav" type="Sample" id=3]
+[ext_resource path="res://assets/fonts/terminal_grotesque.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=6]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -15,7 +13,7 @@ samples/blip1 = {
 "db": -6.29,
 "pitch": 1.1,
 "priority": 0,
-"sample": ExtResource( 4 )
+"sample": ExtResource( 3 )
 }
 
 [node name="Terminal" type="CanvasLayer"]
@@ -25,11 +23,16 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 1 )
+maximum_lines = 36
+time_between_keystrokes = 0.05
+sounds = StringArray( "blip1" )
+show_background = true
+message = "2023 AD – Beta Hyperspace{0.8}
+The interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex."
 
 [node name="Background" type="Panel" parent="."]
 
-anchor/right = 1
-anchor/bottom = 1
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -37,41 +40,8 @@ size_flags/vertical = 2
 theme/theme = ExtResource( 2 )
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
+margin/right = 1004.0
 margin/bottom = 0.0
-
-[node name="LineVBox" type="VBoxContainer" parent="Background"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 10.0
-margin/bottom = 10.0
-alignment = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-bbcode/enabled = false
-bbcode/bbcode = ""
-visible_characters = -1
-percent_visible = 1.0
-
-[node name="CRT" parent="Background" instance=ExtResource( 3 )]
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
@@ -89,5 +59,40 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 2 )
+margin/left = 40.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 0.0
+custom_fonts/normal_font = ExtResource( 4 )
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/italics_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 4 )
+custom_fonts/bold_font = ExtResource( 4 )
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="CRT" parent="." instance=ExtResource( 5 )]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+visibility/opacity = 0.5
+transform/pos = Vector2( -10.028, -8.73114 )
+transform/scale = Vector2( 1044.02, 286.38 )
+z/z = -5
+texture = ExtResource( 6 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
 
 
