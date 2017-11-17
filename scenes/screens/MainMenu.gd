@@ -39,3 +39,10 @@ func _on_SaveChangesButton_pressed():
 	main_menu.show()
 	settings_menu.hide()	
 
+
+
+func _on_BackToMainMenuButton_button_down():
+	level_menu.hide()
+	settings_menu.hide()
+	main_menu.show()
+	

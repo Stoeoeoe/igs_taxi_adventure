@@ -19,6 +19,11 @@ var ratio = 0.0
 var lightning_pos = 0;
 var screen_width = 1024
 
+var time_since_canvas_modulate = 0.0
+var time_until_canvas_modulate = 0.25
+var modulate_colors = [Color(1, 0.66, 0.66), Color(1, 0.66, 0.66), Color(0.9, 0.56, 0.56), Color(0.9, 0.56, 0.66), Color(0.75, 0.56, 0.56), Color(0.75, 0.4, 0.4)]
+onready var canvas_modulate = get_node("CanvasModulate")
+
 func _ready():
 	original_color = bg.get_modulate()
 	animation_player.play("Cutscene")
@@ -27,6 +32,12 @@ func _ready():
 
 
 func _process(delta):
+	time_since_canvas_modulate += delta
+	if time_since_canvas_modulate >= time_until_canvas_modulate:
+		var color = modulate_colors[randi() % modulate_colors.size()]
+		canvas_modulate.set_color(color)
+		time_since_canvas_modulate = 0
+	
 	if flash_started:
 		time_delta += delta
 		ratio = time_delta / flash_length
