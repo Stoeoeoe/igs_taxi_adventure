@@ -1,18 +1,14 @@
 extends Control
 
 var unlocked_levels = []
+onready var settings_menu = get_node("SettingsMenu")
+onready var main_menu = get_node("MainMenu")
+onready var level_menu = get_node("LevelMenu")
 
 func _ready():
-	var level_selection_bubbles = get_tree().get_nodes_in_group("level_selection_bubble")
-	for bubble in level_selection_bubbles:
-		bubble.connect("level_selected", self, "select_level", [])
-		bubble.connect("level_selected_failed", self, "select_level_failed", [])
+	pass
+	
 
-func select_level(level):
-	get_tree().change_scene("res://scenes/levels/Level" + str(level) + ".tscn")
-
-func select_level_failed(level):
-	get_node("IGSCamera").shake(0.2, 5)
 
 func _on_ExitButton_pressed():
 	get_tree().quit()
@@ -27,17 +23,19 @@ func _on_HighscoreButton_pressed():
 
 
 func _on_SettingsButton_pressed():
-	get_node("MainMenu").hide()
-	get_node("SettingsMenu").show()
+	main_menu.hide()
+	settings_menu.show()
+
 
 
 func _on_StartButton_pressed():
-	pass # replace with function body
+	main_menu.hide()
+	level_menu.show()
+	
 
 
 func _on_SaveChangesButton_pressed():
 	var crt = get_node("SettingsMenu/GridContainer/HBoxContainer/CRTEffect")
-	
-	get_node("MainMenu").show()
-	get_node("SettingsMenu").hide()	
+	main_menu.show()
+	settings_menu.hide()	
 

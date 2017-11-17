@@ -3,6 +3,7 @@ extends Area2D
 
 onready var level_number_label = get_node("LevelNumberLabel")
 onready var sample_player = get_node("SamplePlayer")
+onready var texture_frame = get_node("TextureFrame")
 
 export(int) var level = 0 setget set_level
 export(bool) var unlocked = false setget set_unlocked
