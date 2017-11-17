@@ -3,11 +3,12 @@
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/patch9frame.png" type="Texture" id=3]
-[ext_resource path="res://assets/imgs/cutscenes/face_captain_neutral.png" type="Texture" id=4]
+[ext_resource path="res://assets/imgs/cutscenes/lightning_combined.png" type="Texture" id=4]
 [ext_resource path="res://LevelEditor.gd" type="Script" id=5]
 [ext_resource path="res://LevelEditorLines.gd" type="Script" id=6]
 [ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=8]
+
 
 [node name="Control" type="Control"]
 
