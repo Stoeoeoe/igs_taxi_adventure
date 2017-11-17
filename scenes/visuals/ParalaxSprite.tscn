@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://scenes/ParallaxClouds.gd" type="Script" id=1]
+[ext_resource path="res://scenes/visuals/ParalaxSprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/cutscenes/clouds1.png" type="Texture" id=2]
+
+
 
 [node name="Placeholder" type="Node2D"]
 

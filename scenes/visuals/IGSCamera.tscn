@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://scenes/IGSCamera.gd" type="Script" id=1]
+[ext_resource path="res://scenes/visuals/IGSCamera.gd" type="Script" id=1]
+
+
 
 [node name="IGSCamera" type="Camera2D"]
 

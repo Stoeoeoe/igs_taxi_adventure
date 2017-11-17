@@ -44,11 +44,8 @@ func _process(delta):
 			flash_screen.set_opacity(0)
 			engine.set_opacity(1)
 
-	
-	
-
 func _on_Lightning_flash_start():
-	if sound_player:
+	if not get_tree().is_editor_hint() and sound_player:
 		sound_player.set_default_pitch_scale(rand_range(0.6,1.2))
 		sound_player.play("thunder1")
 		
@@ -63,5 +60,6 @@ func _on_Lightning_flash_start():
 
 
 func _on_Lightning_flash_end():
-	lightning_pos = rand_range(0, screen_width)
-	lightning.set_pos(Vector2(lightning_pos, lightning.get_pos().y))
+	if not get_tree().is_editor_hint():
+		lightning_pos = rand_range(0, screen_width)
+		lightning.set_pos(Vector2(lightning_pos, lightning.get_pos().y))

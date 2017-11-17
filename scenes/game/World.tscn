@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://scenes/World.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/World.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sound/crow_1.wav" type="Sample" id=3]
 [ext_resource path="res://assets/sound/default_enemy_hit.wav" type="Sample" id=4]
 [ext_resource path="res://assets/music/gmae_music1.ogg" type="AudioStream" id=5]
-[ext_resource path="res://scenes/Block.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/CRT_frame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CRTViewportDisplay/CRTFrame.png" type="Texture" id=8]
-[ext_resource path="res://scenes/Level.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CanvasItemShader" id=1]
 

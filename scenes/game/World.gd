@@ -2,7 +2,7 @@ extends Node
 
 var ball_class = preload("ball.tscn")
 var player_class = preload("player.tscn")
-var initial_player_pos = Vector2(80, 400) 
+var initial_player_pos = Vector2(80, 400)  
 
 func _ready():
 	randomize()

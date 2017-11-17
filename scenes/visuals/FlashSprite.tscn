@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://scenes/FlashSprite.gd" type="Script" id=2]
+[ext_resource path="res://scenes/visuals/FlashSprite.gd" type="Script" id=2]
 
 [node name="Sprite" type="Sprite"]
 
-visibility/opacity = 0.983927
+visibility/opacity = 0.0
 transform/pos = Vector2( 70.9801, 72.7725 )
-transform/scale = Vector2( 0.807372, 0.50716 )
+transform/scale = Vector2( 0.672301, 0.864219 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 attack_time = 1.0

@@ -1,10 +1,11 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://scenes/Block.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/Block.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/blocks/rabium_block.png" type="Texture" id=2]
 [ext_resource path="res://assets/sound/block_destructable.wav" type="Sample" id=3]
 [ext_resource path="res://assets/sound/block_indestructable.wav" type="Sample" id=4]
 [ext_resource path="res://assets/imgs/blocks/destruction_noise_block.png" type="Texture" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
