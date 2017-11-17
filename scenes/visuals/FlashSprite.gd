@@ -39,68 +39,55 @@ var base_scale = Vector2(1,1)
 
 func set_randomize_time(new_randomize_time):
 	randomize_time = new_randomize_time
-#	play()
 	
 func set_randomize_scale(new_randomize_scale):
 	randomize_scale = new_randomize_scale
-#	play()	
 	
 func set_randomize_pause(new_randomize_pause):
 	randomize_pause = new_randomize_pause
-#	play()	
 
 func set_randomize_frames(new_randomize_frames):
 	randomize_frames = new_randomize_frames
-#	play()	
 
 
 func set_attack_time(new_attack_time):
 	attack_time = new_attack_time
-#	play()
 	
 func set_sustain_time(new_sustain_time):
 	sustain_time = new_sustain_time
-#	play()	
 
 func set_decay_time(new_decay_time):
 	decay_time = new_decay_time
-#	play()	
 
 func set_attack_variance(new_attack_variance):
 	attack_variance = new_attack_variance
-#	play()
 	
 func set_sustain_variance(new_sustain_variance):
 	sustain_variance = new_sustain_variance
-#	play()	
 
 func set_decay_variance(new_decay_variance):
 	decay_variance = new_decay_variance
-#	play()	
 	
 func set_pause_variance(new_pause_variance):
 	pause_variance = new_pause_variance
-#	play()		
 	
 func set_pause_duration(new_pause_duration):
 	pause_duration = new_pause_duration
-#	play()
 	
 func set_scale_min(new_scale_min):
 	scale_min = new_scale_min
-#	play()
 	
 func set_scale_max(new_scale_max):
 	scale_max = new_scale_max
-#	play()
 
 	
 func set_replay(new_replay):
 	replay = new_replay
-	if replay:
-		play()
-	else:
-		stop(true)
+	if get_tree() and get_tree().is_editor_hint():
+		if replay:
+			play()
+		else:
+			stop(true)
 
 
 func _ready():
@@ -122,7 +109,8 @@ func _process(delta):
 			time_since_last_framechange = 0.0
 			set_opacity(0.0)
 			pause_started = true;
-			emit_signal("flash_end")
+			if not get_tree().is_editor_hint():
+				emit_signal("flash_end")
 		else:
 			set_opacity( 1 - (time_since_last_framechange / decay))
 			calculate_scale()
@@ -143,7 +131,8 @@ func _process(delta):
 	#print(get_opacity())
 	
 func play():
-	emit_signal("flash_start")
+	if get_tree() and not get_tree().is_editor_hint():
+		emit_signal("flash_start")
 	if randomize_frames and frame_number > 1:
 		set_frame(rand_range(1, frame_number))
 	attack = get_randomized_value(attack_time, attack_variance, randomize_time)

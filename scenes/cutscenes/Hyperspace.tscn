@@ -1,18 +1,18 @@
 [gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
-[ext_resource path="res://scenes/IGSCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ParallaxClouds.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/visuals/ParalaxSprite.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=4]
-[ext_resource path="res://scenes/FlashSprite.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/visuals/FlashSprite.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/imgs/cutscenes/lightning_combined.png" type="Texture" id=6]
-[ext_resource path="res://scenes/FrameCycler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/visuals/FrameCycler.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=8]
 [ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=9]
 [ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=10]
 [ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=11]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 
 resource/name = "Cutscene"
 length = 50.0
@@ -98,7 +98,7 @@ samples/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono = {
 "sample": ExtResource( 10 )
 }
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/thunder1 = {
 "db": 0.0,
@@ -114,7 +114,7 @@ script/script = ExtResource( 1 )
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 502.888, 386.112 )
-offset = Vector2( -2.55162, 2.90933 )
+offset = Vector2( 1.12996, 1.27686 )
 current = true
 zoom = Vector2( 0.948148, 0.948148 )
 shake_amount = 3.0
@@ -191,14 +191,14 @@ modulate = Color( 0.351563, 0.0453186, 0.0453186, 1 )
 
 [node name="Lightning" parent="." instance=ExtResource( 5 )]
 
-visibility/opacity = 0.05193
+visibility/opacity = 0.0
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.567515, 0.625486 )
+transform/scale = Vector2( 0.682602, 0.500104 )
 z/z = -8
 texture = ExtResource( 6 )
 centered = false
 hframes = 7
-frame = 2
+frame = 6
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -221,7 +221,7 @@ transform/pos = Vector2( 1050, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 8 )
-frame = 4
+frame = 0
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -234,7 +234,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 1
+frame = 4
 duration = 0.42
 hframes = 9
 
@@ -245,7 +245,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 6
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -256,6 +256,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
+frame = 4
 duration = 0.39
 hframes = 9
 
@@ -267,6 +268,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
+frame = 1
 duration = 0.36
 hframes = 9
 
@@ -278,7 +280,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 6
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -290,7 +292,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 9 )
 hframes = 9
-frame = 6
+frame = 4
 duration = 0.4
 hframes = 9
 
@@ -323,7 +325,7 @@ params/anim_initial_pos = 0.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Cutscene = SubResource( 3 )
+anims/Cutscene = SubResource( 1 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -348,13 +350,13 @@ default/chorus_send = 1.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-color = Color( 0.851563, 0.638672, 0.638672, 1 )
+color = Color( 1, 0.65625, 0.65625, 1 )
 
 [node name="ThunderPlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 4
 config/samples = SubResource( 3 )
-default/volume_db = 3.0
+default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
 default/depth = 1.0

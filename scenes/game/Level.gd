@@ -11,10 +11,10 @@ func _ready():
 	
 	
 	if entry_side == 'EAST':
-		frame.set_texture(preload('../assets/imgs/stage_frame_east.png'))
+		frame.set_texture(preload('../../assets/imgs/stage_frame_east.png'))
 		remove_child(get_node("EastCollision"))
 	elif entry_side == 'WEST':
-		frame.set_texture(preload('../assets/imgs/stage_frame_west.png'))
+		frame.set_texture(preload('../../assets/imgs/stage_frame_west.png'))
 		remove_child(get_node("WestCollision"))
 			
 func _process(delta):
