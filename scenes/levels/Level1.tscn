@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scenes/game/World.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sound/enemy_hit.wav" type="Sample" id=3]
-[ext_resource path="res://assets/sound/default_enemy_hit.wav" type="Sample" id=4]
-[ext_resource path="res://assets/sound/select_level.wav" type="Sample" id=5]
-[ext_resource path="res://assets/music/epique_syntronic01.ogg" type="AudioStream" id=6]
-[ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=8]
-[ext_resource path="res://CRTViewportDisplay/CRTFrame.png" type="Texture" id=9]
-[ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CRTViewportDisplay/CRTFrame.png" type="Texture" id=3]
+[ext_resource path="res://scenes/game/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sound/crow_1.wav" type="Sample" id=5]
+[ext_resource path="res://assets/sound/default_enemy_hit.wav" type="Sample" id=6]
+[ext_resource path="res://assets/music/epique_syntronic01.ogg" type="AudioStream" id=7]
+[ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=8]
+[ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=9]
+[ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CanvasItemShader" id=1]
 
@@ -19,11 +20,11 @@ uniform float pixel_size = 2.0;
 uniform float size_screen = 600;
 uniform float scanline_alpha = 0.8;
 uniform float lines_velocity = 30.0;
-
+ 
 float line_row = floor((SCREEN_UV.y * size_screen/pixel_size) + mod(TIME*lines_velocity, lines_distance));
-
+ 
 float n = 1.0 - ceil((mod(line_row,lines_distance)/lines_distance));
-
+ 
 vec4 c = vec4(texscreen(SCREEN_UV),1);
 c = c - n*c*(1 - scanline_alpha);
 c.a = 1;
@@ -53,26 +54,48 @@ script/script = ExtResource( 1 )
 
 [node name="CRTOverlay" type="CanvasLayer" parent="."]
 
-transform/pos = Vector2( 651, 252 )
-hit_sound = ExtResource( 3 )
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="CRTFrame" parent="CRTOverlay" instance=ExtResource( 2 )]
+
+material/material = SubResource( 2 )
+margin/left = 2.0
+margin/top = -2.0
+margin/right = -2.0
+margin/bottom = 2.0
+
+[node name="ScreenShadow" type="Sprite" parent="CRTOverlay"]
+
+transform/scale = Vector2( 0.945471, 0.945813 )
+texture = ExtResource( 3 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 639, 257 )
+hit_sound = ExtResource( 5 )
 movement_behavior = 1
-random_factor = 100.0
 
 [node name="Enemy 2" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 350, 500 )
-hit_sound = ExtResource( 4 )
-movement_behavior = 2
+hit_sound = ExtResource( 6 )
 
 [node name="Enemy 3" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 470, 234 )
-hit_sound = ExtResource( 5 )
-movement_behavior = 1
+hit_sound = ExtResource( 6 )
+movement_behavior = 2
 
 [node name="CentralStreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 6 )
+stream/stream = ExtResource( 7 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -87,39 +110,15 @@ __meta__ = {
 
 [node name="Blocks" type="Node2D" parent="."]
 
-[node name="Block" parent="Blocks" instance=ExtResource( 7 )]
+[node name="Block" parent="Blocks" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 241, 348 )
 
-[node name="Block1" parent="Blocks" instance=ExtResource( 7 )]
+[node name="Block1" parent="Blocks" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 241, 379 )
 
 [node name="Stage" parent="." instance=ExtResource( 11 )]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-
-[node name="TextureFrame1" parent="CRTOverlay" instance=ExtResource( 8 )]
-
-material/material = SubResource( 2 )
-margin/left = 3.0
-margin/top = -2.0
-margin/right = -3.0
-margin/bottom = 2.0
-
-[node name="Sprite" type="Sprite" parent="CRTOverlay"]
-
-transform/scale = Vector2( 0.945471, 0.945813 )
-texture = ExtResource( 9 )
-centered = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Stage" parent="." instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 2.27344, 83.3906 )
 

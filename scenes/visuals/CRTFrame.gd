@@ -6,7 +6,7 @@ var initial_crt_alpha = 1.0
 
 func _ready():
 	initial_crt_alpha = get_material().get_shader_param("scanline_alpha")
-	Settings.connect("settings_changed", self, "check_if_crt_settings_changed", [])
+	Settings.connect("config_updated", self, "check_if_crt_settings_changed", [])
 	show_crt_effect = Settings.visuals_crt
 	crt_strength = Settings.visuals_crt_strength
 	update_crt_effect()

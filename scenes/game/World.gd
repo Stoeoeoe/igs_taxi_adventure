@@ -14,7 +14,10 @@ func _ready():
 func initialize_game():
 	HUD.show_hud()
 	respawn_ball()
-	get_node("Enemy").move()
+	
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.move()
+
 	
 	# Create and count victory-relevant blocks
 	var all_blocks = get_node("Blocks").get_children()
