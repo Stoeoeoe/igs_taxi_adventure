@@ -7,9 +7,9 @@
 
 visibility/opacity = 0.0
 transform/pos = Vector2( 70.9801, 72.7725 )
-transform/scale = Vector2( 0.672301, 0.864219 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
+sprite_texture = ExtResource( 1 )
 attack_time = 1.0
 sustain_time = 2.0
 decay_time = 3.0
@@ -18,7 +18,7 @@ attack_variance = 0.5
 sustain_variance = 4.0
 decay_variance = 2.0
 pause_variance = 4.0
-scale_min = Vector2( 0.5, 0.5 )
+scale_min = Vector2( 1, 1 )
 scale_max = Vector2( 1, 1 )
 randomize_time = false
 randomize_scale = true

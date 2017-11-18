@@ -2,6 +2,7 @@ tool
 
 extends Sprite
 
+export (Texture) var sprite_texture = get_texture() setget set_flash_texture
 export (float) var attack_time = 0.1 setget set_attack_time 
 export (float) var sustain_time = 3.0 setget set_sustain_time 
 export (float) var decay_time = 0.5 setget set_decay_time 
@@ -36,6 +37,14 @@ var decay_started = false
 var pause_started = false
 var time_since_last_framechange = 0.0
 var base_scale = Vector2(1,1)
+
+func set_flash_texture(new_flas_texture):
+	sprite_texture = new_flas_texture
+	set_texture(new_flas_texture)
+	set_scale(Vector2(1,1))
+	base_scale = get_scale()
+	frame_number = get_hframes() * get_vframes()	
+	
 
 func set_randomize_time(new_randomize_time):
 	randomize_time = new_randomize_time
