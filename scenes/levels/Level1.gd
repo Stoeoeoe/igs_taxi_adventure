@@ -1,7 +1,7 @@
 extends Node
 
-var ball_class = preload("ball.tscn")
-var player_class = preload("player.tscn")
+var ball_class = preload("../game/ball.tscn")
+var player_class = preload("../game/player.tscn")
 var initial_player_pos = Vector2(80, 400)  
 
 func _ready():
@@ -10,10 +10,12 @@ func _ready():
 	initialize_game()
 	var show_crt = Globals.get("settings.visual.crt")
 	print(show_crt)
+	get_node("Enemy").move()
 	
 func initialize_game():
 	HUD.show_hud()
 	respawn_ball()
+
 	
 	# Create and count victory-relevant blocks
 	var all_blocks = get_node("Blocks").get_children()
