@@ -3,7 +3,6 @@
 [ext_resource path="res://scenes/game/Level.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/stage_frame_west.png" type="Texture" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -27,9 +26,10 @@ extents = Vector2( 184.549, 461.269 )
 [sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
-extents = Vector2( 550, 129.754 )
+extents = Vector2( 582.745, 129.754 )
 
 [node name="Level" type="KinematicBody2D" groups=[
+"obstacles",
 "wall",
 ]]
 
@@ -61,46 +61,48 @@ __meta__ = {
 
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -188.657, 384 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -238.657, 384 )
 shapes/0/trigger = true
 shapes/1/shape = SubResource( 5 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 510.33, -128.53 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 510.33, -178.53 )
 shapes/1/trigger = true
 shapes/2/shape = SubResource( 5 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, 512, 903.211 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 512, 953.211 )
 shapes/2/trigger = true
 shapes/3/shape = SubResource( 4 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 1209.32, 384 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 1259.32, 384 )
 shapes/3/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 524289
+collision/mask = 524289
 
 [node name="WestKillZoneShape" type="CollisionShape2D" parent="Killzone"]
 
-transform/pos = Vector2( -188.657, 384 )
+transform/pos = Vector2( -238.657, 384 )
 shape = SubResource( 4 )
 trigger = true
 _update_shape_index = 0
 
 [node name="NorthKillZoneShape" type="CollisionShape2D" parent="Killzone"]
 
-transform/pos = Vector2( 510.33, -128.53 )
+transform/pos = Vector2( 510.33, -178.53 )
 shape = SubResource( 5 )
 trigger = true
 _update_shape_index = 1
 
 [node name="SouthKillZoneShape" type="CollisionShape2D" parent="Killzone"]
 
-transform/pos = Vector2( 512, 903.211 )
+transform/pos = Vector2( 512, 953.211 )
 shape = SubResource( 5 )
 trigger = true
 _update_shape_index = 2
 
 [node name="EastKillZoneShape" type="CollisionShape2D" parent="Killzone"]
 
-transform/pos = Vector2( 1209.32, 384 )
+transform/pos = Vector2( 1259.32, 384 )
 shape = SubResource( 4 )
 trigger = true
 _update_shape_index = 3
