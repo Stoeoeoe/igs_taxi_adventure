@@ -1,37 +1,12 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/imgs/screens/title_shiny.png" type="Texture" id=3]
+[ext_resource path="res://assets/imgs/screens/title_text.png" type="Texture" id=3]
 [ext_resource path="res://LevelEditor.gd" type="Script" id=4]
 [ext_resource path="res://LevelEditorLines.gd" type="Script" id=5]
 [ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=8]
-
-[sub_resource type="Animation" id=2]
-
-resource/name = "TitleAnimation"
-length = 13.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("MainMenu/VBoxContainer/TitleFrame:frame")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 2, 8, 8.0001, 11.4, 11.4, 12.9 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 0, 23, 0, 0, 23, 0 ]
-}
-
-[sub_resource type="StyleBoxEmpty" id=1]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
 
 [node name="Control" type="Control"]
 
@@ -47,17 +22,6 @@ margin/right = 40.0
 margin/bottom = 40.0
 script/script = ExtResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-playback/process_mode = 0
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/TitleAnimation = SubResource( 2 )
-playback/active = true
-playback/speed = 1.5
-blend_times = [  ]
-autoplay = ""
-
 [node name="MainMenu" type="Panel" parent="."]
 
 anchor/right = 1
@@ -70,7 +34,6 @@ margin/left = 0.0
 margin/top = -1.0
 margin/right = -984.0
 margin/bottom = -727.0
-custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -91,12 +54,6 @@ margin/bottom = 200.0
 custom_constants/separation = 15
 alignment = 0
 
-[node name="TitleFrame" type="Sprite" parent="MainMenu/VBoxContainer"]
-
-transform/pos = Vector2( 200, -72.3394 )
-texture = ExtResource( 3 )
-vframes = 24
-
 [node name="StartButton" type="Button" parent="MainMenu/VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -106,7 +63,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 19.0
+margin/bottom = 21.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -120,9 +77,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 34.0
+margin/top = 36.0
 margin/right = 400.0
-margin/bottom = 53.0
+margin/bottom = 57.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -136,9 +93,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 68.0
+margin/top = 72.0
 margin/right = 400.0
-margin/bottom = 87.0
+margin/bottom = 93.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -152,9 +109,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 102.0
+margin/top = 108.0
 margin/right = 400.0
-margin/bottom = 121.0
+margin/bottom = 129.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -168,14 +125,30 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 136.0
+margin/top = 144.0
 margin/right = 400.0
-margin/bottom = 155.0
+margin/bottom = 165.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Land Ship"
 flat = false
+
+[node name="TextureFrame" type="TextureFrame" parent="MainMenu"]
+
+anchor/top = 3
+anchor/right = 1
+anchor/bottom = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 316.0
+margin/right = 0.0
+margin/bottom = 263.0
+texture = ExtResource( 3 )
+stretch_mode = 4
 
 [node name="SettingsMenu" type="Panel" parent="."]
 
@@ -191,6 +164,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = -984.0
 margin/bottom = -728.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="GridContainer" type="VBoxContainer" parent="SettingsMenu"]
 
@@ -288,9 +264,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 250.0
-margin/top = 5.0
+margin/top = 6.0
 margin/right = 400.0
-margin/bottom = 13.0
+margin/bottom = 12.0
 range/min = 0.0
 range/max = 1.0
 range/step = 0.01
@@ -311,7 +287,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 77.0
 margin/right = 400.0
-margin/bottom = 96.0
+margin/bottom = 98.0
 alignment = 0
 
 [node name="SaveChangesButton" type="Button" parent="SettingsMenu/GridContainer/HBoxContainer 2"]
@@ -323,7 +299,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 200.0
-margin/bottom = 19.0
+margin/bottom = 21.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -339,7 +315,7 @@ size_flags/vertical = 2
 margin/left = 200.0
 margin/top = 0.0
 margin/right = 400.0
-margin/bottom = 19.0
+margin/bottom = 21.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -442,17 +418,6 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Back"
 flat = false
-
-[node name="StreamPlayer" type="StreamPlayer" parent="."]
-
-stream/stream = ExtResource( 8 )
-stream/play = false
-stream/loop = true
-stream/volume_db = -6.0
-stream/autoplay = true
-stream/paused = false
-stream/loop_restart_time = 0.0
-stream/buffering_ms = 500
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 

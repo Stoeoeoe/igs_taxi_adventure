@@ -4,11 +4,8 @@ var unlocked_levels = []
 onready var settings_menu = get_node("SettingsMenu")
 onready var main_menu = get_node("MainMenu")
 onready var level_menu = get_node("LevelMenu")
-onready var animation = get_node("AnimationPlayer")
 
 func _ready():
-	if animation != null:
-		animation.play("TitleAnimation")
 	pass
 	
 

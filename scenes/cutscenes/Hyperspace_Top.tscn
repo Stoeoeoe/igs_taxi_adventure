@@ -10,14 +10,6 @@
 offset = Vector2( 0, 600 )
 maximum_lines = 3
 show_background = false
-message = "{0.4}2023 AD - Beta Hyperspace{0.8}
-The interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in
-the far-off Hibris system with an important cargo of Baranium Sulfide,
-dedicated to the Hyper-Mines of Ilex.
-
-{0.8}Crew:{0.4}
-Cpt. Wolram Tungsten {0.4}[Human]{0.4}
-CELESTE {0.4}[Autonomous Electronic Brain]"
 
 [node name="Hyperspace" parent="." instance=ExtResource( 2 )]
 
