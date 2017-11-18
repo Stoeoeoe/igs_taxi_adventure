@@ -44,7 +44,7 @@ func show_hud():
 func toggle_hide():
 	get_node("RootControl").set_hidden(get_node("RootControl").is_visible())
 
-func deactivate():
+func hide_hud():
 	get_node("RootControl").set_hidden(true)	
 			
 func set_score(score):

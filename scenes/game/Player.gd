@@ -3,6 +3,7 @@ extends KinematicBody2D
 export(float) var speed = 400
 var move_vector = Vector2(0,0)
 var height = 0
+onready var raycast = get_node("RayCast2D")
 
 
 
@@ -10,6 +11,7 @@ func _ready():
 	set_process(true)
 	set_process_input(true)
 	self.height = get_node("CollisionShape2D").get_shape().get_extents().height * get_scale().y
+
 	
 	
 func _input(event):

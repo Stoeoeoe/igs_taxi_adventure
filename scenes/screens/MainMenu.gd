@@ -7,6 +7,7 @@ onready var level_menu = get_node("LevelMenu")
 onready var animation = get_node("AnimationPlayer")
 
 func _ready():
+	HUD.hide_hud()
 	if animation != null:
 		animation.play("TitleAnimation")
 	pass
@@ -37,10 +38,6 @@ func _on_StartButton_pressed():
 	
 
 
-func _on_SaveChangesButton_pressed():
-	var crt = get_node("SettingsMenu/GridContainer/HBoxContainer/CRTEffect")
-	main_menu.show()
-	settings_menu.hide()	
 
 
 

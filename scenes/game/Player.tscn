@@ -3,7 +3,6 @@
 [ext_resource path="res://scenes/game/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/standard_player.tex" type="Texture" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -66,5 +65,12 @@ transform/pos = Vector2( 0, -0.107319 )
 shape = SubResource( 3 )
 trigger = true
 _update_shape_index = 0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+enabled = true
+cast_to = Vector2( 0, 50 )
+layer_mask = 524288
+type_mask = 16
 
 

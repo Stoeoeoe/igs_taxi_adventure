@@ -9,8 +9,6 @@ var balls_launched = false
 
 
 func _ready():
-	var settings = preload("res://scenes/game/Settings.gd")
-	settings.read_config()
 	for i in range(0, start_lives-1):
 		add_life()
 		
