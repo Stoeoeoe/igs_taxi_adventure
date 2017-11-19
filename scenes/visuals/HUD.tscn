@@ -27,7 +27,24 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="Panel" type="Panel" parent="RootControl"]
+[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
+
+visibility/visible = false
+margin/right = -1024.0
+margin/bottom = -768.0
+
+[node name="GameOverlay" type="Control" parent="RootControl"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Panel" type="Panel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -39,7 +56,7 @@ margin/top = 0.0
 margin/right = 1020.0
 margin/bottom = 90.0
 
-[node name="Panel1" type="Panel" parent="RootControl"]
+[node name="Panel1" type="Panel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -50,7 +67,7 @@ margin/top = 660.0
 margin/right = 1020.0
 margin/bottom = 770.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="RootControl"]
+[node name="RichTextLabel" type="RichTextLabel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -65,7 +82,7 @@ bbcode/bbcode = "^_~"
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="RichTextLabel1" type="RichTextLabel" parent="RootControl"]
+[node name="RichTextLabel1" type="RichTextLabel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -80,7 +97,7 @@ bbcode/bbcode = "Log:"
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="LogEntries" type="Label" parent="RootControl"]
+[node name="LogEntries" type="Label" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -94,7 +111,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Score" type="Label" parent="RootControl"]
+[node name="Score" type="Label" parent="RootControl/GameOverlay"]
 
 anchor/left = 1
 anchor/top = 3
@@ -104,16 +121,16 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -660.0
-margin/top = -9.0
-margin/right = -760.0
-margin/bottom = -39.0
+margin/left = -620.0
+margin/top = 11.0
+margin/right = -720.0
+margin/bottom = -19.0
 text = "Score:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Lives" type="Label" parent="RootControl"]
+[node name="Lives" type="Label" parent="RootControl/GameOverlay"]
 
 anchor/left = 1
 anchor/top = 3
@@ -123,16 +140,16 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -660.0
-margin/top = -39.0
-margin/right = -760.0
-margin/bottom = -69.0
+margin/left = -620.0
+margin/top = -19.0
+margin/right = -720.0
+margin/bottom = -49.0
 text = "Discs:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="LifeBox" type="HBoxContainer" parent="RootControl"]
+[node name="LifeBox" type="HBoxContainer" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -144,20 +161,20 @@ margin/right = 1020.0
 margin/bottom = 65.0
 alignment = 0
 
-[node name="TextureFrame" type="TextureFrame" parent="RootControl/LifeBox"]
+[node name="TextureFrame" type="TextureFrame" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 32.0
-margin/bottom = 30.0
+margin/left = 790.0
+margin/top = 35.0
+margin/right = 822.0
+margin/bottom = 65.0
 texture = ExtResource( 2 )
 stretch_mode = 0
 
-[node name="ScoreLabel" type="Label" parent="RootControl"]
+[node name="ScoreLabel" type="Label" parent="RootControl/GameOverlay"]
 
 anchor/left = 1
 anchor/top = 3
@@ -167,19 +184,13 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -750.0
-margin/top = -9.0
-margin/right = -980.0
-margin/bottom = -39.0
+margin/left = -710.0
+margin/top = 11.0
+margin/right = -940.0
+margin/bottom = -19.0
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
-
-visibility/visible = false
-margin/right = -1024.0
-margin/bottom = -768.0
 
 

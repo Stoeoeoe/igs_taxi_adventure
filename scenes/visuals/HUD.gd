@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-onready var log_entries_label = get_node("RootControl/LogEntries")
-onready var score_label = get_node("RootControl/ScoreLabel")
+onready var log_entries_label = get_node("RootControl/GameOverlay/LogEntries")
+onready var score_label = get_node("RootControl//GameOverlay/ScoreLabel")
 onready var crt_shader_panel = get_node("RootControl/CRTShaderPanel")
 
 export(Texture) var life_texture = preload("res://assets/imgs/life.png")
@@ -31,14 +31,21 @@ func add_life():
 	var life_texture_frame = TextureFrame.new()
 	life_texture_frame.set_texture(life_texture)
 	life_texture_frame.set_size(life_texture.get_size())
-	get_node("RootControl/LifeBox").add_child(life_texture_frame)
+	get_node("RootControl/GameOverlay/LifeBox").add_child(life_texture_frame)
 	
 func remove_life():
 	var first_child = get_node("RootControl/LifeBox").get_child(0)
-	get_node("RootControl/LifeBox").remove_child(first_child)
+	get_node("RootControl//GameOverlay/LifeBox").remove_child(first_child)
 	
 func show_hud():
 	get_node("RootControl").set_hidden(false)
+
+func show_gameoverlay():
+	get_node("RootControl/GameOverlay").show()
+
+func hide_gameoverlay():
+	get_node("RootControl/GameOverlay").hide()
+
 
 func hide_hud():
 	get_node("RootControl").set_hidden(true)
@@ -50,4 +57,4 @@ func disable_crt():
 	crt_shader_panel.crt_behavior = "OFF"
 	
 func enable_crt():
-	crt_shader_panel.crt_behavior = "SETTINGS"	
+	crt_shader_panel.crt_behavior = "SETTINGS"

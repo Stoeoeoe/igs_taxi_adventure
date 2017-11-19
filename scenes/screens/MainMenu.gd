@@ -9,7 +9,8 @@ onready var animation = get_node("AnimationPlayer")
 func _ready():
 	if animation != null:
 		animation.play("TitleAnimation")
-	HUD.disable_crt()
+	HUD.hide_gameoverlay()
+	# HUD.disable_crt()
 	
 
 func _on_ExitButton_pressed():
