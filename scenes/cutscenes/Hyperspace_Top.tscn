@@ -3,12 +3,12 @@
 [ext_resource path="res://scenes/cutscenes/Hyperspace_Top.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/theme/patch9frame.png" type="Texture" id=4]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=5]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=6]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=7]
-[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=8]
-[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=9]
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/theme/patch9frame.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=6]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=7]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=8]
+[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -31,8 +31,8 @@ tracks/1/path = NodePath("Terminal")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 2, 20, 20.1, 32.1, 32.2, 39.9, 40 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 2, 20.1, 32.2, 40 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "2023 AD - Beta Hyperspace{0.8}
 The interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in
@@ -40,25 +40,16 @@ the far-off Hibris system with an important cargo of Baranium Sulfide,
 dedicated to the Hyper-Mines of this inhospitable colony of mankind." ],
 "method": "start_writing"
 }, {
-"args": [  ],
-"method": "clear"
-}, {
 "args": [ "Mission:{0.4}
 Hyperspace carriage (Batch: BTS-SHD-788-B2S4){0.4}
 Client - Beyond the Skies (BTS), Xin-Shanghai{0.4}
 Destination - Ilex, Hibris (G3S479-P3-M7){0.4}" ],
 "method": "start_writing"
 }, {
-"args": [  ],
-"method": "clear"
-}, {
 "args": [ "Crew:{0.4}
 Cpt. Wolfram Tungsten {0.4}[Human]{0.4}
 CELESTE {0.4}[Autonomous Electronic Brain]" ],
 "method": "start_writing"
-}, {
-"args": [  ],
-"method": "clear"
 }, {
 "args": [ "Captain, my sensors are detecting an anomaly" ],
 "method": "start_writing"
@@ -94,11 +85,33 @@ tracks/4/keys = {
 "update": 1,
 "values": [ "CELESTE", "CELESTE" ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/StopButton:visibility/visible")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0, 19.9 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 20 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": ""
+} ]
+}
 
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -127,7 +140,7 @@ controlled_by_script = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-color = Color( 1, 1, 1, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="Hyperspace" parent="." instance=ExtResource( 3 )]
 
@@ -149,8 +162,27 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
+[node name="StopButton" type="Button" parent="CanvasLayer"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 4 )
+margin/left = 935.0
+margin/top = 555.0
+margin/right = 1017.0
+margin/bottom = 589.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Enter"
+flat = false
+
 [node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -159,7 +191,7 @@ margin/left = 814.0
 margin/top = 20.0
 margin/right = 999.0
 margin/bottom = 205.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 patch_margin/left = 3
 patch_margin/top = 3
 patch_margin/right = 3
@@ -180,7 +212,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
+theme/theme = ExtResource( 4 )
 margin/left = 0.0
 margin/top = 195.0
 margin/right = 185.0
@@ -189,5 +221,7 @@ bbcode/enabled = false
 bbcode/bbcode = "CELESTE"
 visible_characters = -1
 percent_visible = 1.0
+
+[connection signal="pressed" from="CanvasLayer/StopButton" to="." method="_on_StopButton_pressed"]
 
 
