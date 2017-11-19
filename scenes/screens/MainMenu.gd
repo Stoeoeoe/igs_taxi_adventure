@@ -7,10 +7,9 @@ onready var level_menu = get_node("LevelMenu")
 onready var animation = get_node("AnimationPlayer")
 
 func _ready():
-
 	if animation != null:
 		animation.play("TitleAnimation")
-	pass
+	HUD.disable_crt()
 	
 
 func _on_ExitButton_pressed():
@@ -39,7 +38,4 @@ func _on_BackToMainMenuButton_button_down():
 	main_menu.show()
 
 
-func _on_DiscardChangesButton_pressed():
-	settings_menu.hide()
-	main_menu.show()
-	
+

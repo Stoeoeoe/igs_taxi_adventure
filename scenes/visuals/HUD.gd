@@ -48,3 +48,6 @@ func set_score(score):
 
 func disable_crt():
 	crt_shader_panel.crt_behavior = "OFF"
+	
+func enable_crt():
+	crt_shader_panel.crt_behavior = "SETTINGS"	

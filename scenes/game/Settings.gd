@@ -6,6 +6,7 @@ const CONFIG_LOCATION = "res://game_settings.cfg"
 var visuals_crt_enabled = true
 var visuals_crt_scanline_opacity = 1.0
 var visuals_crt_color_bleeding = 2.0
+var visuals_crt_color_bleeding_distance = 1.0
 var visuals_color_bleeding = 0.0
 var sound_sfx_volume = 1.0
 var sound_music_volume = 1.0

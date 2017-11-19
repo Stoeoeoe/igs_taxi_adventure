@@ -26,5 +26,8 @@ func update_crt():
 		hide()
 	var transparency = 1-(1-initial_crt_scanline_alpha)*Settings.visuals_crt_scanline_opacity
 	var color_bleeding = Settings.visuals_crt_color_bleeding
+	var color_bleeding_distance = Settings.visuals_crt_color_bleeding_distance
 	get_material().set_shader_param("scanline_alpha", transparency)
 	get_material().set_shader_param("color_bleeding", color_bleeding)
+	get_material().set_shader_param("bleeding_range_x", color_bleeding_distance)
+	get_material().set_shader_param("bleeding_range_y", -color_bleeding_distance)

@@ -5,11 +5,10 @@ var sfx_variable = ""
 var volume = 1
 
 func _ready():
-	var config = ConfigFile.new()
-	config.load("plugin.cfg")
-	sfx_variable = config.get_value("custom", "global_sfx_variable_name", "settings.sound.sfx")
+	Settings.connect("config_updated", self, "check_if_volume_must_be_changed", [])
+	set_default_volume(Settings.sound_sfx_volume)
 
-func play(name, unique = false):
-	volume = Globals.get(sfx_variable)
-	#set_default_volume(volume)
-	#play(name, unique)
+	
+func check_if_volume_must_be_changed(section, key, old_value, new_value):
+	if section == "sound" and key  == "sfx_volume":
+		set_default_volume(Settings.sound_sfx_volume)
