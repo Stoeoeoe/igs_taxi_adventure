@@ -16,7 +16,36 @@
 
 script/script = ExtResource( 1 )
 
+<<<<<<< HEAD
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
+=======
+[node name="CRTOverlay" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="CRTFrame" parent="CRTOverlay" instance=ExtResource( 2 )]
+
+material/material = SubResource( 2 )
+margin/left = 2.0
+margin/top = -2.0
+margin/right = -2.0
+margin/bottom = 2.0
+control_override = 0
+
+[node name="ScreenShadow" type="Sprite" parent="CRTOverlay"]
+
+transform/scale = Vector2( 0.945471, 0.945813 )
+texture = ExtResource( 3 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+>>>>>>> master
 
 transform/pos = Vector2( 639, 257 )
 hit_sound = ExtResource( 3 )

@@ -1,6 +1,7 @@
 extends TextureFrame
 
 var initial_crt_alpha = 1.0
+export (int, "SETTINGS", "ON", "OFF") var control_override = 0
 
 func _ready():
 	initial_crt_alpha = get_material().get_shader_param("scanline_alpha")
