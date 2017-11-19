@@ -3,9 +3,9 @@
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://assets/imgs/screens/title_shiny.png" type="Texture" id=3]
-[ext_resource path="res://SettingsMenu.gd" type="Script" id=4]
-[ext_resource path="res://LevelEditor.gd" type="Script" id=5]
-[ext_resource path="res://LevelEditorLines.gd" type="Script" id=6]
+[ext_resource path="res://scenes/screens/SettingsMenu.gd" type="Script" id=4]
+[ext_resource path="res://scenes/screens/LevelEditor.gd" type="Script" id=5]
+[ext_resource path="res://scenes/visuals/LevelEditorLines.gd" type="Script" id=6]
 [ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=9]
@@ -17,7 +17,7 @@
 [ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=15]
 [ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=16]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 
 resource/name = "TitleAnimation"
 length = 13.0
@@ -190,6 +190,7 @@ flat = false
 
 [node name="SettingsMenu" type="Panel" parent="."]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -541,7 +542,7 @@ flat = false
 playback/process_mode = 0
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/TitleAnimation = SubResource( 1 )
+anims/TitleAnimation = SubResource( 3 )
 playback/active = true
 playback/speed = 1.5
 blend_times = [  ]

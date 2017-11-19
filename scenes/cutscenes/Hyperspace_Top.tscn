@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace_Top.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/theme/patch9frame.png" type="Texture" id=4]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=5]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=6]
-[ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=7]
-[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=8]
-[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=9]
 
 [sub_resource type="Animation" id=1]
 
@@ -31,8 +25,8 @@ tracks/1/path = NodePath("Terminal")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 2, 20, 20.1, 32.1, 32.2, 39.9, 40 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": FloatArray( 2, 20, 20.1, 32.1, 32.2 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "2023 AD - Beta Hyperspace{0.8}
 The interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in
@@ -56,53 +50,8 @@ Destination - Ilex, Hibris (G3S479-P3-M7){0.4}" ],
 Cpt. Wolfram Tungsten {0.4}[Human]{0.4}
 CELESTE {0.4}[Autonomous Electronic Brain]" ],
 "method": "start_writing"
-}, {
-"args": [  ],
-"method": "clear"
-}, {
-"args": [ "Captain, my sensors are detecting an anomaly" ],
-"method": "start_writing"
 } ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/FaceSet:visibility/visible")
-tracks/2/interp = 1
-tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 40 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/FaceSet/FaceFrame:frame")
-tracks/3/interp = 1
-tracks/3/imported = false
-tracks/3/keys = {
-"times": FloatArray( 0, 40 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ 3, 3 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/FaceSet/Label:bbcode/bbcode")
-tracks/4/interp = 1
-tracks/4/imported = false
-tracks/4/keys = {
-"times": FloatArray( 0, 40 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ "CELESTE", "CELESTE" ]
-}
-
-[sub_resource type="SpriteFrames" id=2]
-
-animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [node name="TopScene" type="Node"]
 
@@ -141,53 +90,5 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-
-[node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 814.0
-margin/top = 20.0
-margin/right = 999.0
-margin/bottom = 205.0
-texture = ExtResource( 4 )
-patch_margin/left = 3
-patch_margin/top = 3
-patch_margin/right = 3
-patch_margin/bottom = 3
-
-[node name="FaceFrame" type="AnimatedSprite" parent="CanvasLayer/FaceSet"]
-
-transform/scale = Vector2( 1.44763, 1.44763 )
-z/z = -1
-frames = SubResource( 2 )
-animation = "default"
-frame = 3
-centered = false
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/FaceSet"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-theme/theme = ExtResource( 9 )
-margin/left = 0.0
-margin/top = 195.0
-margin/right = 185.0
-margin/bottom = 235.0
-bbcode/enabled = false
-bbcode/bbcode = "CELESTE"
-visible_characters = -1
-percent_visible = 1.0
 
 
