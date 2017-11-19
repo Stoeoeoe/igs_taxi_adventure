@@ -7,15 +7,13 @@ onready var CRT = get_node("CRT")
 var fallback_sound = "blip1" 
 
 export(int) var maximum_lines = 36
-export(int) var time_between_keystrokes = 0.05
+export(float) var time_between_keystrokes = 0.05
 export(StringArray) var sounds
 export(bool) var show_background = true
 export(String, MULTILINE) var message = "le zomgue" 
 export(bool) var controlled_by_script = false
 
-
-
-	
+signal text_finished	
 
 var lines = []
 var lines_string = ""
@@ -25,6 +23,7 @@ var text = ""
 var time_since_last_keystroke = 0
 
 var delay_regex
+var end_signal_sent = false
 
 func _init(): 
 	delay_regex = RegEx.new()
@@ -63,11 +62,20 @@ func _process(delta):
 					if not text[0] == " ":
 						play_sound()
 					text = text.right(1).left(text.length())
+			else:
+				send_end_signal()
+
+func send_end_signal():
+	if not end_signal_sent:
+		emit_signal("text_finished")
+		end_signal_sent = true
 
 func start_writing(text):
+ self.end_signal_sent = false
  self.text = text
  self.is_writing = true
  
+
 func stop_writing():
  self.is_writing = false
 

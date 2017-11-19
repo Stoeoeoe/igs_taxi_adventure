@@ -86,7 +86,7 @@ script/script = ExtResource( 1 )
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( 2.76054, -1.53344 )
+offset = Vector2( -2.75319, -0.857184 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -158,6 +158,7 @@ transform/scale = Vector2( 5.40104, 2.41452 )
 z/z = -9
 texture = ExtResource( 5 )
 hframes = 15
+frame = 14
 modulate = Color( 0.726563, 0.726563, 0.726563, 1 )
 duration = 2.0
 hframes = 15
@@ -174,14 +175,13 @@ region_rect = Rect2( 0, 0, 10, 10 )
 
 [node name="Lightning" parent="." instance=ExtResource( 7 )]
 
-visibility/opacity = 1.0
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.911076, 0.750853 )
+transform/scale = Vector2( 0.852366, 0.720616 )
 z/z = -8
 texture = ExtResource( 8 )
 centered = false
 hframes = 7
-frame = 4
+frame = 1
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -217,7 +217,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 6
+frame = 3
 duration = 0.42
 hframes = 9
 
@@ -228,7 +228,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 7
+frame = 4
 duration = 0.41
 hframes = 9
 
@@ -239,7 +239,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 8
+frame = 7
 duration = 0.39
 hframes = 9
 
@@ -251,7 +251,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 3
+frame = 1
 duration = 0.36
 hframes = 9
 
@@ -263,7 +263,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 7
+frame = 4
 duration = 0.41
 hframes = 9
 
@@ -275,7 +275,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 5
+frame = 4
 duration = 0.4
 hframes = 9
 
