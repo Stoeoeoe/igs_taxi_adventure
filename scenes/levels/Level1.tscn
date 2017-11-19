@@ -66,6 +66,7 @@ margin/left = 2.0
 margin/top = -2.0
 margin/right = -2.0
 margin/bottom = 2.0
+control_override = 0
 
 [node name="ScreenShadow" type="Sprite" parent="CRTOverlay"]
 

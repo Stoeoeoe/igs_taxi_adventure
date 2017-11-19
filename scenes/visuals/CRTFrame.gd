@@ -3,6 +3,7 @@ extends TextureFrame
 var show_crt_effect = true
 var crt_strength = 1.0
 var initial_crt_alpha = 1.0
+export (int, "SETTINGS", "ON", "OFF") var control_override = 0
 
 func _ready():
 	initial_crt_alpha = get_material().get_shader_param("scanline_alpha")
@@ -20,10 +21,11 @@ func check_if_crt_settings_changed(section, key):
 		update_crt_effect()
 		
 func update_crt_effect():
-	if show_crt_effect:
+	if show_crt_effect and control_override == 2:
+		hide()
+	elif show_crt_effect or control_override == 1:
 		show()
 	else: 
 		hide()
 	var transparency = 1-(1-initial_crt_alpha)*crt_strength
-	
 	get_material().set_shader_param("scanline_alpha", transparency)

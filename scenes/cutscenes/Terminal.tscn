@@ -26,9 +26,11 @@ script/script = ExtResource( 1 )
 maximum_lines = 36
 time_between_keystrokes = 0.05
 sounds = StringArray( "blip1" )
-show_background = true
+show_background = false
 message = "2023 AD – Beta Hyperspace{0.8}
 The interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex."
+show_CRT = false
+controlled_by_script = false
 
 [node name="Background" type="Panel" parent="."]
 
@@ -85,11 +87,13 @@ percent_visible = 1.0
 
 [node name="CRT" parent="." instance=ExtResource( 5 )]
 
+control_override = 0
+
 [node name="Sprite" type="Sprite" parent="."]
 
 visibility/opacity = 0.5
 transform/pos = Vector2( -10.028, -8.73114 )
-transform/scale = Vector2( 1044.02, 286.38 )
+transform/scale = Vector2( 1044.02, 794.182 )
 z/z = -5
 texture = ExtResource( 6 )
 centered = false
