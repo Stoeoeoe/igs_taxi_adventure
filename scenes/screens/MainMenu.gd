@@ -31,18 +31,18 @@ func _on_SettingsButton_pressed():
 	settings_menu.show()
 
 
-
 func _on_StartButton_pressed():
 	main_menu.hide()
 	level_menu.show()
 	
-
-
-
-
 
 func _on_BackToMainMenuButton_button_down():
 	level_menu.hide()
 	settings_menu.hide()
 	main_menu.show()
 	
+
+
+func _on_DiscardChangesButton_pressed():
+	settings_menu.hide()
+	main_menu.show()
