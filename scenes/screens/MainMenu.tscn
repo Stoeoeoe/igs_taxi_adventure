@@ -199,7 +199,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 312.0
 margin/top = 200.0
-margin/right = 717.0
+margin/right = 816.0
 margin/bottom = 278.0
 columns = 2
 
@@ -214,12 +214,12 @@ margin/left = 0.0
 margin/top = 4.0
 margin/right = 250.0
 margin/bottom = 23.0
-text = "CRT Effect"
+text = "CRT Effect Enabled?"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CRTEffect" type="CheckBox" parent="SettingsMenu/GridContainer"]
+[node name="CRTEffectEnabled" type="CheckBox" parent="SettingsMenu/GridContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -227,7 +227,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 254.0
 margin/top = 0.0
-margin/right = 405.0
+margin/right = 504.0
 margin/bottom = 28.0
 toggle_mode = true
 is_pressed = true
@@ -247,12 +247,12 @@ margin/left = 0.0
 margin/top = 32.0
 margin/right = 250.0
 margin/bottom = 51.0
-text = "CRT Strength"
+text = "CRT Scanline Opacity"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CRTStrength" type="HSlider" parent="SettingsMenu/GridContainer"]
+[node name="CRTScanlineOpacity" type="HSlider" parent="SettingsMenu/GridContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -260,10 +260,47 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 254.0
 margin/top = 37.0
-margin/right = 405.0
+margin/right = 504.0
 margin/bottom = 45.0
 range/min = 0.0
 range/max = 1.0
+range/step = 0.01
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
+[node name="CRTColorBleedingLabel" type="Label" parent="SettingsMenu/GridContainer"]
+
+rect/min_size = Vector2( 250, 0 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 55.0
+margin/right = 250.0
+margin/bottom = 74.0
+text = "CRT Color Bleed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CRTColorBleeding" type="HSlider" parent="SettingsMenu/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 254.0
+margin/top = 60.0
+margin/right = 504.0
+margin/bottom = 68.0
+range/min = 0.0
+range/max = 4.0
 range/step = 0.01
 range/page = 0.0
 range/value = 1.0

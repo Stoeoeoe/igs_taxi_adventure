@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Terminal.gd" type="Script" id=1]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/sound/blip1.wav" type="Sample" id=3]
 [ext_resource path="res://assets/fonts/terminal_grotesque.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=6]
+[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=5]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -29,7 +28,6 @@ sounds = StringArray( "blip1" )
 show_background = false
 message = "2023 AD – Beta Hyperspace{0.8}
 The interstellar carrier “IHS  North Star” is on the way to the ice moon Ilex in the far-off Hibris system with an important cargo of Baranium Sulfide, dedicated to the Hyper-Mines of Ilex."
-show_CRT = false
 controlled_by_script = false
 
 [node name="Background" type="Panel" parent="."]
@@ -85,17 +83,13 @@ bbcode/bbcode = ""
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="CRT" parent="." instance=ExtResource( 5 )]
-
-control_override = 0
-
 [node name="Sprite" type="Sprite" parent="."]
 
 visibility/opacity = 0.5
 transform/pos = Vector2( -10.028, -8.73114 )
 transform/scale = Vector2( 1044.02, 794.182 )
 z/z = -5
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 centered = false
 modulate = Color( 0, 0, 0, 1 )
 

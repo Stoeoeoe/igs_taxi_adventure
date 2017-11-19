@@ -176,7 +176,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CRTShader" parent="RootControl" instance=ExtResource( 4 )]
+[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
 
 visibility/visible = false
 margin/right = -1024.0

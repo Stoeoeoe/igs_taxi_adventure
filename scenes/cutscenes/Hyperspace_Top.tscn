@@ -25,7 +25,7 @@ tracks/1/path = NodePath("Terminal")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 2, 18.4, 18.5, 30, 30.1 ),
+"times": FloatArray( 2, 20, 20.1, 32.1, 32.2 ),
 "transitions": FloatArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ "2023 AD - Beta Hyperspace{0.8}
@@ -38,8 +38,8 @@ dedicated to the Hyper-Mines of this inhospitable colony of mankind." ],
 "method": "clear"
 }, {
 "args": [ "Mission:{0.4}
-Hyperspac carriage (Batch: BTS-SHD-788-B2S4){0.4}
-Client - Beyond the Skyes (BTS), Xin-Shanghai{0.4}
+Hyperspace carriage (Batch: BTS-SHD-788-B2S4){0.4}
+Client - Beyond the Skies (BTS), Xin-Shanghai{0.4}
 Destination - Ilex, Hibris (G3S479-P3-M7){0.4}" ],
 "method": "start_writing"
 }, {

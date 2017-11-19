@@ -4,7 +4,6 @@
 [ext_resource path="res://CRTViewportDisplay/white.png" type="Texture" id=2]
 [ext_resource path="res://scenes/visuals/CRTFrame.gd" type="Script" id=3]
 
-
 [sub_resource type="CanvasItemMaterial" id=1]
 
 shader/shader = ExtResource( 1 )
@@ -12,13 +11,13 @@ shader/shading_mode = 0
 shader_param/screen_width = 1024.0
 shader_param/screen_height = 768.0
 shader_param/BarrelPower = 1.0
-shader_param/color_bleeding = 1.05
-shader_param/bleeding_range_x = 2.0
-shader_param/bleeding_range_y = 2.0
-shader_param/lines_distance = 4.0
-shader_param/scan_size = 1.0
-shader_param/scanline_alpha = 0.9
-shader_param/lines_velocity = 1.0
+shader_param/color_bleeding = 1.0
+shader_param/bleeding_range_x = 1.0
+shader_param/bleeding_range_y = 1.0
+shader_param/lines_distance = 2.0
+shader_param/scan_size = 20.0
+shader_param/scanline_alpha = 0.8
+shader_param/lines_velocity = 5.0
 
 [node name="CRTShader" type="TextureFrame"]
 
@@ -37,5 +36,6 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 0
 script/script = ExtResource( 3 )
+crt_behavior = "SETTINGS"
 
 

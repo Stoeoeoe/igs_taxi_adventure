@@ -1,4 +1,3 @@
-#tool
 extends CanvasLayer
 
 onready var background = get_node("Background")
@@ -7,27 +6,15 @@ onready var sample_player = get_node("SamplePlayer")
 onready var CRT = get_node("CRT")
 var fallback_sound = "blip1" 
 
-export(int) var maximum_lines = 36 setget set_maximum_lines
-export(int) var time_between_keystrokes = 0.05 setget set_time_between_keystrokes
-export(StringArray) var sounds setget set_sounds
+export(int) var maximum_lines = 36
+export(int) var time_between_keystrokes = 0.05
+export(StringArray) var sounds
 export(bool) var show_background = true
 export(String, MULTILINE) var message = "le zomgue" 
-export(bool) var show_CRT = false setget set_show_CRT
 export(bool) var controlled_by_script = false
 
-func set_maximum_lines(new_maximum_lines):
-	maximum_lines = new_maximum_lines
 
-func set_time_between_keystrokes(new_time_between_keystrokes):
-	time_between_keystrokes = new_time_between_keystrokes
 
-func set_sounds(new_sounds):
-	sounds = new_sounds
-	
-func set_show_CRT(new_show_CRT):
-	show_CRT = new_show_CRT
-	set_crt()
-	
 	
 
 var lines = []
@@ -43,8 +30,7 @@ func _init():
 	delay_regex = RegEx.new()
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")	
 	
-func _ready():
-	set_crt()
+func _ready():	
 	if sounds != null or sounds.size() == 0:
 		sounds = StringArray([fallback_sound])
 		
@@ -77,14 +63,6 @@ func _process(delta):
 					if not text[0] == " ":
 						play_sound()
 					text = text.right(1).left(text.length())
-
-func set_crt():
-	if CRT:
-		if show_CRT:
-			CRT.control_override = 1
-		else:
-			CRT.control_override = 2
-		CRT.update_crt_effect()
 
 func start_writing(text):
  self.text = text
