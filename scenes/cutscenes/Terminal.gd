@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var background = get_node("Background")
 onready var label = get_node("RichTextLabel")
 onready var sample_player = get_node("SamplePlayer")
-onready var CRT = get_node("CRT")
+#onready var CRT = get_node("CRT")
 var fallback_sound = "blip1" 
 
 export(int) var maximum_lines = 36

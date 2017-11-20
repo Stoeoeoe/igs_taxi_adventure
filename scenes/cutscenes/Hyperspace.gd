@@ -42,7 +42,7 @@ func get_sfx_level():
 	return sound_player.get_default_volume()
 	
 func set_sfx_level(new_level):
-	sound_player.set_volume(0,new_level)
+	sound_player.set_default_volume(new_level)
 
 func _ready():
 	HUD.hide_hud()

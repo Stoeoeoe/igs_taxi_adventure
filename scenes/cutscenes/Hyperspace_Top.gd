@@ -1,6 +1,5 @@
 extends Node
 
-onready var animation_player = get_node("AnimationPlayer")
 onready var terminal = get_node("Terminal")
 onready var faceset = get_node("CanvasLayer/FaceSet")
 onready var faceset_frame = get_node("CanvasLayer/FaceSet/FaceFrame")
@@ -116,7 +115,7 @@ func _process(delta):
 		current_color_value = time_passed / incident_delay
 		hyperspace.set_shake(current_color_value * (target_shake -  shake_amount) + shake_amount)
 		canvas.set_color(Color(1-current_color_value*2, 1-current_color_value, 1-current_color_value))
-		hyperspace.set_bgm_level(1- (current_color_value * bgm_level))
+		hyperspace.set_bgm_level(bgm_level- (current_color_value * bgm_level))
 		rift_player.set_volume(bgm_level * current_color_value)
 		hyperspace.ship_flash_length = current_color_value*(incident_flash_length - ship_flash_length) + ship_flash_length
 		#hyperspace.flash_length = hyperspace.flash_length + current_color_value*(incident_flash_length - ship_flash_length)
