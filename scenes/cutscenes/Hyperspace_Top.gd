@@ -14,14 +14,16 @@ onready var rift_player = get_node("RiftPlayer")
 var time_passed = 0.0
 var sequence_started = false
 var incident_started = false
+var fade_out_started = false
 var scene_idle = false
 var dialog_position = -1
 var current_color_value = 0.0
 var shake_amount = 0.0
-var sound_level = 1.0
+var bgm_level = 1.0
+var sfx_level = 1.0
 var ship_flash_length = 0
 
-var initial_delay = 3.0
+var fade_time = 3.0
 var incident_delay = 6.0
 var incident_flash_length = 0.8
 var target_shake = 40.0
@@ -51,8 +53,8 @@ func setup_dialog():
 	texts.append("""What!? {0.4}CELESTE, evasion maneuver!""")
 	texts.append("""Too late...""")
 	texts.append("") # dummy
-	texts.append("""The ''IHS Renegade'' was hit by the rift, {0.4}the navigaton unit of the computer\nbrain lost control over the ship and was shut down.{0.5}\nThe only way to escape from the rift is to manually take over the\nHyperspace control of the ship and to navigate the ''IHS Renegade'' out of the\ndistorted Hyperspace.{0.8}""")
-	texts.append("""...{0.8}This was never done by a human before...""")
+	texts.append("""The ''IHS Renegade'' was hit by the rift, {0.4}the navigation unit of the computer\nbrain lost control over the ship and was shut down.{0.5}\nThe only way to escape from the rift is to manually take over the\nHyperspace control of the ship and to navigate the ''IHS Renegade'' out of the\ndistorted Hyperspace.{0.8}""")
+	texts.append("""To reboot the control, all malicious memory blocks must be purged in the\ncircuits of the navigation unit.{0.4}\n...{0.8}This was never done by a human before...""")
 	texts.append("") # dummy
 	
 
@@ -88,8 +90,10 @@ func setup_dialog():
 
 func _ready():
 	shake_amount = hyperspace.get_shake()
-	sound_level = hyperspace.get_bgm_level()
+	bgm_level = hyperspace.get_bgm_level()
+	sfx_level = hyperspace.get_sfx_level()
 	hyperspace.set_bgm_level(0)
+	hyperspace.set_sfx_level(0)
 	ship_flash_length = hyperspace.ship_flash_length
 	setup_dialog()
 	canvas.set_color(Color(0,0,0))
@@ -98,27 +102,36 @@ func _ready():
 	
 	
 func _process(delta):
-	if time_passed > initial_delay and sequence_started == false:
+	if time_passed > fade_time and sequence_started == false:
 		continue_dialog()
 		sequence_started = true
 	time_passed += delta
 	if not sequence_started:
-		current_color_value = time_passed / initial_delay
+		current_color_value = time_passed / fade_time
 		canvas.set_color(Color(current_color_value, current_color_value, current_color_value))
-		hyperspace.set_bgm_level(current_color_value * sound_level)
+		hyperspace.set_bgm_level(current_color_value * bgm_level)
+		hyperspace.set_sfx_level(current_color_value * sfx_level)
 		
 	if time_passed < incident_delay and incident_started:
 		current_color_value = time_passed / incident_delay
 		hyperspace.set_shake(current_color_value * (target_shake -  shake_amount) + shake_amount)
 		canvas.set_color(Color(1-current_color_value*2, 1-current_color_value, 1-current_color_value))
-		hyperspace.set_bgm_level(1- (current_color_value * sound_level))
-		rift_player.set_volume(sound_level * current_color_value)
+		hyperspace.set_bgm_level(1- (current_color_value * bgm_level))
+		rift_player.set_volume(bgm_level * current_color_value)
 		hyperspace.ship_flash_length = current_color_value*(incident_flash_length - ship_flash_length) + ship_flash_length
 		#hyperspace.flash_length = hyperspace.flash_length + current_color_value*(incident_flash_length - ship_flash_length)
 		
 	elif time_passed > incident_delay and incident_started:
 		continue_dialog()
 		incident_started = false
+	
+	
+	if time_passed < fade_time and fade_out_started:
+		current_color_value = time_passed / fade_time
+		rift_player.set_volume(bgm_level-(current_color_value * bgm_level))
+		hyperspace.set_sfx_level(sfx_level-(current_color_value * sfx_level))
+	elif time_passed > fade_time and fade_out_started:
+		get_tree().change_scene(target_level)
 	
 
 func _on_StopButton_pressed():
@@ -130,7 +143,10 @@ func continue_dialog():
 	continue_button.hide()
 	dialog_position = dialog_position + 1;
 	if dialog_position == 13: # end
-		get_tree().change_scene(target_level)
+		time_passed = 0
+		fade_out_started = true
+		continue_button.hide()
+		#get_tree().change_scene(target_level)
 	if face_sets[dialog_position] < 0:
 		faceset.hide()
 	else:
@@ -147,6 +163,7 @@ func continue_dialog():
 		terminal.start_writing(texts[dialog_position])
 
 func _on_Terminal_text_finished():
-	continue_button.show()
+	if not dialog_position >= 13:
+		continue_button.show()
 	scene_idle = true
 
