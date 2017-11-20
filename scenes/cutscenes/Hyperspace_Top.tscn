@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace_Top.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=7]
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=8]
 [ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=9]
+[ext_resource path="res://assets/sound/space_rift.ogg" type="AudioStream" id=10]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -69,7 +70,7 @@ margin/bottom = 589.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Enter"
+text = "Space"
 flat = false
 
 [node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]
@@ -93,7 +94,7 @@ patch_margin/bottom = 3
 
 transform/scale = Vector2( 1.44763, 1.44763 )
 z/z = -1
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "default"
 frame = 3
 centered = false
@@ -113,6 +114,17 @@ bbcode/enabled = false
 bbcode/bbcode = "CELESTE"
 visible_characters = -1
 percent_visible = 1.0
+
+[node name="RiftPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 10 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 [connection signal="text_finished" from="Terminal" to="." method="_on_Terminal_text_finished"]
 

@@ -4,7 +4,8 @@ onready var bg = get_node("Backdrop")
 onready var lightning = get_node("Lightning")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sound_player = get_node("ThunderPlayer")
-
+onready var camera = get_node("IGSCamera")
+onready var bgm = get_node("StreamPlayer")
 
 onready var flash_screen = get_node("FlashScreen")
 onready var ship = get_node("Ship/ShipSprite")
@@ -25,13 +26,23 @@ var time_until_canvas_modulate = 0.25
 var modulate_colors = [Color(1, 0.66, 0.66), Color(1, 0.66, 0.66), Color(0.9, 0.56, 0.56), Color(0.9, 0.56, 0.66), Color(0.75, 0.56, 0.56), Color(0.75, 0.4, 0.4)]
 #onready var canvas_modulate = get_node("CanvasModulate")
 
+func set_shake(amount):
+	camera.shake_amount = amount
+	
+func get_shake():
+	return camera.shake_amount
+	
+func get_bgm_level():
+	return bgm.get_volume()
+	
+func set_bgm_level(new_level):
+	bgm.set_volume(new_level)
+
 func _ready():
 	HUD.hide_hud()
 #	original_color = bg.get_modulate()
 	animation_player.play("Cutscene")
 	screen_width = OS.get_window_size().width
-
-	
 	set_process(true)
 
 
@@ -73,7 +84,6 @@ func _on_Lightning_flash_start():
 		flash_screen.set_opacity(1.0)
 		ship.set_modulate(Color(0,0,0))
 		engine.set_opacity(0)
-		
 
 
 func _on_Lightning_flash_end():

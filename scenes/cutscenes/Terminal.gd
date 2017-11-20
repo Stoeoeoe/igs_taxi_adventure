@@ -64,6 +64,19 @@ func _process(delta):
 					text = text.right(1).left(text.length())
 			else:
 				send_end_signal()
+				
+func get_sanitized_text():
+	var bracket = false
+	var sanitized_string = ""
+	for i in range(message.length() - 1):
+		if message[i] == "{":
+			bracket = true
+		elif message[i] == "}":
+			bracket = false
+		else:
+			if not bracket:
+				sanitized_string = sanitized_string + message[i]
+	return sanitized_string
 
 func send_end_signal():
 	if not end_signal_sent:
@@ -71,11 +84,17 @@ func send_end_signal():
 		end_signal_sent = true
 
 func start_writing(text):
- self.end_signal_sent = false
- self.text = text
- self.is_writing = true
- 
+	self.message = text
+	self.end_signal_sent = false
+	self.text = text
+	self.is_writing = true
 
+func write_text_to_end():
+	label.set_text(get_sanitized_text())
+	text = ""
+	send_end_signal()
+	
+	
 func stop_writing():
  self.is_writing = false
 

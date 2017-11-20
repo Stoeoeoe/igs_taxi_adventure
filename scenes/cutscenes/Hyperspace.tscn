@@ -86,7 +86,7 @@ script/script = ExtResource( 1 )
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( -2.75319, -0.857184 )
+offset = Vector2( -0.79041, -0.426846 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -153,8 +153,8 @@ scale = Vector2( 2, 2.1183 )
 
 [node name="AnimatedBackdrop" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( -38, 245.433 )
-transform/scale = Vector2( 5.40104, 2.41452 )
+transform/pos = Vector2( -58.1038, 245.433 )
+transform/scale = Vector2( 5.57594, 2.43226 )
 z/z = -9
 texture = ExtResource( 5 )
 hframes = 15
@@ -166,7 +166,7 @@ hframes = 15
 [node name="Backdrop" type="Sprite" parent="."]
 
 visibility/opacity = 0.0
-transform/pos = Vector2( -37.9558, 259.827 )
+transform/pos = Vector2( -64.9659, 258.599 )
 transform/scale = Vector2( 1124.67, 256.254 )
 z/z = -8
 texture = ExtResource( 6 )
@@ -176,12 +176,12 @@ region_rect = Rect2( 0, 0, 10, 10 )
 [node name="Lightning" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.852366, 0.720616 )
+transform/scale = Vector2( 0.728936, 0.727361 )
 z/z = -8
 texture = ExtResource( 8 )
 centered = false
 hframes = 7
-frame = 1
+frame = 6
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -204,7 +204,6 @@ transform/pos = Vector2( 100, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 9 )
-frame = 7
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -217,7 +216,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 3
+frame = 6
 duration = 0.42
 hframes = 9
 
@@ -228,7 +227,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 4
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -239,7 +238,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 7
+frame = 5
 duration = 0.39
 hframes = 9
 
@@ -251,7 +250,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 1
+frame = 3
 duration = 0.36
 hframes = 9
 
@@ -263,7 +262,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 4
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -275,7 +274,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 10 )
 hframes = 9
-frame = 4
+frame = 0
 duration = 0.4
 hframes = 9
 
