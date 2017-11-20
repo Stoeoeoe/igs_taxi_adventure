@@ -44,6 +44,9 @@ default_texture = null
 movement_behavior = 0
 movement_speed = 1.0
 random_factor = 50.0
+flash_frquency = 5.0
+flash_length = 1.0
+flash_on_ball_hit = null
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
