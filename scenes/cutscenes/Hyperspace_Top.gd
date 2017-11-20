@@ -19,9 +19,11 @@ var dialog_position = -1
 var current_color_value = 0.0
 var shake_amount = 0.0
 var sound_level = 1.0
+var ship_flash_length = 0
 
 var initial_delay = 3.0
 var incident_delay = 6.0
+var incident_flash_length = 0.8
 var target_shake = 40.0
 var target_level = "res://scenes/screens/MainMenu.tscn"
 var texts = StringArray()
@@ -41,7 +43,7 @@ func setup_dialog():
 	texts.append("""2023 AD - Beta Hyperspace{0.8}\nThe interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in\nthe far-off Hibris system with an important cargo of Baranium Sulfide,\ndedicated to the Hyper-Mines of this inhospitable colony of mankind.""")
 	texts.append("""Mission:{0.4}\nHyperspace carriage (Batch: BTS-SHD-788-B2S4){0.4}\nClient - Beyond the Skies (BTS)\n{0.4}Origin - Earth, Xin-Shanghai (Baranium refinery III){0.4}\nDestination - Hibris, Ilex (G3S479-P3-M7){0.4}""")
 	texts.append("""Crew:{0.4}\nCpt. Wolfram Tungsten {0.4}[Human]{0.4}\nCELESTE {0.4}[Autonomous Electronic Brain]""")
-	texts.append("""Captain, my sensors are detecting an anomaly""")
+	texts.append("""Captain, my sensors are detecting an anomaly.""")
 	texts.append("""What is it, CELESTE?""")
 	texts.append("""I don't know yet. It looks like a distortion in the Beta Hyperspace.""")
 	texts.append("""That's impossible!""")
@@ -87,10 +89,13 @@ func setup_dialog():
 func _ready():
 	shake_amount = hyperspace.get_shake()
 	sound_level = hyperspace.get_bgm_level()
+	hyperspace.set_bgm_level(0)
+	ship_flash_length = hyperspace.ship_flash_length
 	setup_dialog()
 	canvas.set_color(Color(0,0,0))
 	set_process(true)
 	set_process_input(true)
+	
 	
 func _process(delta):
 	if time_passed > initial_delay and sequence_started == false:
@@ -100,12 +105,16 @@ func _process(delta):
 	if not sequence_started:
 		current_color_value = time_passed / initial_delay
 		canvas.set_color(Color(current_color_value, current_color_value, current_color_value))
+		hyperspace.set_bgm_level(current_color_value * sound_level)
+		
 	if time_passed < incident_delay and incident_started:
 		current_color_value = time_passed / incident_delay
 		hyperspace.set_shake(current_color_value * (target_shake -  shake_amount) + shake_amount)
-		canvas.set_color(Color(1-current_color_value, 1-current_color_value, 1-current_color_value))
+		canvas.set_color(Color(1-current_color_value*2, 1-current_color_value, 1-current_color_value))
 		hyperspace.set_bgm_level(1- (current_color_value * sound_level))
 		rift_player.set_volume(sound_level * current_color_value)
+		hyperspace.ship_flash_length = current_color_value*(incident_flash_length - ship_flash_length) + ship_flash_length
+		#hyperspace.flash_length = hyperspace.flash_length + current_color_value*(incident_flash_length - ship_flash_length)
 		
 	elif time_passed > incident_delay and incident_started:
 		continue_dialog()

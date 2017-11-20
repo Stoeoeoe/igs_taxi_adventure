@@ -11,8 +11,8 @@ onready var flash_screen = get_node("FlashScreen")
 onready var ship = get_node("Ship/ShipSprite")
 onready var engine = get_node("Ship/Engine")
 
-var flash_length = 1.2
-var ship_flash_length = 0.2
+export var flash_length = 1.2
+export var ship_flash_length = 0.2
 var flash_started = false
 var original_color = Color(1,1,1)
 var time_delta = 0.0
