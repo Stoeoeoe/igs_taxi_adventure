@@ -13,8 +13,9 @@ signal level_selected_failed(level)
 
 # TODO: Fix
 func _get_item_rect():
-	var texture_rect = get_node("TextureFrame").get_rect()
-	return Rect2(0, 0, texture_rect.size.width, texture_rect.size.height)
+	if texture_frame:
+		var texture_rect = texture_frame.get_rect()
+		return Rect2(0, 0, texture_rect.size.width, texture_rect.size.height)
 
 func set_level(new_level):
 	level = new_level
@@ -23,6 +24,12 @@ func set_level(new_level):
 	
 func set_unlocked(new_unlocked):
 	unlocked = new_unlocked
+	if unlocked and texture_frame:
+		texture_frame.set_modulate(Color(1,1,1))
+	elif texture_frame:
+		texture_frame.set_modulate(Color(0.5,0.5,0.5))
+
+
 	if level_number_label:
 		level_number_label.set_opacity(1 if unlocked else 0.5)
 

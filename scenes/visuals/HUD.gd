@@ -34,7 +34,7 @@ func add_life():
 	get_node("RootControl/GameOverlay/LifeBox").add_child(life_texture_frame)
 	
 func remove_life():
-	var first_child = get_node("RootControl/LifeBox").get_child(0)
+	var first_child = get_node("RootControl/GameOverlay/LifeBox").get_child(0)
 	get_node("RootControl//GameOverlay/LifeBox").remove_child(first_child)
 	
 func show_hud():
