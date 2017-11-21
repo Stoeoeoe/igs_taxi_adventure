@@ -22,7 +22,7 @@ var bgm_level = 1.0
 var sfx_level = 1.0
 var ship_flash_length = 0
 
-var fade_time = 3.0
+var fade_time = 4.0
 var incident_delay = 6.0
 var incident_flash_length = 0.8
 var target_shake = 40.0
@@ -46,14 +46,14 @@ func setup_dialog():
 	texts.append("""Crew:{0.4}\nCpt. Wolfram Tungsten {0.4}[Human]{0.4}\nCELESTE {0.4}[Autonomous Electronic Brain]""")
 	texts.append("""Captain, my sensors are detecting an anomaly.""")
 	texts.append("""What is it, CELESTE?""")
-	texts.append("""I don't know yet. It looks like a distortion in the Beta Hyperspace.""")
+	texts.append("""I do not know yet. It looks like a distortion in the Beta Hyperspace.""")
 	texts.append("""That's impossible!""")
-	texts.append("""Hold on for a second...{0.8}\nWarning! I detected a Hyperspace rift 1000 miles ahead!""")
+	texts.append("""Please stand by...{0.8}\nWarning! I detected a Hyperspace rift 1000 miles ahead!""")
 	texts.append("""What!? {0.4}CELESTE, evasion maneuver!""")
 	texts.append("""Too late...""")
 	texts.append("") # dummy
 	texts.append("""The ''IHS Renegade'' was hit by the rift, {0.4}the navigation unit of the computer\nbrain lost control over the ship and was shut down.{0.5}\nThe only way to escape from the rift is to manually take over the\nHyperspace control of the ship and to navigate the ''IHS Renegade'' out of the\ndistorted Hyperspace.{0.8}""")
-	texts.append("""To reboot the control, all malicious memory blocks must be purged in the\ncircuits of the navigation unit.{0.4}\n...{0.8}This was never done by a human before...""")
+	texts.append("""To reboot the control, all malicious memory blocks must be purged in the\ncircuits of the navigation unit.{0.4}\n...{0.8}This has never been done by a human before...""")
 	texts.append("") # dummy
 	
 

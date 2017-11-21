@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://scenes/cutscenes/Hyperspace_Top.gd" type="Script" id=1]
+[ext_resource path="res://scenes/cutscenes/HyperspaceTop.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=4]
@@ -75,7 +75,6 @@ flat = false
 
 [node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]
 
-visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -92,7 +91,7 @@ patch_margin/bottom = 3
 
 [node name="FaceFrame" type="AnimatedSprite" parent="CanvasLayer/FaceSet"]
 
-transform/scale = Vector2( 1.44763, 1.44763 )
+transform/scale = Vector2( 1.43293, 1.43293 )
 z/z = -1
 frames = SubResource( 1 )
 animation = "default"

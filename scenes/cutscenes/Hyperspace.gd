@@ -1,11 +1,12 @@
 extends Node
 
-onready var bg = get_node("Backdrop")
-onready var lightning = get_node("Lightning")
+onready var bg = get_node("HyperspaceStage/Backdrop")
+onready var lightning = get_node("HyperspaceStage/Lightning")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sound_player = get_node("ThunderPlayer")
 onready var camera = get_node("IGSCamera")
 onready var bgm = get_node("StreamPlayer")
+onready var hyperspace_stage = get_node("HyperspaceStage")
 
 onready var flash_screen = get_node("FlashScreen")
 onready var ship = get_node("Ship/ShipSprite")
@@ -13,6 +14,7 @@ onready var engine = get_node("Ship/Engine")
 
 export var flash_length = 1.2
 export var ship_flash_length = 0.2
+
 var flash_started = false
 var original_color = Color(1,1,1)
 var time_delta = 0.0
@@ -25,6 +27,19 @@ var time_since_canvas_modulate = 0.0
 var time_until_canvas_modulate = 0.25
 var modulate_colors = [Color(1, 0.66, 0.66), Color(1, 0.66, 0.66), Color(0.9, 0.56, 0.56), Color(0.9, 0.56, 0.66), Color(0.75, 0.56, 0.56), Color(0.75, 0.4, 0.4)]
 #onready var canvas_modulate = get_node("CanvasModulate")
+
+func set_hyperspace_stage(enabled):
+	if enabled:
+		hyperspace_stage.show()
+		lightning.replay = true
+		lightning.show()
+	else:
+		hyperspace_stage.hide()
+		lightning.replay = false
+		lightning.hide()
+
+func set_normalspace_stage(enabled):
+	pass
 
 func set_shake(amount):
 	camera.shake_amount = amount
