@@ -1,17 +1,18 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/visuals/ParalaxSprite.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/visuals/FrameCycler.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/imgs/cutscenes/hyperspace_backdrop.png" type="Texture" id=5]
-[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=6]
-[ext_resource path="res://scenes/visuals/FlashSprite.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/imgs/cutscenes/lightning_hi.png" type="Texture" id=8]
-[ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=9]
-[ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=10]
-[ext_resource path="res://assets/sound/space_enhanced2.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=12]
+[ext_resource path="res://assets/imgs/cutscenes/space_background.png" type="Texture" id=4]
+[ext_resource path="res://scenes/visuals/FrameCycler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/imgs/cutscenes/hyperspace_backdrop.png" type="Texture" id=6]
+[ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=7]
+[ext_resource path="res://scenes/visuals/FlashSprite.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/imgs/cutscenes/lightning_hi.png" type="Texture" id=9]
+[ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=10]
+[ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=11]
+[ext_resource path="res://assets/sound/space_enhanced2.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -46,7 +47,7 @@ samples/thunder1 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 13 )
 }
 
 [node name="Hyperspace" type="Node"]
@@ -58,12 +59,25 @@ ship_flash_length = 0.2
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( -0.737127, 1.11361 )
+offset = Vector2( 2.11923, 1.82606 )
 current = true
 shake_amount = 3.0
 is_shaking = true
 
+[node name="NormalSpaceStage" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Spacemap" parent="NormalSpaceStage" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 0, 386 )
+z/z = -1
+speed = 10.0
+image = ExtResource( 4 )
+
 [node name="HyperspaceStage" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Upper1" parent="HyperspaceStage" instance=ExtResource( 3 )]
 
@@ -125,14 +139,14 @@ z/z = -5
 color = Color( 0.558594, 0.106918, 0.106918, 1 )
 scale = Vector2( 2, 2.1183 )
 
-[node name="AnimatedBackdrop" parent="HyperspaceStage" instance=ExtResource( 4 )]
+[node name="AnimatedBackdrop" parent="HyperspaceStage" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -58.1038, 245.433 )
 transform/scale = Vector2( 5.57594, 2.43226 )
 z/z = -9
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 hframes = 15
-frame = 12
+frame = 6
 modulate = Color( 0.726563, 0.726563, 0.726563, 1 )
 duration = 2.0
 hframes = 15
@@ -143,20 +157,21 @@ visibility/opacity = 0.0
 transform/pos = Vector2( -64.9659, 258.599 )
 transform/scale = Vector2( 1124.67, 256.254 )
 z/z = -8
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 centered = false
 region_rect = Rect2( 0, 0, 10, 10 )
 
-[node name="Lightning" parent="HyperspaceStage" instance=ExtResource( 7 )]
+[node name="Lightning" parent="HyperspaceStage" instance=ExtResource( 8 )]
 
+visibility/opacity = 1.0
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.872571, 0.993493 )
+transform/scale = Vector2( 0.936775, 0.984745 )
 z/z = -8
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 centered = false
 hframes = 7
-frame = 3
-sprite_texture = ExtResource( 8 )
+frame = 4
+sprite_texture = ExtResource( 9 )
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -172,87 +187,85 @@ randomize_frames = true
 
 [node name="Ship" type="Node2D" parent="."]
 
-transform/pos = Vector2( 1050, 408 )
+transform/pos = Vector2( 100, 408 )
 
-[node name="ShipSprite" parent="Ship" instance=ExtResource( 4 )]
+[node name="ShipSprite" parent="Ship" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 frame = 7
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
 [node name="Engine" type="Node2D" parent="Ship"]
 
-editor/display_folded = true
-
-[node name="FrameCyclerSprite" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite6" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 435, -3.00003 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
 frame = 6
 duration = 0.42
 hframes = 9
 
-[node name="FrameCyclerSprite2" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite2" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 403, -47 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
 frame = 8
 duration = 0.41
 hframes = 9
 
-[node name="FrameCyclerSprite3" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite3" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 397, -28 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
-frame = 6
+frame = 5
 duration = 0.39
 hframes = 9
 
-[node name="FrameCyclerSprite1" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite1" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 visibility/opacity = 0.5
 transform/pos = Vector2( 431, -6 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
-frame = 1
+frame = 7
 duration = 0.36
 hframes = 9
 
-[node name="FrameCyclerSprite2 2" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite4" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 visibility/opacity = 0.5
 transform/pos = Vector2( 399, -50 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
 frame = 8
 duration = 0.41
 hframes = 9
 
-[node name="FrameCyclerSprite23" parent="Ship/Engine" instance=ExtResource( 4 )]
+[node name="FrameCyclerSprite5" parent="Ship/Engine" instance=ExtResource( 5 )]
 
 visibility/opacity = 0.5
 transform/pos = Vector2( 393, -31 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 hframes = 9
-frame = 5
+frame = 7
 duration = 0.4
 hframes = 9
 
@@ -293,7 +306,7 @@ autoplay = ""
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 11 )
+stream/stream = ExtResource( 12 )
 stream/play = true
 stream/loop = true
 stream/volume_db = 6.0
@@ -330,7 +343,7 @@ visibility/opacity = 0.0
 transform/pos = Vector2( -47, -30 )
 transform/scale = Vector2( 1122.67, 842 )
 z/z = -2
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 centered = false
 __meta__ = {
 "_edit_lock_": true

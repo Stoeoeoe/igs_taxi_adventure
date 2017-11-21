@@ -7,6 +7,7 @@ onready var sound_player = get_node("ThunderPlayer")
 onready var camera = get_node("IGSCamera")
 onready var bgm = get_node("StreamPlayer")
 onready var hyperspace_stage = get_node("HyperspaceStage")
+onready var normalspace_stage = get_node("NormalSpaceStage")
 
 onready var flash_screen = get_node("FlashScreen")
 onready var ship = get_node("Ship/ShipSprite")
@@ -22,6 +23,8 @@ var ratio2 = 0.0
 var ratio = 0.0
 var lightning_pos = 0;
 var screen_width = OS.get_window_size().width
+var original_shake_amount = 0.0
+var disable_actions = false
 
 var time_since_canvas_modulate = 0.0
 var time_until_canvas_modulate = 0.25
@@ -30,19 +33,52 @@ var modulate_colors = [Color(1, 0.66, 0.66), Color(1, 0.66, 0.66), Color(0.9, 0.
 
 func set_hyperspace_stage(enabled):
 	if enabled:
+		disable_actions = false
 		hyperspace_stage.show()
 		lightning.replay = true
 		lightning.show()
+		#set_shake(original_shake_amount)
 	else:
+		disable_actions = true
 		hyperspace_stage.hide()
 		lightning.replay = false
+		original_shake_amount = get_shake()
+		#set_shake(0)
 		lightning.hide()
 
+func set_ship_modulatuion(color):
+	ship.set_modulate(color)
+
+func set_engine_mode(color, length, position):
+	set_engine_type("Ship/Engine/FrameCyclerSprite1",color, length, position)
+	set_engine_type("Ship/Engine/FrameCyclerSprite2",color, length, position)
+	set_engine_type("Ship/Engine/FrameCyclerSprite3",color, length, position)
+	set_engine_type("Ship/Engine/FrameCyclerSprite4",color, length, position)
+	set_engine_type("Ship/Engine/FrameCyclerSprite5",color, length, position)
+	set_engine_type("Ship/Engine/FrameCyclerSprite6",color, length, position)
+	
+
+func set_engine_type(name, col, len, pos):
+	var eng
+	eng = get_node(name)
+	eng.set_modulate(col)
+	eng.set_scale(Vector2(len, eng.get_scale().y))
+	eng.set_pos(Vector2(eng.get_pos().x + pos, eng.get_pos().y))
+
 func set_normalspace_stage(enabled):
-	pass
+	if enabled:
+		normalspace_stage.show()	
+	else:
+		normalspace_stage.hide()
+
+
+func set_ship_to_end_pos():
+	animation_player.seek(39.8,false)
 
 func set_shake(amount):
 	camera.shake_amount = amount
+	if amount == 0:
+		camera.is_shaking = false
 	
 func get_shake():
 	return camera.shake_amount
@@ -68,29 +104,24 @@ func _ready():
 
 
 func _process(delta):
-	#time_since_canvas_modulate += delta
-	#if time_since_canvas_modulate >= time_until_canvas_modulate:
-	#	var color = modulate_colors[randi() % modulate_colors.size()]
-#		canvas_modulate.set_color(color)
-	#	time_since_canvas_modulate = 0
-	
-	if flash_started:
-		time_delta += delta
-		ratio = time_delta / flash_length
-		ratio2 = time_delta  /ship_flash_length
-		#bg.set_modulate(Color(1 - (1-original_color.r)*ratio, 1 - (1-original_color.g)*ratio, 1 - (1-original_color.b)*ratio))
-		bg.set_opacity(1-ratio)
-		flash_screen.set_modulate(Color(1 - ratio2, 1 - ratio2, 1 - ratio2))
-		ship.set_modulate(Color(ratio2,ratio2,ratio2))
-		engine.set_opacity(ratio2)
-		
-		if time_delta >= flash_length:
-			#bg.set_modulate(original_color)
-			flash_started = false
-		if time_delta >= ship_flash_length:
-			ship.set_modulate(Color(1,1,1))
-			flash_screen.set_opacity(0)
-			engine.set_opacity(1)
+	if not disable_actions:
+		if flash_started:
+			time_delta += delta
+			ratio = time_delta / flash_length
+			ratio2 = time_delta  /ship_flash_length
+			#bg.set_modulate(Color(1 - (1-original_color.r)*ratio, 1 - (1-original_color.g)*ratio, 1 - (1-original_color.b)*ratio))
+			bg.set_opacity(1-ratio)
+			flash_screen.set_modulate(Color(1 - ratio2, 1 - ratio2, 1 - ratio2))
+			ship.set_modulate(Color(ratio2,ratio2,ratio2))
+			engine.set_opacity(ratio2)
+			
+			if time_delta >= flash_length:
+				#bg.set_modulate(original_color)
+				flash_started = false
+			if time_delta >= ship_flash_length:
+				ship.set_modulate(Color(1,1,1))
+				flash_screen.set_opacity(0)
+				engine.set_opacity(1)
 
 func _on_Lightning_flash_start():
 	if not get_tree().is_editor_hint() and sound_player:
