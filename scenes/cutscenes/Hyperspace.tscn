@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://assets/imgs/cutscenes/hyperspace_backdrop.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/white_pixel.png" type="Texture" id=6]
 [ext_resource path="res://scenes/visuals/FlashSprite.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=8]
-[ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=9]
-[ext_resource path="res://assets/sound/space_enhanced2.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=11]
-[ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=12]
+[ext_resource path="res://assets/imgs/cutscenes/lightning_combined.png" type="Texture" id=8]
+[ext_resource path="res://assets/imgs/cutscenes/renegade_animation.png" type="Texture" id=9]
+[ext_resource path="res://assets/imgs/cutscenes/jet_spritesheet2.png" type="Texture" id=10]
+[ext_resource path="res://assets/sound/space_enhanced2.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono.smp" type="Sample" id=12]
+[ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -46,7 +47,7 @@ samples/SPACECRAFT_Alien_04_Noise_Oscillating_loop_mono = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 12 )
 }
 
 [sub_resource type="SampleLibrary" id=3]
@@ -55,7 +56,7 @@ samples/thunder1 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 13 )
 }
 
 [node name="Hyperspace" type="Node"]
@@ -67,7 +68,7 @@ ship_flash_length = 0.2
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( -1.04394, -1.47111 )
+offset = Vector2( -2.21694, -0.0945564 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -139,7 +140,7 @@ transform/scale = Vector2( 5.57594, 2.43226 )
 z/z = -9
 texture = ExtResource( 5 )
 hframes = 15
-frame = 10
+frame = 13
 modulate = Color( 0.726563, 0.726563, 0.726563, 1 )
 duration = 2.0
 hframes = 15
@@ -157,10 +158,13 @@ region_rect = Rect2( 0, 0, 10, 10 )
 [node name="Lightning" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 30.0032, 292.583 )
+transform/scale = Vector2( 0.878047, 0.934561 )
 z/z = -8
+texture = ExtResource( 8 )
 centered = false
 hframes = 7
-frame = 5
+frame = 2
+sprite_texture = ExtResource( 8 )
 attack_time = 0.02
 sustain_time = 0.5
 decay_time = 0.1
@@ -182,7 +186,8 @@ transform/pos = Vector2( 1050, 408 )
 
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
+frame = 7
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -193,9 +198,9 @@ duration = 2.0
 transform/pos = Vector2( 435, -3.00003 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
-frame = 1
+frame = 7
 duration = 0.42
 hframes = 9
 
@@ -204,8 +209,9 @@ hframes = 9
 transform/pos = Vector2( 403, -47 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
+frame = 8
 duration = 0.41
 hframes = 9
 
@@ -214,9 +220,9 @@ hframes = 9
 transform/pos = Vector2( 397, -28 )
 transform/scale = Vector2( 3, 1.5 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
-frame = 6
+frame = 8
 duration = 0.39
 hframes = 9
 
@@ -226,9 +232,8 @@ visibility/opacity = 0.5
 transform/pos = Vector2( 431, -6 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
-frame = 5
 duration = 0.36
 hframes = 9
 
@@ -238,8 +243,9 @@ visibility/opacity = 0.5
 transform/pos = Vector2( 399, -50 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
+frame = 8
 duration = 0.41
 hframes = 9
 
@@ -249,9 +255,8 @@ visibility/opacity = 0.5
 transform/pos = Vector2( 393, -31 )
 transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 hframes = 9
-frame = 3
 duration = 0.4
 hframes = 9
 
@@ -292,7 +297,7 @@ autoplay = ""
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 10 )
+stream/stream = ExtResource( 11 )
 stream/play = true
 stream/loop = true
 stream/volume_db = 6.0

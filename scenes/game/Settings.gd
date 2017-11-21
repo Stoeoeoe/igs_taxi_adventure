@@ -60,8 +60,7 @@ func save_config(force_write=false):
 		for section in config.get_sections():
 			for key in config.get_section_keys(section):
 				var property_name = section + "_" +  key
-				var default_value = get(property_name)
-				var value = config.get_value(section, key, default_value)
+				var value = get(property_name)
 				config.set_value(section, key, value)
 	config.save(CONFIG_LOCATION)
 

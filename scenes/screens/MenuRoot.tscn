@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=1]
+
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/screens/MenuRoot.gd" type="Script" id=2]
+[ext_resource path="res://scenes/screens/HomeMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/screens/SettingsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/screens/LevelMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=6]
+[ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=7]
+[ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=8]
+[ext_resource path="res://assets/sound/select_level.wav" type="Sample" id=9]
+[ext_resource path="res://assets/sound/select_level_failed.wav" type="Sample" id=10]
+[ext_resource path="res://assets/sound/select_menu.wav" type="Sample" id=11]
+[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=12]
+[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=13]
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/select_level = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+samples/select_level_failed = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 10 )
+}
+samples/select_menu = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+
+[node name="TitleScreen" type="Control"]
+
+visibility/behind_parent = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 768.0
+script/script = ExtResource( 2 )
+
+[node name="HomeMenu" parent="." instance=ExtResource( 3 )]
+
+script/script = null
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
+
+visibility/visible = false
+script/script = null
+
+[node name="LevelMenu" parent="." instance=ExtResource( 5 )]
+
+visibility/visible = false
+script/script = null
+
+[node name="CentralStreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 6 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+script/script = ExtResource( 7 )
+__meta__ = {
+"_editor_icon": ExtResource( 8 )
+}
+
+[node name="CentralSamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+script/script = ExtResource( 12 )
+__meta__ = {
+"_editor_icon": ExtResource( 13 )
+}
+
+

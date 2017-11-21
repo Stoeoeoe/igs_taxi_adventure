@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://scenes/cutscenes/Hyperspace_Top.gd" type="Script" id=1]
+[ext_resource path="res://scenes/cutscenes/HyperspaceTop.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=4]

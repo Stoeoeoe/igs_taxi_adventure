@@ -1,61 +1,97 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/screens/MainMenu.gd" type="Script" id=2]
-[ext_resource path="res://assets/imgs/screens/title_shiny.png" type="Texture" id=3]
-[ext_resource path="res://scenes/screens/SettingsMenu.gd" type="Script" id=4]
-[ext_resource path="res://scenes/screens/LevelEditor.gd" type="Script" id=5]
-[ext_resource path="res://scenes/visuals/LevelEditorLines.gd" type="Script" id=6]
-[ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=9]
-[ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=10]
-[ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=11]
-[ext_resource path="res://assets/sound/select_level.wav" type="Sample" id=12]
-[ext_resource path="res://assets/sound/select_level_failed.wav" type="Sample" id=13]
-[ext_resource path="res://assets/sound/select_menu.wav" type="Sample" id=14]
-[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=15]
-[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=16]
+[ext_resource path="res://scenes/screens/MenuRoot.gd" type="Script" id=2]
+[ext_resource path="res://scenes/screens/HomeMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/screens/SettingsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/screens/LevelMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=6]
+[ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=7]
+[ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=8]
+[ext_resource path="res://assets/sound/save_the_universe.wav" type="Sample" id=9]
+[ext_resource path="res://assets/sound/select_level.wav" type="Sample" id=10]
+[ext_resource path="res://assets/sound/select_level_failed.wav" type="Sample" id=11]
+[ext_resource path="res://assets/sound/select_menu.wav" type="Sample" id=12]
+[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=13]
+[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=14]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="SampleLibrary" id=1]
 
-resource/name = "TitleAnimation"
-length = 13.0
-loop = true
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("MainMenu/VBoxContainer/TitleFrame:frame")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 2, 8, 8.0001, 11.4, 11.4, 12.9 ),
-"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0, 0, 23, 0, 0, 23, 0 ]
+samples/save_the_universe = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
 }
-
-[sub_resource type="SampleLibrary" id=2]
-
 samples/select_level = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 10 )
 }
 samples/select_level_failed = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 13 )
+"sample": ExtResource( 11 )
 }
 samples/select_menu = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 14 )
+"sample": ExtResource( 12 )
 }
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="Animation" id=2]
+
+resource/name = "StartGame"
+length = 3.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 1.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CentralSamplePlayer:play/play")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 2,
+"values": [ "save_the_universe" ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 3 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_game"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CentralStreamPlayer:stream/volume_db")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -64.0 ]
+}
+
+[node name="MenuRoot" type="Control"]
 
 visibility/behind_parent = true
 focus/ignore_mouse = false
@@ -69,569 +105,22 @@ margin/right = 40.0
 margin/bottom = 40.0
 script/script = ExtResource( 2 )
 
-[node name="MainMenu" type="Panel" parent="."]
+[node name="HomeMenu" parent="." instance=ExtResource( 3 )]
 
-editor/display_folded = true
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = -1.0
-margin/right = -984.0
-margin/bottom = -727.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
-
-anchor/left = 3
-anchor/right = 3
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 200.0
-margin/top = 200.0
-margin/right = -200.0
-margin/bottom = 200.0
-custom_constants/separation = 15
-alignment = 0
-
-[node name="TitleFrame" type="Sprite" parent="MainMenu/VBoxContainer"]
-
-transform/pos = Vector2( 200, -72.3394 )
-texture = ExtResource( 3 )
-vframes = 24
-
-[node name="StartButton" type="Button" parent="MainMenu/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 400.0
-margin/bottom = 23.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Save the World"
-flat = false
-
-[node name="SettingsButton" type="Button" parent="MainMenu/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 38.0
-margin/right = 400.0
-margin/bottom = 61.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Settings"
-flat = false
-
-[node name="HighscoreButton" type="Button" parent="MainMenu/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 76.0
-margin/right = 400.0
-margin/bottom = 99.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Highscore"
-flat = false
-
-[node name="CreditsAndLicensesButton" type="Button" parent="MainMenu/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 114.0
-margin/right = 400.0
-margin/bottom = 137.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Credits and Licenses"
-flat = false
-
-[node name="ExitButton" type="Button" parent="MainMenu/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 152.0
-margin/right = 400.0
-margin/bottom = 175.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Land Ship"
-flat = false
-
-[node name="SettingsMenu" type="Panel" parent="."]
-
-editor/display_folded = true
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-theme/theme = ExtResource( 1 )
-margin/left = 0.0
-margin/top = 0.0
 margin/right = -984.0
 margin/bottom = -728.0
-script/script = ExtResource( 4 )
 
-[node name="SettingsBox" type="VBoxContainer" parent="SettingsMenu"]
-
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-rect/min_size = Vector2( 600, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 300.0
-margin/top = 183.0
-margin/right = -300.0
-margin/bottom = -22.0
-alignment = 0
-
-[node name="GridContainer" type="GridContainer" parent="SettingsMenu/SettingsBox"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 600.0
-margin/bottom = 167.0
-custom_constants/hseparation = 20
-columns = 2
-
-[node name="CRTEffectLabel1" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 4.0
-margin/right = 314.0
-margin/bottom = 23.0
-text = "CRT Effect Enabled?"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="CRTEffectEnabled" type="CheckBox" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 334.0
-margin/top = 0.0
-margin/right = 600.0
-margin/bottom = 28.0
-toggle_mode = true
-is_pressed = true
-enabled_focus_mode = 2
-shortcut = null
-flat = false
-align = 0
-
-[node name="CRTStrengthLabel" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 32.0
-margin/right = 314.0
-margin/bottom = 51.0
-text = "CRT Scanline Opacity"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="CRTScanlineOpacity" type="HSlider" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 37.0
-margin/right = 600.0
-margin/bottom = 45.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.01
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="CRTColorBleedingLabel" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 55.0
-margin/right = 314.0
-margin/bottom = 74.0
-text = "CRT Color Bleeding Distance"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="CRTColorBleedingDistance" type="HSlider" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 60.0
-margin/right = 600.0
-margin/bottom = 68.0
-range/min = 0.0
-range/max = 4.0
-range/step = 1.0
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="CRTColorBleedingLabel1" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 78.0
-margin/right = 314.0
-margin/bottom = 97.0
-text = "CRT Color Bleeding Strength"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="CRTColorBleeding" type="HSlider" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 83.0
-margin/right = 600.0
-margin/bottom = 91.0
-range/min = 0.0
-range/max = 4.0
-range/step = 0.05
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="Filler" type="Control" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 20 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 101.0
-margin/right = 314.0
-margin/bottom = 121.0
-
-[node name="Filler1" type="Control" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 20 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 101.0
-margin/right = 600.0
-margin/bottom = 121.0
-
-[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 125.0
-margin/right = 314.0
-margin/bottom = 144.0
-text = "Music Volume"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="MusicVolume" type="HSlider" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 130.0
-margin/right = 600.0
-margin/bottom = 138.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.01
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="SoundVolumeLabel1" type="Label" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-rect/min_size = Vector2( 250, 0 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 148.0
-margin/right = 314.0
-margin/bottom = 167.0
-text = "SFX Volume"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="SFXVolume" type="HSlider" parent="SettingsMenu/SettingsBox/GridContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-margin/left = 334.0
-margin/top = 153.0
-margin/right = 600.0
-margin/bottom = 161.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.01
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="HBoxContainer 2" type="HBoxContainer" parent="SettingsMenu/SettingsBox"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 182.0
-margin/right = 600.0
-margin/bottom = 205.0
-custom_constants/separation = 20
-alignment = 0
-
-[node name="SaveChangesButton" type="Button" parent="SettingsMenu/SettingsBox/HBoxContainer 2"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 290.0
-margin/bottom = 23.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Save Changes"
-flat = false
-
-[node name="DiscardChangesButton" type="Button" parent="SettingsMenu/SettingsBox/HBoxContainer 2"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 310.0
-margin/top = 0.0
-margin/right = 600.0
-margin/bottom = 23.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Discard Changes"
-flat = false
-
-[node name="BackToMainMenuButton1" type="Button" parent="SettingsMenu"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 9.0
-margin/right = 78.0
-margin/bottom = 35.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Back"
-flat = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SettingsMenu"]
-
-playback/process_mode = 0
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/TitleAnimation = SubResource( 3 )
-playback/active = true
-playback/speed = 1.5
-blend_times = [  ]
-autoplay = ""
-
-[node name="LevelMenu" type="Panel" parent="."]
+[node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 
 visibility/visible = false
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = -1.0
-margin/right = -984.0
-margin/bottom = -727.0
-script/script = ExtResource( 5 )
 
-[node name="Lines" type="Node2D" parent="LevelMenu"]
+[node name="LevelMenu" parent="." instance=ExtResource( 5 )]
 
-script/script = ExtResource( 6 )
-
-[node name="Level5" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 464.055, 276.528 )
-level = 5
-
-[node name="Level2" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 305.612, 77.7598 )
-level = 2
-
-[node name="Level1" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 139.803, 88.3113 )
-level = 1
-unlocked = true
-
-[node name="Level3" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 488.261, 151.143 )
-level = 3
-
-[node name="Level4" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 589.21, 208.59 )
-level = 4
-
-[node name="Level6" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 353.864, 313.259 )
-level = 6
-
-[node name="Level7" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 213.744, 377.197 )
-level = 7
-
-[node name="Level8" parent="LevelMenu" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 369.001, 479.697 )
-level = 8
-
-[node name="IGSCamera" parent="LevelMenu" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 512, 385 )
-current = true
-
-[node name="BackToMainMenuButton" type="Button" parent="LevelMenu"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 78.0
-margin/bottom = 36.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Back"
-flat = false
+visibility/visible = false
 
 [node name="CentralStreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 6 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -639,15 +128,15 @@ stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
-script/script = ExtResource( 10 )
+script/script = ExtResource( 7 )
 __meta__ = {
-"_editor_icon": ExtResource( 11 )
+"_editor_icon": ExtResource( 8 )
 }
 
 [node name="CentralSamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 2 )
+config/samples = SubResource( 1 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -660,29 +149,30 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-script/script = ExtResource( 15 )
+script/script = ExtResource( 13 )
 __meta__ = {
-"_editor_icon": ExtResource( 16 )
+"_editor_icon": ExtResource( 14 )
 }
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/StartGame = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/CreditsAndLicensesButton" to="." method="_on_CreditsAndLicensesButton_pressed"]
+color = Color( 1, 1, 1, 1 )
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="back_button_pressed" from="HomeMenu" to="." method="_on_HomeMenu_back_button_pressed"]
 
-[connection signal="input_event" from="SettingsMenu/SettingsBox/GridContainer/SFXVolume" to="SettingsMenu" method="_on_SFXVolume_input_event"]
+[connection signal="menu_selected" from="HomeMenu" to="." method="_on_HomeMenu_menu_selected"]
 
-[connection signal="pressed" from="SettingsMenu/SettingsBox/HBoxContainer 2/SaveChangesButton" to="SettingsMenu" method="_on_SaveChangesButton_pressed"]
-
-[connection signal="pressed" from="SettingsMenu/SettingsBox/HBoxContainer 2/DiscardChangesButton" to="SettingsMenu" method="_on_DiscardChangesButton_pressed"]
-
-[connection signal="button_down" from="SettingsMenu/BackToMainMenuButton1" to="." method="_on_BackToMainMenuButton_button_down"]
-
-[connection signal="button_down" from="LevelMenu/BackToMainMenuButton" to="." method="_on_BackToMainMenuButton_button_down"]
+[connection signal="menu_closed" from="SettingsMenu" to="." method="_on_SettingsMenu_menu_closed"]
 
 

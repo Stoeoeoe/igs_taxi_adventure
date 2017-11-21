@@ -1,0 +1,138 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/screens/HomeMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/imgs/screens/title_shiny.png" type="Texture" id=3]
+
+[node name="HomeMenu" type="Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 1024, 768 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+
+anchor/left = 3
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 200.0
+margin/right = -200.0
+margin/bottom = 200.0
+custom_constants/separation = 15
+alignment = 0
+
+[node name="TitleFrame" type="Sprite" parent="VBoxContainer"]
+
+transform/pos = Vector2( 200, -72.3394 )
+texture = ExtResource( 3 )
+vframes = 24
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 400.0
+margin/bottom = 28.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save the Universe!"
+flat = false
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 43.0
+margin/right = 400.0
+margin/bottom = 71.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Settings"
+flat = false
+
+[node name="HighscoreButton" type="Button" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 86.0
+margin/right = 400.0
+margin/bottom = 114.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Highscore"
+flat = false
+
+[node name="CreditsAndLicensesButton" type="Button" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 129.0
+margin/right = 400.0
+margin/bottom = 157.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Credits and Licenses"
+flat = false
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 172.0
+margin/right = 400.0
+margin/bottom = 200.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Land Ship"
+flat = false
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/HighscoreButton" to="." method="_on_HighscoreButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/CreditsAndLicensesButton" to="." method="_on_CreditsAndLicensesButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+
+

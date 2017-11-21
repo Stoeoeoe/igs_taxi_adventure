@@ -7,6 +7,7 @@ onready var crt_color_bleeding_distance = get_node("SettingsBox/GridContainer/CR
 onready var sfx_volume = get_node("SettingsBox/GridContainer/SFXVolume")
 onready var music_volume = get_node("SettingsBox/GridContainer/MusicVolume")
 
+signal menu_closed
 
 func _ready():
 	set_values_from_settings()
@@ -42,15 +43,9 @@ func _on_SaveChangesButton_pressed():
 			#	Settings.update_config("audio", "music_volume", get_node("GridContainer/CRTStrength").get_value())
 #	Settings.update_config("audio", "sfx_volume", get_node("GridContainer/CRTStrength").get_value())
 	Settings.save_config()
+	emit_signal("menu_closed")
 	
-
-	get_parent().main_menu.show()
-	self.hide()	
-	
-
-
 func _on_DiscardChangesButton_pressed():
 	Settings.read_config()
 	set_values_from_settings()
-	self.hide()
-	get_parent().show()
+	emit_signal("menu_closed")
