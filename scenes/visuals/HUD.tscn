@@ -155,24 +155,11 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 790.0
+margin/left = 751.0
 margin/top = 35.0
-margin/right = 1020.0
+margin/right = 981.0
 margin/bottom = 65.0
 alignment = 0
-
-[node name="TextureFrame" type="TextureFrame" parent="RootControl/GameOverlay"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 790.0
-margin/top = 35.0
-margin/right = 822.0
-margin/bottom = 65.0
-texture = ExtResource( 2 )
-stretch_mode = 0
 
 [node name="ScoreLabel" type="Label" parent="RootControl/GameOverlay"]
 

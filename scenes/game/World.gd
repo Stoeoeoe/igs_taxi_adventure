@@ -5,6 +5,7 @@ var player_class = preload("player.tscn")
 var initial_player_pos = Vector2(80, 400)  
 
 func _ready():
+	HUD.show_gameoverlay()
 	randomize()
 	set_process(true)
 	initialize_game()
