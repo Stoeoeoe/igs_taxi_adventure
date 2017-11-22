@@ -54,6 +54,14 @@ func set_ship_visibility(visible):
 		ship.hide()
 		engine.hide()
 
+func set_ship_position(new_position):
+	var engine_delta = ship.get_pos().x - new_position.x
+	ship.set_pos(new_position)
+	engine.set_pos(Vector2(engine.get_pos().x - engine_delta, engine.get_pos().y))
+	
+func get_ship_position():
+	return ship.get_pos()
+      
 func set_ship_modulatuion(color):
 	ship.set_modulate(color)
 
@@ -65,6 +73,7 @@ func set_engine_mode(color, length, position):
 	set_engine_type("Ship/Engine/FrameCyclerSprite4",color, length, position)
 	set_engine_type("Ship/Engine/FrameCyclerSprite5",color, length, position)
 	set_engine_type("Ship/Engine/FrameCyclerSprite6",color, length, position)
+	
 	
 
 func set_engine_type(name, col, len, pos):

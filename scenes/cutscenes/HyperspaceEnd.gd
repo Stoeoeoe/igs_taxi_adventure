@@ -17,14 +17,17 @@ var time_passed = 0
 var initial_delay = 4.0
 var transition_time = 4.0
 var space_delay1 = 2.0
+var ship_movement_time = 12.0
+var movement_delta = -2.5
 var transition_started = false
 var switched = false
 var dialog_started = false
+var movement_started = false
 var texts = StringArray()
 var labels_texts = StringArray()
 var face_sets = IntArray()
 var scene_idle = false
-var dialog_position = -1
+var dialog_position = -0.0002
 
 func _ready():
 	hyperspace.set_ship_to_end_pos()
@@ -56,7 +59,10 @@ func _process(delta):
 		faceset.show()
 		continue_dialog()
 		dialog_started = true
-		
+	if time_passed < ship_movement_time and movement_started:
+		hyperspace.set_ship_position(Vector2(hyperspace.get_ship_position(). x + movement_delta, hyperspace.get_ship_position().y))
+	elif time_passed >= ship_movement_time and movement_started:
+		movement_started = false
 
 func switch_stage():
 	hyperspace.set_bgm_level(0.0)
@@ -109,6 +115,11 @@ func _on_Terminal_text_finished():
 
 func _on_ContinueButton_pressed():
 	continue_dialog()
+	
+func move_ship():
+	movement_started = true
+	time_passed = 0.0
+	pass
 
 func continue_dialog():
 	scene_idle = false
@@ -123,6 +134,7 @@ func continue_dialog():
 		#get_tree().change_scene(target_level)
 	if face_sets[dialog_position] < 0:
 		faceset.hide()
+		move_ship()
 	else:
 		faceset.show()
 		faceset_frame.set_frame(face_sets[dialog_position])

@@ -272,7 +272,7 @@ autoplay = ""
 
 visibility/visible = false
 visibility/opacity = 0.0
-transform/pos = Vector2( 254.147, 143.926 )
+transform/pos = Vector2( 254.147, 363.926 )
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
 centered = false
@@ -281,7 +281,7 @@ centered = false
 
 visibility/visible = false
 visibility/opacity = 0.0
-transform/pos = Vector2( 603.9, 141.531 )
+transform/pos = Vector2( 603.9, 361.531 )
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 centered = false
