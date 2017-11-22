@@ -132,6 +132,7 @@ script/script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+is_sfx = false
 
 [node name="CentralSamplePlayer" type="SamplePlayer" parent="."]
 

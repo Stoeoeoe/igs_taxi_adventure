@@ -4,12 +4,12 @@ var current_score = 0
 var number_of_blocks_to_be_destroyed = 0
 
 var start_lives = 3
-var remaining_lives = 1
+var remaining_lives = 0
 var balls_launched = false
 
 
 func _ready():
-	for i in range(0, start_lives-1):
+	for i in range(0, start_lives):
 		add_life()
 		
 func add_score(score):
@@ -19,6 +19,7 @@ func add_score(score):
 func add_life():
 	remaining_lives += 1
 	HUD.add_life()
+	pass
 
 func remove_life():
 	remaining_lives -= 1

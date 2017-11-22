@@ -1,7 +1,7 @@
-
+tool
 extends StaticBody2D
 
-onready var sample_player = get_node("SamplePlayer2D")
+onready var sample_player = get_node("SamplePlayer")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 
@@ -11,7 +11,10 @@ var score = 0
 
 func _ready():
 	create_block()
-	
+
+func _get_item_rect():
+	return Rect2(10,10,10,10)	
+			
 func set_block_type(new_blocktype):
 	block_type = new_blocktype
 
@@ -32,14 +35,11 @@ func create_block():
 	
 
 func _on_block_hit( body ):
-	HUD.write(body.get_groups())
 	if body.is_in_group("ball"):
 		execute_block_action()
 		if block_type == "regular" or block_type == "rabium":
 			animation_player.play("DestructionAnimation")
-			
 			sample_player.play("block_destructable")
-			
 		if block_type == "indestructable":
 			sample_player.play("block_indestructable")			
 

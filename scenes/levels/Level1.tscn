@@ -61,10 +61,6 @@ scale = Vector2( 1, 1 )
 [node name="CRTFrame" parent="CRTOverlay" instance=ExtResource( 2 )]
 
 material/material = SubResource( 2 )
-margin/left = 2.0
-margin/top = -2.0
-margin/right = -2.0
-margin/bottom = 2.0
 
 [node name="ScreenShadow" type="Sprite" parent="CRTOverlay"]
 
@@ -116,11 +112,7 @@ __meta__ = {
 
 [node name="Block" parent="Blocks" instance=ExtResource( 9 )]
 
-transform/pos = Vector2( 241, 348 )
-
-[node name="Block1" parent="Blocks" instance=ExtResource( 9 )]
-
-transform/pos = Vector2( 241, 379 )
+transform/pos = Vector2( 210, 290 )
 
 [node name="Stage" parent="." instance=ExtResource( 10 )]
 
