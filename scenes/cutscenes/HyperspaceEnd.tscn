@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://scenes/cutscenes/HyperspaceEnd.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=13]
 [ext_resource path="res://assets/imgs/cutscenes/the_end.png" type="Texture" id=14]
 [ext_resource path="res://assets/imgs/cutscenes/questionmark.png" type="Texture" id=15]
-[ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=16]
+[ext_resource path="res://assets/sound/space_warp.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -88,10 +88,10 @@ tracks/5/path = NodePath("StreamPlayer:stream/volume_db")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = {
-"times": FloatArray( 0, 2.5 ),
+"times": FloatArray( 0, 5 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ -64.0, 0.0 ]
+"values": [ -32.0, 0.0 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("SpacePlayer:stream/volume_db")
@@ -102,15 +102,6 @@ tracks/6/keys = {
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ 6.0, -64.0 ]
-}
-
-[sub_resource type="SampleLibrary" id=3]
-
-samples/thunder1 = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 16 )
 }
 
 [node name="TopScene" type="Node"]
@@ -274,29 +265,23 @@ transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 centered = false
 
-[node name="TransitionPlayer" type="SamplePlayer" parent="."]
+[node name="TransitionPlayer" type="StreamPlayer" parent="."]
 
-config/polyphony = 1
-config/samples = SubResource( 3 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
+stream/stream = ExtResource( 16 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 6.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
 stream/stream = ExtResource( 17 )
 stream/play = true
 stream/loop = true
-stream/volume_db = -64.0
+stream/volume_db = -32.0
 stream/autoplay = false
 stream/paused = false
 stream/loop_restart_time = 0.0

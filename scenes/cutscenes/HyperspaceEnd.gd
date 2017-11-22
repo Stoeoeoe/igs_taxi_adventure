@@ -40,7 +40,7 @@ func _process(delta):
 	if time_passed > initial_delay  and transition_started == false and switched == false:
 		transition_started = true
 		time_passed = 0
-		transition_player.play("thunder1")
+		transition_player.play(0)
 	if time_passed < transition_time and transition_started == true and switched == false:
 		flash_screen.set_opacity(time_passed / transition_time)
 	elif time_passed >= transition_time and transition_started == true and switched == false:
@@ -77,7 +77,7 @@ func setup_dialog():
 	texts.append("""That is... {0.8}How could that happen? How could the seven laws of computer brain\nethics be overwritten? {0.8}I cannot compute this.""")
 	texts.append("""It was probably one of those infamous {0.3}Hyperspace viruses.""")
 	texts.append("""I am sorry, Captain... It was not my intention to...""")
-	texts.append("""It’s OK, CELESTE. {0.3}It’s OK.{0.4} Let’s resume our mission.""")
+	texts.append("""It's OK, CELESTE. {0.3}It's OK.{0.4} Let's resume our mission.""")
 	texts.append("""Positive, Captain.""")
 	texts.append("") # dummy
 	
