@@ -50,6 +50,7 @@ func set_ship_modulatuion(color):
 	ship.set_modulate(color)
 
 func set_engine_mode(color, length, position):
+	engine.set_opacity(1.0)
 	set_engine_type("Ship/Engine/FrameCyclerSprite1",color, length, position)
 	set_engine_type("Ship/Engine/FrameCyclerSprite2",color, length, position)
 	set_engine_type("Ship/Engine/FrameCyclerSprite3",color, length, position)

@@ -9,7 +9,7 @@ var fallback_sound = "blip1"
 export(int) var maximum_lines = 36
 export(float) var time_between_keystrokes = 0.05
 export(StringArray) var sounds
-export(bool) var show_background = true
+export(bool) var show_background = true setget set_show_background
 export(String, MULTILINE) var message = "le zomgue" 
 export(bool) var controlled_by_script = false
 
@@ -25,6 +25,17 @@ var time_since_last_keystroke = 0
 var delay_regex
 var end_signal_sent = false
 
+func set_show_background(new_set_background):
+	show_background = new_set_background
+	set_background_state(show_background)
+	
+func set_background_state(state):
+	if background:
+		if state:
+			background.show()
+		else:
+			background.hide()
+
 func _init(): 
 	delay_regex = RegEx.new()
 	delay_regex.compile("^{(\\d*\\.?\\d*?)}(.*)")	
@@ -32,12 +43,7 @@ func _init():
 func _ready():	
 	if sounds != null or sounds.size() == 0:
 		sounds = StringArray([fallback_sound])
-		
-	if show_background:
-		background.show()
-	else:
-		background.hide()
-		
+	set_background_state(show_background)	
 	set_process(true)
 	if not controlled_by_script:
 		start_writing(message)

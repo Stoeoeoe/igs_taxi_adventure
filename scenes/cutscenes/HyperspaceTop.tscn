@@ -29,6 +29,7 @@ script/script = ExtResource( 1 )
 offset = Vector2( 0, 600 )
 maximum_lines = 3
 time_between_keystrokes = 0.035
+show_background = true
 message = "{2.0}2023 AD - Beta Hyperspace{0.8}
 The interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in
 the far-off Hibris system with an important cargo of Baranium Sulfide,
