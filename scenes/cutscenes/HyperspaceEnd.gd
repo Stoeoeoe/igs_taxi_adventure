@@ -78,7 +78,7 @@ func setup_dialog():
 	texts.append("""It was probably one of those infamous {0.3}Hyperspace viruses.""")
 	texts.append("""I am sorry, Captain... It was not my intention to...""")
 	texts.append("""It's OK, CELESTE. {0.3}It's OK.{0.4} Let's resume our mission.""")
-	texts.append("""Positive, Captain.""")
+	texts.append("""Affirmative, Captain.""")
 	texts.append("") # dummy
 	
 	labels_texts.append("Cpt. Tungsten")

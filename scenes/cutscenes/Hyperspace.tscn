@@ -59,7 +59,7 @@ ship_flash_length = 0.2
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( 1.64718, 0.129743 )
+offset = Vector2( -0.103622, -1.5759 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -164,12 +164,11 @@ region_rect = Rect2( 0, 0, 10, 10 )
 [node name="Lightning" parent="HyperspaceStage" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.864986, 0.714185 )
 z/z = -8
 texture = ExtResource( 9 )
 centered = false
 hframes = 7
-frame = 5
+frame = 6
 sprite_texture = ExtResource( 9 )
 attack_time = 0.02
 sustain_time = 0.5
@@ -193,6 +192,7 @@ transform/pos = Vector2( 100, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 10 )
+frame = 1
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -205,7 +205,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 1
+frame = 3
 duration = 0.42
 hframes = 9
 
@@ -216,7 +216,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 5
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -227,7 +227,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 7
+frame = 6
 duration = 0.39
 hframes = 9
 
@@ -239,7 +239,6 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 7
 duration = 0.36
 hframes = 9
 
@@ -251,7 +250,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 5
+frame = 1
 duration = 0.41
 hframes = 9
 
@@ -263,7 +262,6 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-frame = 4
 duration = 0.4
 hframes = 9
 

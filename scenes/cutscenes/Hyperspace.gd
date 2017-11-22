@@ -45,6 +45,14 @@ func set_hyperspace_stage(enabled):
 		original_shake_amount = get_shake()
 		#set_shake(0)
 		lightning.hide()
+		
+func set_ship_visibility(visible):
+	if visible:
+		ship.show()
+		engine.show()
+	else:
+		ship.hide()
+		engine.hide()
 
 func set_ship_modulatuion(color):
 	ship.set_modulate(color)
