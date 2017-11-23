@@ -1,11 +1,45 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Intermediation.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/theme/patch9frame.png" type="Texture" id=4]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=6]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=7]
+[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=8]
+[ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="IntermediateScene" type="Node"]
 
 script/script = ExtResource( 1 )
+
+[node name="Terminal" parent="." instance=ExtResource( 2 )]
+
+offset = Vector2( 0, 600 )
+maximum_lines = 3
+time_between_keystrokes = 0.035
+message = "{2.0}2023 AD - Beta Hyperspace{0.8}
+The interstellar carrier ''IHS Renegade'' is on the way to the ice moon Ilex in
+the far-off Hibris system with an important cargo of Baranium Sulfide,
+dedicated to the Hyper-Mines of this inhospitable colony of mankind.
+{0.8}Mission:{0.4}
+Hyperspac carriage (Batch: BTS-SHD-788-B2S4){0.4}
+Client - Beyond the Skyes (BTS), Xin-Shanghai{0.4}
+Destination . Ilex, Hibris (G3S479-P3-M7){0.4}
+{0.8}Crew:{0.4}
+Cpt. Wolram Tungsten {0.4}[Human]{0.4}
+CELESTE {0.4}[Autonomous Electronic Brain]"
+controlled_by_script = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -14,23 +48,85 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="NextButton" type="Button" parent="CanvasLayer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 2 )
-margin/left = 901.0
-margin/top = 540.0
-margin/right = 1007.0
-margin/bottom = 568.0
+theme/theme = ExtResource( 3 )
+margin/left = 33.0
+margin/top = 33.0
+margin/right = 139.0
+margin/bottom = 65.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Continue"
+text = "Proceed"
 flat = false
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+[node name="ContinueButton" type="Button" parent="CanvasLayer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 3 )
+margin/left = 935.0
+margin/top = 555.0
+margin/right = 1017.0
+margin/bottom = 589.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Space"
+flat = false
+
+[node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 814.0
+margin/top = 20.0
+margin/right = 999.0
+margin/bottom = 205.0
+texture = ExtResource( 4 )
+patch_margin/left = 3
+patch_margin/top = 3
+patch_margin/right = 3
+patch_margin/bottom = 3
+
+[node name="FaceFrame" type="AnimatedSprite" parent="CanvasLayer/FaceSet"]
+
+transform/scale = Vector2( 1.43293, 1.43293 )
+z/z = -1
+frames = SubResource( 1 )
+animation = "default"
+centered = false
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/FaceSet"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 3 )
+margin/left = 0.0
+margin/top = 195.0
+margin/right = 185.0
+margin/bottom = 235.0
+bbcode/enabled = false
+bbcode/bbcode = "Cpt. Tungsten"
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="Hyperspace" parent="." instance=ExtResource( 9 )]
+
+[connection signal="text_finished" from="Terminal" to="." method="_on_Terminal_text_finished"]
+
+[connection signal="pressed" from="CanvasLayer/NextButton" to="." method="_on_Button_pressed"]
 
 

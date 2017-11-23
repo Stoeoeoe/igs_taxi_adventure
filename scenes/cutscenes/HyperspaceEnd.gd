@@ -134,6 +134,7 @@ func continue_dialog():
 		#get_tree().change_scene(target_level)
 	if face_sets[dialog_position] < 0:
 		faceset.hide()
+		stream_player.play(0)
 		move_ship()
 	else:
 		faceset.show()
