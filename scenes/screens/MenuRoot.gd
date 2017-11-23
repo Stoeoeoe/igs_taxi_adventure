@@ -7,12 +7,14 @@ onready var highscore_menu = get_node("HighscoreMenu")
 
 onready var sample_player = get_node("CentralSamplePlayer")
 onready var animation_player = get_node("AnimationPlayer")
+onready var stream_player = get_node("CentralStreamPlayer")
 
 var interaction_possible = true
 
 func _ready():
 	HUD.hide_gameoverlay()
 	home_menu.connect("menu_selected", self, "_on_HomeMenu_menu_selected", [])
+	level_menu.stop_music()
 
 func _on_HomeMenu_menu_selected( menu ):
 	if not interaction_possible:

@@ -1,5 +1,7 @@
 extends Panel
 
+onready var stream_player = get_node("CentralStreamPlayer")
+
 var level_selection_bubbles = []
 var bubble_original_positions = []
 var max_floating = 20
@@ -40,3 +42,9 @@ func select_level(level):
 
 func select_level_failed(level):
 	get_node("IGSCamera").shake(0.2, 5)
+	
+func play_music():
+	stream_player.play()
+	
+func stop_music():
+	stream_player.stop()
