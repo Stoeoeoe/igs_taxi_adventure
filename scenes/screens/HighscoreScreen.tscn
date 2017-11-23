@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/screens/HighscoreScreen.gd" type="Script" id=2]
+
+[node name="Panel" type="Panel"]
+
+rect/min_size = Vector2( 1024, 768 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 768.0
+script/script = ExtResource( 2 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+use_threads = false
+body_size_limit = -1
+max_redirects = 8
+
+[node name="HighscoreBox" type="VBoxContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 0
+
+[node name="Filler" type="Control" parent="HighscoreBox"]
+
+rect/min_size = Vector2( 0, 50 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 50.0
+
+[node name="Label" type="Label" parent="HighscoreBox"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 65.0
+margin/right = 1024.0
+margin/bottom = 89.0
+text = "Highscore"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Filler1" type="Control" parent="HighscoreBox"]
+
+rect/min_size = Vector2( 0, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 104.0
+margin/right = 1024.0
+margin/bottom = 124.0
+
+
