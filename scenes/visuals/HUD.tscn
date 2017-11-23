@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scenes/visuals/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/life.png" type="Texture" id=2]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/imgs/cutscenes/game_won.png" type="Texture" id=5]
+
+[sub_resource type="ColorRamp" id=1]
+
+offsets = FloatArray( 0, 0.709677, 1 )
+colors = ColorArray( 0.214844, 0, 0, 1, 1, 0.984436, 0.00390625, 1, 1, 1, 1, 0 )
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -43,6 +49,105 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
+
+[node name="WinNode" type="Control" parent="RootControl/GameOverlay"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 512.0
+margin/top = 384.0
+margin/right = 552.0
+margin/bottom = 424.0
+
+[node name="GameWonSprite" type="Sprite" parent="RootControl/GameOverlay/WinNode"]
+
+texture = ExtResource( 5 )
+
+[node name="Particles1" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+
+z/z = -1
+config/amount = 128
+config/lifetime = 1.5
+config/emit_timeout = 1.5
+config/emitting = false
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 360.0
+params/linear_velocity = 100.0
+params/spin_velocity = 300.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 20.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+color/color_ramp = SubResource( 1 )
+
+[node name="Particles2" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+
+transform/pos = Vector2( -170, 0 )
+z/z = -1
+config/amount = 128
+config/lifetime = 1.5
+config/emit_timeout = 1.5
+config/emitting = false
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 360.0
+params/linear_velocity = 100.0
+params/spin_velocity = 300.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 20.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+color/color_ramp = SubResource( 1 )
+
+[node name="Particles3" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+
+transform/pos = Vector2( 130, 0 )
+z/z = -1
+config/amount = 128
+config/lifetime = 1.5
+config/emit_timeout = 1.5
+config/emitting = false
+config/process_mode = 1
+params/direction = 0.0
+params/spread = 360.0
+params/linear_velocity = 100.0
+params/spin_velocity = 300.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 20.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+color/color_ramp = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="RootControl/GameOverlay"]
 

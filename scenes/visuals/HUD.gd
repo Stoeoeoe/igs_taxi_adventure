@@ -3,6 +3,7 @@ extends CanvasLayer
 onready var log_entries_label = get_node("RootControl/GameOverlay/LogEntries")
 onready var score_label = get_node("RootControl//GameOverlay/ScoreLabel")
 onready var crt_shader_panel = get_node("RootControl/CRTShaderPanel")
+onready var win_node = get_node("RootControl/GameOverlay/WinNode")
 
 export(Texture) var life_texture = preload("res://assets/imgs/life.png")
 
@@ -12,7 +13,6 @@ export(int) var maximum_lines = 3
 
 func _ready():
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
-	
 
 func write(new_log_entry):
 	new_log_entry = str(new_log_entry)
@@ -58,3 +58,13 @@ func disable_crt():
 	
 func enable_crt():
 	crt_shader_panel.crt_behavior = "SETTINGS"
+	
+func show_win_overlay():
+	win_node.show()
+	get_node("RootControl/GameOverlay/WinNode/Particles1").set_emitting(true)
+	get_node("RootControl/GameOverlay/WinNode/Particles2").set_emitting(true)
+	get_node("RootControl/GameOverlay/WinNode/Particles3").set_emitting(true)
+	
+func hide_win_overlay():
+	win_node.hide()	
+	
