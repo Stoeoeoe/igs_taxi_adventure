@@ -15,7 +15,7 @@ func _ready():
 	double_bar.hide()
 	triple_bar.hide()
 	#self.height = get_node("CollisionShape2D").get_shape().get_extents().height * get_scale().y
-	GameState.connect("handle_powerup", self, "multiply", [])
+	GameState.connect("powerup_collected", self, "handle_powerup", [])
 
 func _input(event):
 	if event.is_action_released("ui_accept") and not GameState.balls_launched:

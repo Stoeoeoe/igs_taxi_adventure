@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=18 format=1]
-=======
-[gd_scene load_steps=20 format=1]
->>>>>>> master
 
 [ext_resource path="res://scenes/cutscenes/Hyperspace.gd" type="Script" id=1]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=2]
@@ -19,11 +15,6 @@
 [ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=13]
 [ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=14]
 [ext_resource path="res://assets/sound/thunder1.wav" type="Sample" id=15]
-<<<<<<< HEAD
-=======
-[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=16]
-[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=17]
->>>>>>> master
 
 [sub_resource type="Animation" id=1]
 
@@ -70,11 +61,7 @@ ship_flash_length = 0.2
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-<<<<<<< HEAD
-offset = Vector2( 0.0476396, 2.67817 )
-=======
-offset = Vector2( -1.15573, -2.42137 )
->>>>>>> master
+offset = Vector2( 1.41086, 0.396827 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -161,11 +148,7 @@ transform/scale = Vector2( 5.57594, 2.43226 )
 z/z = -9
 texture = ExtResource( 6 )
 hframes = 15
-<<<<<<< HEAD
-frame = 11
-=======
-frame = 10
->>>>>>> master
+frame = 8
 modulate = Color( 0.726563, 0.726563, 0.726563, 1 )
 duration = 2.0
 hframes = 15
@@ -182,17 +165,14 @@ region_rect = Rect2( 0, 0, 10, 10 )
 
 [node name="Lightning" parent="HyperspaceStage" instance=ExtResource( 8 )]
 
+visibility/opacity = 1.0
 transform/pos = Vector2( 30.0032, 292.583 )
-<<<<<<< HEAD
-transform/scale = Vector2( 0.90556, 0.752302 )
-=======
-transform/scale = Vector2( 0.900921, 0.771237 )
->>>>>>> master
+transform/scale = Vector2( 0.972862, 0.885923 )
 z/z = -8
 texture = ExtResource( 9 )
 centered = false
 hframes = 7
-frame = 5
+frame = 3
 sprite_texture = ExtResource( 9 )
 attack_time = 0.02
 sustain_time = 0.5
@@ -216,10 +196,7 @@ transform/pos = Vector2( 1050, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 10 )
-<<<<<<< HEAD
-=======
 frame = 0
->>>>>>> master
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -242,11 +219,6 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-<<<<<<< HEAD
-frame = 3
-=======
-frame = 8
->>>>>>> master
 duration = 0.41
 hframes = 9
 
@@ -257,10 +229,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-<<<<<<< HEAD
 frame = 4
-=======
->>>>>>> master
 duration = 0.39
 hframes = 9
 
@@ -272,11 +241,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-<<<<<<< HEAD
-frame = 8
-=======
-frame = 1
->>>>>>> master
+frame = 0
 duration = 0.36
 hframes = 9
 
@@ -288,11 +253,6 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-<<<<<<< HEAD
-frame = 3
-=======
-frame = 8
->>>>>>> master
 duration = 0.41
 hframes = 9
 
@@ -304,11 +264,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 11 )
 hframes = 9
-<<<<<<< HEAD
-frame = 0
-=======
 frame = 8
->>>>>>> master
 duration = 0.4
 hframes = 9
 
@@ -367,14 +323,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 14 )
 }
 is_sfx = true
-<<<<<<< HEAD
-=======
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-
-visibility/visible = false
-color = Color( 0.871094, 0.554642, 0.554642, 1 )
->>>>>>> master
 
 [node name="ThunderPlayer" type="SamplePlayer" parent="."]
 
@@ -383,8 +331,8 @@ config/samples = SubResource( 2 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
+default/depth = 1.0
+default/height = 1.0
 default/filter/type = 1
 default/filter/cutoff = 300.0
 default/filter/resonance = 1.0
@@ -392,10 +340,6 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.1
 default/chorus_send = 0.0
-script/script = ExtResource( 16 )
-__meta__ = {
-"_editor_icon": ExtResource( 17 )
-}
 
 [node name="FlashScreen" type="Sprite" parent="."]
 

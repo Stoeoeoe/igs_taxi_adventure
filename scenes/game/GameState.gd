@@ -42,6 +42,7 @@ func remove_block():
 	number_of_blocks_to_be_destroyed -= 1
 	if number_of_blocks_to_be_destroyed <= 0:
 		HUD.write("You won!")
+		##PASS
 		get_tree().change_scene(intermediate_level)
 
 func trigger_gameover():

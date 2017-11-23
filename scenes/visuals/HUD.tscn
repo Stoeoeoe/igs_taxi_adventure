@@ -27,12 +27,6 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
-[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
-
-visibility/visible = false
-margin/right = -1024.0
-margin/bottom = -768.0
-
 [node name="GameOverlay" type="Control" parent="RootControl"]
 
 focus/ignore_mouse = false
@@ -179,5 +173,10 @@ text = "0"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
+
+margin/right = -1024.0
+margin/bottom = -768.0
 
 
