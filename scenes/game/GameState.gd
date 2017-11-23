@@ -10,10 +10,19 @@ var remaining_lives = 0
 var balls_launched = false
 
 
+signal powerup_collected(powerup_id, arg1, arg2)
+
 func _ready():
 	for i in range(0, start_lives):
 		add_life()
-		
+
+func reinitialize_game():
+	start_lives = 3
+	remaining_lives = 0
+	balls_launched = false
+	current_score = 0
+	number_of_blocks_to_be_destroyed = 0
+
 func add_score(score):
 	current_score += score
 	HUD.set_score(current_score)

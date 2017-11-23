@@ -3,6 +3,7 @@ extends Control
 onready var home_menu = get_node("HomeMenu")
 onready var settings_menu = get_node("SettingsMenu")
 onready var level_menu = get_node("LevelMenu")
+onready var highscore_menu = get_node("HighscoreMenu")
 
 onready var sample_player = get_node("CentralSamplePlayer")
 onready var animation_player = get_node("AnimationPlayer")
@@ -22,10 +23,12 @@ func _on_HomeMenu_menu_selected( menu ):
 		interaction_possible = false
 	elif menu == "settings":
 		settings_menu.show()
-		home_menu.hide()
+		home_menu.hide()		
 		sample_player.play("select_menu")
 		pass
 	elif menu == "high_score":
+		highscore_menu.show()
+		home_menu.hide()		
 		sample_player.play("select_menu")
 		pass
 	elif menu == "credits_and_licenses":
@@ -43,8 +46,16 @@ func _on_SettingsMenu_menu_closed():
 	sample_player.play("select_menu")
 	home_menu.show()
 	settings_menu.hide()
+	
+func _on_HighscoreMenu_menu_closed():
+	sample_player.play("select_menu")
+	home_menu.show()
+	highscore_menu.hide()
 
 func start_game():
 	get_tree().change_scene("res://scenes/cutscenes/HyperspaceTop.tscn")
 
 	
+
+
+

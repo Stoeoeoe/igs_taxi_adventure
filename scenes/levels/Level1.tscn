@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scenes/game/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=8]
 [ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/PowerUp.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CanvasItemShader" id=1]
 
@@ -107,6 +108,7 @@ script/script = ExtResource( 7 )
 __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
+is_sfx = false
 
 [node name="Blocks" type="Node2D" parent="."]
 
@@ -117,5 +119,20 @@ transform/pos = Vector2( 210, 290 )
 [node name="Stage" parent="." instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 2.27344, 83.3906 )
+
+[node name="PowerUp" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 240, 440 )
+powerup_id = "multiply_board_2"
+
+[node name="PowerUp2" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 240, 360 )
+powerup_id = "multiply_board_1"
+
+[node name="PowerUp1" parent="." instance=ExtResource( 11 )]
+
+transform/pos = Vector2( 240, 530 )
+powerup_id = "multiply_board_3"
 
 

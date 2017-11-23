@@ -3,11 +3,6 @@
 [ext_resource path="res://scenes/game/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/standard_player.tex" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 3, 19 )
-
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
@@ -16,6 +11,11 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3, 19 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -28,49 +28,189 @@ extents = Vector2( 5, 21 )
 
 transform/scale = Vector2( 2, 2 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
 collision/layers = 3
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 speed = 400
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="SingleBar" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SingleBar"]
 
 frames = SubResource( 2 )
 animation = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SingleBar"]
 
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="SingleBar"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -0.107319 )
-shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="PlayerInteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+[node name="PlayerInteractionShape" type="CollisionShape2D" parent="SingleBar"]
 
 transform/pos = Vector2( 0, -0.107319 )
 shape = SubResource( 3 )
 trigger = true
 _update_shape_index = 0
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="DoubleBar" type="Node2D" parent="."]
 
-enabled = true
-cast_to = Vector2( 0, 50 )
-layer_mask = 524288
-type_mask = 16
+editor/display_folded = true
+visibility/visible = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, -45 )
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="AnimatedSprite-2" type="AnimatedSprite" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, 45 )
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, -45 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D-2" type="CollisionShape2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, 45 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="InteractionArea" type="Area2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, -45 )
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="InteractionArea-2" type="Area2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, 45 )
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="PlayerInteractionShape" type="CollisionShape2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, -45 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+[node name="PlayerInteractionShape-2" type="CollisionShape2D" parent="DoubleBar"]
+
+transform/pos = Vector2( 0, 45 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+[node name="TripleBar" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="TripleBar"]
+
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="AnimatedSprite-2" type="AnimatedSprite" parent="TripleBar"]
+
+transform/pos = Vector2( 0, -90 )
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="AnimatedSprite-3" type="AnimatedSprite" parent="TripleBar"]
+
+transform/pos = Vector2( 0, 90 )
+frames = SubResource( 2 )
+animation = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TripleBar"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D-2" type="CollisionShape2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, -90 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D-3" type="CollisionShape2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, 90 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="InteractionArea" type="Area2D" parent="TripleBar"]
+
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="InteractionArea-2" type="Area2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, -90 )
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="InteractionArea-3" type="Area2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, 90 )
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="PlayerInteractionShape" type="CollisionShape2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, -0.107319 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+[node name="PlayerInteractionShape-2" type="CollisionShape2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, -90 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
+
+[node name="PlayerInteractionShape-3" type="CollisionShape2D" parent="TripleBar"]
+
+transform/pos = Vector2( 0, 90 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 0
 
 

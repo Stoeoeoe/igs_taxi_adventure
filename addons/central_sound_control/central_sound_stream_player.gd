@@ -1,9 +1,7 @@
 
 extends StreamPlayer
 
-var music_variable = ""
 var volume = 1
-var db_overwrite = 0
 export(bool) var is_sfx = false 
 
 func _ready():
