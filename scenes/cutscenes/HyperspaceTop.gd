@@ -93,6 +93,7 @@ func _ready():
 	sfx_level = hyperspace.get_sfx_level()
 	hyperspace.set_bgm_level(0)
 	hyperspace.set_sfx_level(0)
+	rift_player.stop()
 	ship_flash_length = hyperspace.ship_flash_length
 	setup_dialog()
 	canvas.set_color(Color(0,0,0))

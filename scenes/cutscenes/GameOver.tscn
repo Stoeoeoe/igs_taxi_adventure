@@ -302,9 +302,7 @@ transform/pos = Vector2( 356.581, 418.5 )
 
 [node name="BoomSprite" parent="Explosion" instance=ExtResource( 3 )]
 
-visibility/opacity = 0.719387
 transform/pos = Vector2( 0, 0 )
-transform/scale = Vector2( 16.1124, 16.1124 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -323,9 +321,7 @@ replay = false
 
 [node name="BoomSprite2" parent="Explosion" instance=ExtResource( 3 )]
 
-visibility/opacity = 0.859694
 transform/pos = Vector2( 0, 0 )
-transform/scale = Vector2( 1.36602, 9.78443 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -344,9 +340,7 @@ replay = false
 
 [node name="BoomSprite3" parent="Explosion" instance=ExtResource( 3 )]
 
-visibility/opacity = 0.859694
 transform/pos = Vector2( 0, 0 )
-transform/scale = Vector2( 9.78443, 1.36602 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -365,10 +359,8 @@ replay = false
 
 [node name="BoomSprite4" parent="Explosion" instance=ExtResource( 3 )]
 
-visibility/opacity = 0.812925
 transform/pos = Vector2( 0, 0 )
 transform/rot = -49.6223
-transform/scale = Vector2( 12.1468, 1.9289 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -386,10 +378,8 @@ replay = false
 
 [node name="BoomSprite5" parent="Explosion" instance=ExtResource( 3 )]
 
-visibility/opacity = 0.812925
 transform/pos = Vector2( 0, 0 )
 transform/rot = -315.057
-transform/scale = Vector2( 12.1468, 1.9289 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
