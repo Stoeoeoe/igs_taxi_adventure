@@ -145,6 +145,7 @@ func continue_dialog():
 		time_passed = 0
 		fade_out_started = true
 		continue_button.hide()
+		return
 		#get_tree().change_scene(target_level)
 	if face_sets[dialog_position] < 0:
 		faceset.hide()

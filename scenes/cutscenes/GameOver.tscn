@@ -302,7 +302,9 @@ transform/pos = Vector2( 356.581, 418.5 )
 
 [node name="BoomSprite" parent="Explosion" instance=ExtResource( 3 )]
 
+visibility/opacity = 0.719387
 transform/pos = Vector2( 0, 0 )
+transform/scale = Vector2( 16.1124, 16.1124 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -321,7 +323,9 @@ replay = false
 
 [node name="BoomSprite2" parent="Explosion" instance=ExtResource( 3 )]
 
+visibility/opacity = 0.859694
 transform/pos = Vector2( 0, 0 )
+transform/scale = Vector2( 1.36602, 9.78443 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -340,7 +344,9 @@ replay = false
 
 [node name="BoomSprite3" parent="Explosion" instance=ExtResource( 3 )]
 
+visibility/opacity = 0.859694
 transform/pos = Vector2( 0, 0 )
+transform/scale = Vector2( 9.78443, 1.36602 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -359,8 +365,10 @@ replay = false
 
 [node name="BoomSprite4" parent="Explosion" instance=ExtResource( 3 )]
 
+visibility/opacity = 0.812925
 transform/pos = Vector2( 0, 0 )
 transform/rot = -49.6223
+transform/scale = Vector2( 12.1468, 1.9289 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -378,8 +386,10 @@ replay = false
 
 [node name="BoomSprite5" parent="Explosion" instance=ExtResource( 3 )]
 
+visibility/opacity = 0.812925
 transform/pos = Vector2( 0, 0 )
 transform/rot = -315.057
+transform/scale = Vector2( 12.1468, 1.9289 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
 attack_time = 0.01
@@ -525,8 +535,8 @@ params/radial_accel = 0.0
 params/tangential_accel = 0.0
 params/damping = 0.0
 params/initial_angle = 0.0
-params/initial_size = 1.0
-params/final_size = 10.0
+params/initial_size = 3.0
+params/final_size = 20.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 5.0
 params/anim_initial_pos = 0.0
@@ -561,7 +571,7 @@ params/radial_accel = 0.0
 params/tangential_accel = 0.0
 params/damping = 0.0
 params/initial_angle = 0.0
-params/initial_size = 0.2
+params/initial_size = 1.0
 params/final_size = 15.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 5.0
@@ -596,8 +606,8 @@ params/radial_accel = 0.0
 params/tangential_accel = 0.0
 params/damping = 0.0
 params/initial_angle = 0.0
-params/initial_size = 0.2
-params/final_size = 15.0
+params/initial_size = 1.5
+params/final_size = 20.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 5.0
 params/anim_initial_pos = 0.0

@@ -1,9 +1,14 @@
 extends Control
 
+onready var animation_player = get_node("AnimationPlayer")
+
 var unlocked_levels = []
 
 signal menu_selected(menu)
 signal back_button_pressed
+
+func _ready():
+	animation_player.play("ShinyAnimation")
 
 
 func _on_StartButton_pressed():
