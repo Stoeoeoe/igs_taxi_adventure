@@ -10,7 +10,7 @@ var remaining_lives = 0
 var balls_launched = false
 
 
-signal powerup_collected(powerup_id, arg1, arg2)
+signal powerup_collected(powerup_data)
 
 func _ready():
 	for i in range(0, start_lives):

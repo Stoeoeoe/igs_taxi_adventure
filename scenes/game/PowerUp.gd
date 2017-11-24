@@ -2,13 +2,15 @@ extends KinematicBody2D
 
 export(String) var powerup_id = ""
 var player_class = preload("res://scenes/game/Player.tscn")
+var powerup_data = null
 onready var sample_player = get_node("SamplePlayer")
 
 
 func _ready():
 	if powerup_id:
-		var powerup_data = data.get_item("powerup_data", powerup_id)
+		powerup_data = data.get_item("powerup_data", powerup_id)
 		add_child(powerup_data)
+		
 		get_node("Sprite").set_texture(load(powerup_data.texture))
 		
 		sample_player.set_sample_library(SampleLibrary.new())
@@ -25,5 +27,5 @@ func _ready():
 func _on_EffectArea_body_enter( body ):
 	print(body.get_groups())
 	if body.is_in_group("ball"):
-		GameState.emit_signal("powerup_collected", powerup_id, null, null)
+		GameState.emit_signal("powerup_collected", powerup_data)
 		sample_player.play("collected")

@@ -3,8 +3,8 @@
 [ext_resource path="res://scenes/visuals/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/life.png" type="Texture" id=2]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=3]
-[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/imgs/cutscenes/game_won.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/cutscenes/game_won.png" type="Texture" id=4]
+[ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ColorRamp" id=1]
 
@@ -58,7 +58,7 @@ margin/bottom = 424.0
 
 [node name="GameWonSprite" type="Sprite" parent="RootControl/GameOverlay/WinNode"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
 [node name="Particles1" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
 
@@ -279,7 +279,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 4 )]
+[node name="CRTShaderPanel" parent="RootControl" instance=ExtResource( 5 )]
 
 margin/right = -1024.0
 margin/bottom = -768.0

@@ -13,6 +13,7 @@ export(int) var maximum_lines = 3
 
 func _ready():
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
+	hide_gameoverlay()
 
 func write(new_log_entry):
 	new_log_entry = str(new_log_entry)

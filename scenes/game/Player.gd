@@ -8,6 +8,8 @@ onready var single_bar = get_node("SingleBar")
 onready var double_bar = get_node("DoubleBar")
 onready var triple_bar = get_node("TripleBar")
 
+
+
 func _ready():
 	set_process(true)
 	set_process_input(true)
@@ -34,9 +36,10 @@ func kill():
 	hide()
 	queue_free()
 	
-func handle_powerup(powerup_id, arg1, arg2):
+func handle_powerup(powerup_data):
+	var powerup_id = powerup_data._id
 	if "multiply_board" in powerup_id:
-		var number_of_boards = int(powerup_id.replace("multiply_board_", ""))
+		var number_of_boards = powerup_data._custom_properties["boards"][1]
 		if number_of_boards == 1:
 			single_bar.show()
 			double_bar.hide()
@@ -49,4 +52,6 @@ func handle_powerup(powerup_id, arg1, arg2):
 			single_bar.hide()
 			double_bar.hide()
 			triple_bar.show()
-			
+	elif "speed_up" in powerup_id:
+		var speed_up_factor = powerup_data._custom_properties["factor"]
+		pass
