@@ -5,7 +5,7 @@
 
 [node name="Sprite" type="Sprite"]
 
-visibility/opacity = 0.0
+visibility/opacity = 0.166356
 transform/pos = Vector2( 70.9801, 72.7725 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )

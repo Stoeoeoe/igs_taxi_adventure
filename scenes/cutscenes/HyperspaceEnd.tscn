@@ -142,6 +142,7 @@ controlled_by_script = true
 [node name="BoomSprite" parent="." instance=ExtResource( 3 )]
 
 visibility/visible = false
+visibility/opacity = 1.0
 transform/pos = Vector2( 356.581, 418.5 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
@@ -210,7 +211,7 @@ margin/bottom = 589.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "Space"
+text = "Next"
 flat = false
 
 [node name="FaceSet" type="Patch9Frame" parent="CanvasLayer"]

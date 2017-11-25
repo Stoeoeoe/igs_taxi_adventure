@@ -27,6 +27,8 @@ tracks/0/keys = {
 anchor/right = 1
 anchor/bottom = 1
 rect/min_size = Vector2( 1024, 768 )
+focus_neighbour/top = NodePath("SettingsBox/HBoxContainer 2/DiscardChangesButton")
+focus_neighbour/bottom = NodePath("SettingsBox/GridContainer/CRTScanlineOpacity")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
@@ -129,7 +131,7 @@ margin/right = 605.0
 margin/bottom = 53.0
 range/min = 0.0
 range/max = 1.0
-range/step = 0.01
+range/step = 0.1
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
@@ -203,7 +205,7 @@ margin/right = 605.0
 margin/bottom = 109.0
 range/min = 0.0
 range/max = 4.0
-range/step = 0.05
+range/step = 0.5
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
@@ -264,7 +266,7 @@ margin/right = 605.0
 margin/bottom = 161.0
 range/min = 0.0
 range/max = 1.0
-range/step = 0.01
+range/step = 0.05
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
@@ -301,7 +303,7 @@ margin/right = 605.0
 margin/bottom = 189.0
 range/min = 0.0
 range/max = 1.0
-range/step = 0.01
+range/step = 0.05
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false
@@ -365,6 +367,8 @@ playback/active = true
 playback/speed = 1.5
 blend_times = [  ]
 autoplay = ""
+
+[connection signal="visibility_changed" from="." to="." method="_on_SettingsMenu_visibility_changed"]
 
 [connection signal="input_event" from="SettingsBox/GridContainer/SFXVolume" to="." method="_on_SFXVolume_input_event"]
 

@@ -10,15 +10,22 @@ var remaining_lives = 0
 var balls_launched = false
 var current_level = 1
 
+var level_status = []
+
 signal game_finished
 signal game_won
 signal game_lost
 signal life_removed
 signal life_added
 
+var number_of_levels = 8
+
 signal powerup_collected(powerup_data)
 
 func _ready():
+	for i in range(0, number_of_levels):
+		level_status.append("LOCKED")
+	level_status[0] = "UNLOCKED"
 	randomize()
 
 func initialize_game():
@@ -40,7 +47,7 @@ func add_score(score):
 func add_life():
 	remaining_lives += 1
 	HUD.add_life()
-	emit_signal("live_added")
+	emit_signal("life_added")
 
 func remove_life():
 	emit_signal("life_removed")
@@ -52,9 +59,15 @@ func remove_life():
 func remove_block():
 	number_of_blocks_to_be_destroyed -= 1
 	if number_of_blocks_to_be_destroyed <= 0:
-		HUD.write("You won!")
-		emit_signal("game_finished")
-		emit_signal("game_won")
+		trigger_game_won()
+		
+func trigger_game_won():
+	HUD.write("You won!")
+	emit_signal("game_finished")
+	emit_signal("game_won")
+	# MOVE ELSEWHERE PLEASE AND ALSO THE LAST LEVEL WILL CRASH
+	level_status[current_level-1] = "COMPLETED"	
+	level_status[current_level] = "UNLOCKED" if level_status[current_level] else "COMPLETED"	
 
 func trigger_gameover():
 	HUD.write("GMAE OVER")
@@ -64,8 +77,7 @@ func trigger_gameover():
 	
 	
 func go_to_game_over_scene():
-	get_tree().change_scene(game_over_scene)
+	SceneSwitcher.change_scene(game_over_scene)
 
-func go_to_inermediate_scene(level_number):
-	current_level = level_number
-	get_tree().change_scene(intermediate_level)
+func go_to_intermediate_scene():
+	SceneSwitcher.change_scene(intermediate_level)

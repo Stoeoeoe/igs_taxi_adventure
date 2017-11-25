@@ -73,7 +73,6 @@ func reload_unsaved_items():
 		print(unsaved_item._id)
 		duplicate_item(unsaved_item, unsaved_item._id, unsaved_item._display_name, true)
 #		new_item._dirty = true
-
 	pass
 	unsaved_items = []
 		
@@ -167,6 +166,7 @@ func load_items():
 				else:
 					pass
 				items[item_class][id].set_name(items[item_class][id]._class + ":" + id)
+				self.add_child(items[item_class][id])
 			file_name = directory.get_next()
 		pass
 	pass

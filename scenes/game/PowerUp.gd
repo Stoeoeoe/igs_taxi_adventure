@@ -9,9 +9,7 @@ onready var sample_player = get_node("SamplePlayer")
 func _ready():
 	if powerup_id:
 		powerup_data = data.get_item("powerup_data", powerup_id)
-		add_child(powerup_data)
-		
-		get_node("Sprite").set_texture(load(powerup_data.texture))
+		get_node("Sprite").set_texture(load(powerup_data.get("texture")))
 		
 		sample_player.set_sample_library(SampleLibrary.new())
 		if powerup_data.sample:

@@ -41,7 +41,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
 level = 0
-unlocked = false
+status = "LOCKED"
 
 [node name="TextureFrame" type="TextureFrame" parent="."]
 
@@ -54,11 +54,11 @@ margin/top = 0.0
 margin/right = 64.0
 margin/bottom = 64.0
 texture = ExtResource( 2 )
+modulate = Color( 1, 1, 0, 1 )
 stretch_mode = 0
 
 [node name="LevelNumberLabel" type="Label" parent="."]
 
-visibility/opacity = 0.5
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -81,6 +81,7 @@ max_lines_visible = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 32, 32 )
 shape = SubResource( 1 )
 trigger = true

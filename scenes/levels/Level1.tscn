@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/game/World.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/imgs/enemies/default_enemy.png" type="Texture" id=3]
-[ext_resource path="res://assets/music/epique_syntronic01.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/music/level_music4.ogg" type="AudioStream" id=4]
 [ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=5]
 [ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=6]
 [ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=7]
@@ -51,7 +51,7 @@ stream/stream = ExtResource( 4 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
-stream/autoplay = false
+stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500

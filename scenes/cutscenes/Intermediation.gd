@@ -26,7 +26,7 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_tree().change_scene(target_level)
+	SceneSwitcher.change_scene(target_level)
 
 func play():
 	
@@ -70,7 +70,7 @@ func continue_dialog():
 	continue_button.hide()
 	dialog_position = dialog_position + 1;
 	if dialog_position >= end_position: # end
-		get_tree().change_scene(target_level)
+		SceneSwitcher.change_scene(target_level)
 		return
 	if face_sets[dialog_position] < 0:
 		faceset.hide()
@@ -88,7 +88,7 @@ func _on_Terminal_text_finished():
 	
 func _input(event):
 	if event.is_action_released("cutscene_skip"):
-		get_tree().change_scene(target_level)
+		SceneSwitcher.change_scene(target_level)
 	elif event.is_action_released("cutscene_forward"):
 		if scene_idle:
 			continue_dialog()

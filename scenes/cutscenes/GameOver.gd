@@ -10,4 +10,4 @@ func _ready():
 	end_player.play("EndAnimation")
 
 func _on_Button_pressed():
-	get_tree().change_scene(target_level)
+	SceneSwitcher.change_scene(target_level)

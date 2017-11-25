@@ -8,6 +8,7 @@ var values = {}
 func _init():
 	# Caution: This item manager may not be in sync with the one used by the editor
 	self.item_manager = preload("item_manager.gd").new()
+	add_child(item_manager)
 	self.items = item_manager.items
 
 
@@ -125,9 +126,7 @@ func stop_observing_changes(observer):
 		if target == observer:
 			self.disconnect(connection["signal"], target, connection["method"])
 					
-			
-#	observer.disconnect(
-
+		
 	
 func set_item_progress(item, property, value):
 	set_progress(item._class, item._id, property, value)

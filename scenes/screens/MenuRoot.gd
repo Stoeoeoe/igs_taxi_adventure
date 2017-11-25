@@ -15,6 +15,7 @@ var interaction_possible = true
 func _ready():
 	HUD.hide_gameoverlay()
 	level_menu.stop_music()
+	get_node("HomeMenu").get_node("VBoxContainer/StartButton").grab_focus()
 
 func _on_HomeMenu_menu_selected( menu ):
 	if interaction_possible:
@@ -35,7 +36,7 @@ func open_menu(menu):
 
 
 func start_game():
-	get_tree().change_scene("res://scenes/cutscenes/HyperspaceTop.tscn")
+	SceneSwitcher.change_scene("res://scenes/cutscenes/HyperspaceTop.tscn")
 
 
 func _on_MenuButton_selected():

@@ -91,12 +91,12 @@ func set_scale_max(new_scale_max):
 
 	
 func set_replay(new_replay):
+	
 	replay = new_replay
-	if get_tree() and get_tree().is_editor_hint():
-		if replay:
-			play()
-		else:
-			stop(true)
+	if replay:
+		play()
+	else:
+		stop(true)
 
 
 func _ready():
@@ -117,8 +117,8 @@ func _process(delta):
 		if time_since_last_framechange >= decay:
 			time_since_last_framechange = 0.0
 			set_opacity(0.0)
-			pause_started = true;
-			if not get_tree().is_editor_hint():
+			pause_started = true
+			if is_inside_tree() and not get_tree().is_editor_hint():
 				emit_signal("flash_end")
 		else:
 			set_opacity( 1 - (time_since_last_framechange / decay))
@@ -140,7 +140,7 @@ func _process(delta):
 	#print(get_opacity())
 	
 func play():
-	if get_tree() and not get_tree().is_editor_hint():
+	if is_inside_tree() and not get_tree().is_editor_hint():
 		emit_signal("flash_start")
 	if randomize_frames and frame_number > 1:
 		set_frame(rand_range(1, frame_number))

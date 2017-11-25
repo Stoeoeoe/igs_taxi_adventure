@@ -33,7 +33,7 @@ var face_sets = IntArray()
 
 func _input(event):
 	if event.is_action_released("cutscene_skip"):
-		get_tree().change_scene(target_level)
+		SceneSwitcher.change_scene(target_level)
 	elif event.is_action_released("cutscene_forward"):
 		if scene_idle:
 			continue_dialog()
@@ -131,7 +131,7 @@ func _process(delta):
 		rift_player.set_volume(bgm_level-(current_color_value * bgm_level))
 		hyperspace.set_sfx_level(sfx_level-(current_color_value * sfx_level))
 	elif time_passed > fade_time and fade_out_started:
-		get_tree().change_scene(target_level)
+		SceneSwitcher.change_scene(target_level)
 	
 
 func _on_StopButton_pressed():
@@ -147,7 +147,6 @@ func continue_dialog():
 		fade_out_started = true
 		continue_button.hide()
 		return
-		#get_tree().change_scene(target_level)
 	if face_sets[dialog_position] < 0:
 		faceset.hide()
 	else:

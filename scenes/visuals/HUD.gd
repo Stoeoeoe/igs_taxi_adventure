@@ -4,6 +4,7 @@ onready var log_entries_label = get_node("RootControl/GameOverlay/LogEntries")
 onready var score_label = get_node("RootControl//GameOverlay/ScoreLabel")
 onready var crt_shader_panel = get_node("RootControl/CRTShaderPanel")
 onready var win_node = get_node("RootControl/GameOverlay/WinNode")
+onready var animation_player = get_node("AnimationPlayer")
 
 export(Texture) var life_texture = preload("res://assets/imgs/life.png")
 
@@ -12,6 +13,7 @@ var log_string = ""
 export(int) var maximum_lines = 3
 
 func _ready():
+	GameState.connect("game_won", self, "show_win_overlay")
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
 	hide_gameoverlay()
 
@@ -61,11 +63,13 @@ func enable_crt():
 	crt_shader_panel.crt_behavior = "SETTINGS"
 	
 func show_win_overlay():
-	win_node.show()
-	get_node("RootControl/GameOverlay/WinNode/Particles1").set_emitting(true)
-	get_node("RootControl/GameOverlay/WinNode/Particles2").set_emitting(true)
-	get_node("RootControl/GameOverlay/WinNode/Particles3").set_emitting(true)
+	animation_player.play("GameWonAnimation")
 	
 func hide_win_overlay():
 	win_node.hide()	
 	
+
+func _on_AnimationPlayer_finished():
+	if animation_player.get_current_animation() == "GameWonAnimation":
+		GameState.go_to_intermediate_scene()
+		

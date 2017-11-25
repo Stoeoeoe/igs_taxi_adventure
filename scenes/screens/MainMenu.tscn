@@ -147,7 +147,7 @@ is_sfx = false
 
 config/polyphony = 1
 config/samples = SubResource( 1 )
-default/volume_db = -6.0
+default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
 default/depth = 0.0
@@ -163,6 +163,7 @@ script/script = ExtResource( 15 )
 __meta__ = {
 "_editor_icon": ExtResource( 16 )
 }
+volume_factor = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

@@ -238,6 +238,8 @@ margin/bottom = 736.0
 texture = ExtResource( 5 )
 stretch_mode = 4
 
+[connection signal="visibility_changed" from="." to="." method="_on_HomeMenu_visibility_changed"]
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_MenuButton_selected" binds= [ "StartStory" ]]
 
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_MenuButton_selected" binds= [ "SettingsMenu" ]]

@@ -6,10 +6,17 @@ onready var sample_player = get_node("SamplePlayer")
 onready var texture_frame = get_node("TextureFrame")
 
 export(int) var level = 0 setget set_level
-export(bool) var unlocked = false setget set_unlocked
+export(String, "UNLOCKED", "COMPLETED", "LOCKED") var status = "LOCKED" setget set_status
+
 
 signal level_selected(level)
 signal level_selected_failed(level)
+
+
+func _ready():
+	level_number_label.set_text(str(level))
+	change_color()
+
 
 # TODO: Fix
 func _get_item_rect():
@@ -21,28 +28,25 @@ func set_level(new_level):
 	level = new_level
 	if level_number_label:
 		level_number_label.set_text(str(level))
-	
-func set_unlocked(new_unlocked):
-	unlocked = new_unlocked
-	if unlocked and texture_frame:
-		texture_frame.set_modulate(Color(1,1,1))
-	elif texture_frame:
-		texture_frame.set_modulate(Color(0.5,0.5,0.5))
-
-
-	if level_number_label:
-		level_number_label.set_opacity(1 if unlocked else 0.5)
-
-func _ready():
-	level_number_label.set_text(str(level))
-	level_number_label.set_opacity(1 if unlocked else 0.5)
+		
+func set_status(new_status):
+	status = new_status	
+	if texture_frame:
+		change_color()
 
 func _on_LevelBubble_input_event( viewport, event, shape_idx ):
 	if event.type == InputEvent.MOUSE_BUTTON and event.button_index == BUTTON_LEFT and not event.pressed :
-		if unlocked:
+		if status == "UNLOCKED" or status == "COMPLETED":
 			sample_player.play("select_level")
 			emit_signal("level_selected", level)
 		else:
 			sample_player.play("select_level_failed")
 			emit_signal("level_selected_failed", level)
-			
+
+func change_color():
+	if status == "UNLOCKED":
+		texture_frame.set_modulate(Color(0.8,0.8,0))
+	elif status == "LOCKED":
+		texture_frame.set_modulate(Color(0.8,0,0))		
+	elif status == "COMPLETED":
+		texture_frame.set_modulate(Color(0,0.8,0))					

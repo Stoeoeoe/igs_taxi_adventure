@@ -49,3 +49,7 @@ func _on_DiscardChangesButton_pressed():
 	Settings.read_config()
 	set_values_from_settings()
 	emit_signal("menu_closed")
+
+func _on_SettingsMenu_visibility_changed():
+	if is_visible():
+		get_node("SettingsBox/GridContainer/CRTEffectEnabled").grab_focus()
