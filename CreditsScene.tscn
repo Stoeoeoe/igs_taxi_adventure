@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/imgs/screens/credits_licenses.png" type="Texture" id=2]
+
+[node name="Credits" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 997.0
+margin/top = 37.0
+margin/right = 2025.0
+margin/bottom = 810.0
+
+[node name="Terminal" parent="." instance=ExtResource( 1 )]
+
+offset = Vector2( 0, 80 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 507.734, 35.0737 )
+texture = ExtResource( 2 )
+
+

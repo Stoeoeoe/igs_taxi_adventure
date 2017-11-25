@@ -22,7 +22,6 @@ tracks/0/keys = {
 
 [node name="SettingsMenu" type="Panel"]
 
-editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 rect/min_size = Vector2( 1024, 768 )

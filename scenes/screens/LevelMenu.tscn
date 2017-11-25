@@ -267,6 +267,7 @@ modulate = Color( 0.986683, 0.783676, 0.988281, 1 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 
+visibility/opacity = 0.51
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

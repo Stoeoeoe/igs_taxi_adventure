@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/imgs/screens/credits_licenses.png" type="Texture" id=3]
+
+[node name="Credits" type="Panel"]
+
+visibility/visible = false
+visibility/self_opacity = 0.0
+anchor/right = 1
+anchor/bottom = 1
+rect/min_size = Vector2( 1024, 768 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="Terminal" parent="." instance=ExtResource( 2 )]
+
+offset = Vector2( 0, 80 )
+message = ""
+controlled_by_script = true
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 507.734, 35.0737 )
+texture = ExtResource( 3 )
+
+

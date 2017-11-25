@@ -4,6 +4,7 @@ onready var home_menu = get_node("HomeMenu")
 onready var settings_menu = get_node("SettingsMenu")
 onready var level_menu = get_node("LevelMenu")
 onready var highscore_menu = get_node("HighscoreMenu")
+onready var credits = get_node("Credits")
 
 onready var sample_player = get_node("CentralSamplePlayer")
 onready var animation_player = get_node("AnimationPlayer")
@@ -34,6 +35,8 @@ func _on_HomeMenu_menu_selected( menu ):
 		sample_player.play("select_menu")
 		pass
 	elif menu == "credits_and_licenses":
+		credits.show()
+		home_menu.hide()
 		sample_player.play("select_menu")
 		pass
 
