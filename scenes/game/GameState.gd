@@ -8,13 +8,20 @@ var intermediate_level = "res://scenes/cutscenes/Intermediation.tscn"
 var start_lives = 3
 var remaining_lives = 0
 var balls_launched = false
+var current_level = 1
 
+signal game_finished
+signal game_won
+signal game_lost
+signal life_removed
+signal life_added
 
 signal powerup_collected(powerup_data)
 
 func _ready():
 	for i in range(0, start_lives):
 		add_life()
+		
 
 func reinitialize_game():
 	start_lives = 3
@@ -30,9 +37,10 @@ func add_score(score):
 func add_life():
 	remaining_lives += 1
 	HUD.add_life()
-	pass
+	emit_signal("live_added")
 
 func remove_life():
+	emit_signal("life_removed")
 	remaining_lives -= 1
 	HUD.remove_life()
 	if remaining_lives == 0:
@@ -42,10 +50,21 @@ func remove_block():
 	number_of_blocks_to_be_destroyed -= 1
 	if number_of_blocks_to_be_destroyed <= 0:
 		HUD.write("You won!")
-		##PASS
-		get_tree().change_scene(intermediate_level)
+		emit_signal("game_finished")
+		emit_signal("game_won")
+		#pass
+		#get_tree().change_scene(intermediate_level)
 
 func trigger_gameover():
 	HUD.write("GMAE OVER")
-	get_tree().change_scene(game_over_scene)
+	emit_signal("game_finished")
+	emit_signal("game_lost")
+	#get_tree().change_scene(game_over_scene)
 	
+	
+func go_to_game_over_scene():
+	get_tree().change_scene(game_over_scene)
+
+func go_to_inermediate_scene(level_number):
+	current_level = level_number
+	get_tree().change_scene(intermediate_level)

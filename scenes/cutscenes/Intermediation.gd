@@ -11,25 +11,29 @@ onready var faceset = get_node("CanvasLayer/FaceSet")
 onready var faceset_frame = get_node("CanvasLayer/FaceSet/FaceFrame")
 onready var continue_button = get_node("CanvasLayer/ContinueButton")
 onready var faceset_label = get_node("CanvasLayer/FaceSet/Label")
+onready var animation_player = get_node("AnimationPlayer")
 
 var scene_idle = false
 var dialog_position = -1
 var end_position = -1
 
+
 func _ready():
 	hyperspace.set_ship_to_end_pos()
 	set_process_input(true)
-	play()
+	animation_player.play("StartAnimation")
+	#play()
 
 
 func _on_Button_pressed():
 	get_tree().change_scene(target_level)
 
 func play():
-	var level = 0 # Determine the right level
-	if 	level == 0:
+	
+	var level = GameState.current_level # Determine the right level
+	if 	level == 1:
 		setup_dialog1()
-	elif level == 1:
+	elif level == 2:
 		setup_dialog2()
 		pass
 		
@@ -50,7 +54,16 @@ func setup_dialog1():
 	face_sets.append(2)
 	
 func setup_dialog2():
-	pass
+	end_position = 3
+	texts.append("""I did the second level """)
+	texts.append("""Test""")
+	texts.append("""Test 2""")
+	labels_texts.append("Cpt. Rabenheimer")
+	labels_texts.append("")
+	labels_texts.append("")
+	face_sets.append(0)
+	face_sets.append(1)
+	face_sets.append(2)
 	
 func continue_dialog():
 	scene_idle = false
