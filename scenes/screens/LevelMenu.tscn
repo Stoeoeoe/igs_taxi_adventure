@@ -1,16 +1,46 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/LevelMenu.gd" type="Script" id=2]
 [ext_resource path="res://scenes/visuals/LevelEditorLines.gd" type="Script" id=3]
 [ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/music/select_level.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/music/select_level3.ogg" type="AudioStream" id=6]
 [ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=7]
 [ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=8]
+[ext_resource path="res://assets/imgs/missionControl.png" type="Texture" id=9]
+[ext_resource path="res://assets/imgs/blinkenLights.png" type="Texture" id=10]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "TextAnimation"
+length = 10.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:bbcode/bbcode")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 3, 8, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 9, 9.1 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "Malfunction", "Malfunction: Please select Circuit (1-8) to repair", "Malfunction: Please select Circuit (1-8) to repair", "sjhdgjkashgvdasvdjavsjdvashdvsada", "765tdvsujdtfa7srdfzascda", "shdajsvdjsav gsa dugas udasud sgdugas duas", "sadjaskdlash shdihagsd hab sdbas  sjhdkas", "kadkjbashjbdjhsbad b sahdjas  ashbdhbasd", "# # #", "# # #", "Error!" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RichTextLabel:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5, 0.8, 1.1, 1.4, 1.7, 2, 2.3 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true ]
+}
 
 [node name="LevelMenu" type="Panel"]
 
+visibility/self_opacity = 0.0
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = true
@@ -30,43 +60,43 @@ script/script = ExtResource( 3 )
 
 [node name="Level5" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 464.055, 276.528 )
+transform/pos = Vector2( 559.055, 345.528 )
 level = 5
 
 [node name="Level2" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 305.612, 77.7598 )
+transform/pos = Vector2( 400.612, 146.76 )
 level = 2
 
 [node name="Level1" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 139.803, 88.3113 )
+transform/pos = Vector2( 234.803, 157.311 )
 level = 1
 unlocked = true
 
 [node name="Level3" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 488.261, 151.143 )
+transform/pos = Vector2( 583.261, 220.143 )
 level = 3
 
 [node name="Level4" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 589.21, 208.59 )
+transform/pos = Vector2( 684.21, 277.59 )
 level = 4
 
 [node name="Level6" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 353.864, 313.259 )
+transform/pos = Vector2( 448.864, 382.259 )
 level = 6
 
 [node name="Level7" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 213.744, 377.197 )
+transform/pos = Vector2( 308.744, 446.197 )
 level = 7
 
 [node name="Level8" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 369.001, 479.697 )
+transform/pos = Vector2( 464.001, 548.697 )
 level = 8
 
 [node name="IGSCamera" parent="." instance=ExtResource( 5 )]
@@ -105,5 +135,160 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 is_sfx = false
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 513.126, 392.522 )
+transform/scale = Vector2( 1.59882, 1.59882 )
+z/z = -1
+texture = ExtResource( 9 )
+
+[node name="BlinkenLights" type="Node2D" parent="."]
+
+[node name="BL1" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 946.363, 181.516 )
+transform/scale = Vector2( 0.798723, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.772629, 0.964844, 0.816177, 1 )
+
+[node name="BL2" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 986.481, 159.516 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.772629, 0.964844, 0.816177, 1 )
+
+[node name="BL3" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 1026.28, 180.222 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.772629, 0.964844, 0.816177, 1 )
+
+[node name="BL4" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 948.305, 228.752 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.980469, 0.744807, 0.294907, 1 )
+
+[node name="BL5" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 986.805, 207.722 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.980469, 0.744807, 0.294907, 1 )
+
+[node name="BL6" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 1025.63, 229.399 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.980469, 0.744807, 0.294907, 1 )
+
+[node name="BL7" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 947.479, 278.511 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.988281, 0.783676, 0.783676, 1 )
+
+[node name="BL8" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 986.009, 256.267 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.988281, 0.783676, 0.783676, 1 )
+
+[node name="BL9" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 1026.13, 276.128 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.988281, 0.783676, 0.783676, 1 )
+
+[node name="BL10" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 947.876, 325.779 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.783676, 0.97869, 0.988281, 1 )
+
+[node name="BL11" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 986.406, 304.33 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.783676, 0.97869, 0.988281, 1 )
+
+[node name="BL12" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 1026.92, 325.382 )
+transform/scale = Vector2( 0.738059, 0.808831 )
+texture = ExtResource( 10 )
+modulate = Color( 0.783676, 0.97869, 0.988281, 1 )
+
+[node name="BL13" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 51.7883, 554.797 )
+transform/scale = Vector2( 0.409362, 0.713204 )
+texture = ExtResource( 10 )
+modulate = Color( 0.986683, 0.783676, 0.988281, 1 )
+
+[node name="BL14" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 83.6571, 506.519 )
+transform/scale = Vector2( 0.409362, 0.713204 )
+texture = ExtResource( 10 )
+modulate = Color( 0.986683, 0.783676, 0.988281, 1 )
+
+[node name="BL15" type="Sprite" parent="BlinkenLights"]
+
+visibility/visible = false
+transform/pos = Vector2( 17.5414, 457.527 )
+transform/scale = Vector2( 0.409362, 0.713204 )
+texture = ExtResource( 10 )
+modulate = Color( 0.986683, 0.783676, 0.988281, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 175.0
+margin/top = 685.0
+margin/right = 844.0
+margin/bottom = 716.0
+bbcode/enabled = false
+bbcode/bbcode = "Error!"
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/TextAnimation = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 
