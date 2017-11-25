@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/imgs/screens/credits_licenses.png" type="Texture" id=3]
+[ext_resource path="res://scenes/screens/CreditsScene.gd" type="Script" id=2]
+[ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/imgs/screens/credits_licenses.png" type="Texture" id=4]
 
-[node name="Credits" type="Panel"]
+[node name="Credits" type="Panel" groups=[
+"screen",
+]]
 
-visibility/visible = false
 visibility/self_opacity = 0.0
 anchor/right = 1
 anchor/bottom = 1
@@ -20,8 +22,9 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+script/script = ExtResource( 2 )
 
-[node name="Terminal" parent="." instance=ExtResource( 2 )]
+[node name="Terminal" parent="." instance=ExtResource( 3 )]
 
 offset = Vector2( 0, 80 )
 message = ""
@@ -30,6 +33,23 @@ controlled_by_script = true
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 507.734, 35.0737 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="CloseButton" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 4.0
+margin/bottom = 28.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
 
 

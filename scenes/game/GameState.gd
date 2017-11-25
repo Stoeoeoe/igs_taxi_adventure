@@ -13,10 +13,11 @@ var balls_launched = false
 signal powerup_collected(powerup_data)
 
 func _ready():
+	randomize()
+
+func initialize_game():
 	for i in range(0, start_lives):
 		add_life()
-
-func reinitialize_game():
 	start_lives = 3
 	remaining_lives = 0
 	balls_launched = false

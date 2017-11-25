@@ -5,15 +5,13 @@ var player_class = preload("player.tscn")
 var initial_player_pos = Vector2(80, 400)  
 
 func _ready():
+	HUD.show_hud()
 	HUD.show_gameoverlay()
-	randomize()
 	set_process(true)
 	initialize_game()
-	var show_crt = Globals.get("settings.visual.crt")
-	print(show_crt)
+	GameState.initialize_game()
 	
 func initialize_game():
-	HUD.show_hud()
 	respawn_ball()
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):

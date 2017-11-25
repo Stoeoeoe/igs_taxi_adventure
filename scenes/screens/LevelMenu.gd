@@ -79,3 +79,9 @@ func handle_blinken_lights(delta):
 				lights[j].show()
 				lights_time_to_wait[j] = rand_range(1,5)
 	#ligts = light_container.get_children()
+
+func _on_LevelMenu_visibility_changed():
+	if is_hidden():
+		stream_player.stop()
+	else:
+		stream_player.play()

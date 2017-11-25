@@ -24,5 +24,5 @@ func get_highscores():
 	pass
 	return highscores_dictionary
 
-func _on_Button_pressed():
+func _on_CloseButton_pressed():
 	emit_signal("menu_closed")

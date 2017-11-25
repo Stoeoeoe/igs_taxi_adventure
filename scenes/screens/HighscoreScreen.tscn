@@ -3,7 +3,9 @@
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/HighscoreScreen.gd" type="Script" id=2]
 
-[node name="HighscoreMenu" type="Panel"]
+[node name="HighscoreMenu" type="Panel" groups=[
+"screen",
+]]
 
 rect/min_size = Vector2( 1024, 768 )
 focus/ignore_mouse = false
@@ -103,7 +105,7 @@ margin/top = 154.0
 margin/right = 700.0
 margin/bottom = 174.0
 
-[node name="Button" type="Button" parent="HighscoreBox"]
+[node name="CloseButton" type="Button" parent="HighscoreBox"]
 
 rect/min_size = Vector2( 400, 0 )
 focus/ignore_mouse = false
@@ -120,6 +122,6 @@ shortcut = null
 text = "Back to Mainmenu"
 flat = false
 
-[connection signal="pressed" from="HighscoreBox/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="HighscoreBox/CloseButton" to="." method="_on_CloseButton_pressed"]
 
 

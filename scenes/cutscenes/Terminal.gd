@@ -74,7 +74,7 @@ func _process(delta):
 func get_sanitized_text():
 	var bracket = false
 	var sanitized_string = ""
-	for i in range(message.length() - 1):
+	for i in range(message.length()):
 		if message[i] == "{":
 			bracket = true
 		elif message[i] == "}":

@@ -20,7 +20,9 @@ tracks/0/keys = {
 "values": [ 0, 0, 23, 0, 0, 23, 0 ]
 }
 
-[node name="SettingsMenu" type="Panel"]
+[node name="SettingsMenu" type="Panel" groups=[
+"screen",
+]]
 
 anchor/right = 1
 anchor/bottom = 1
