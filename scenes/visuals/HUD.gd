@@ -67,8 +67,7 @@ func show_win_overlay():
 	animation_player.play("GameWonAnimation")
 	
 func show_lose_overlay():
-	# TBD
-	GameState.go_to_game_over_scene()
+	animation_player.play("GameLostAnimation")
 	
 func hide_win_overlay():
 	win_node.hide()	
@@ -77,4 +76,6 @@ func hide_win_overlay():
 func _on_AnimationPlayer_finished():
 	if animation_player.get_current_animation() == "GameWonAnimation":
 		GameState.go_to_intermediate_scene()
+	elif animation_player.get_current_animation() == "GameLostAnimation":
+		GameState.go_to_game_over_scene()
 		
