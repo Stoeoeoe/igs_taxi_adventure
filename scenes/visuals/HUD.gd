@@ -16,9 +16,8 @@ var log_string = ""
 export(int) var maximum_lines = 3
 
 func _ready():
-	get_node("CanvasModulate").set_color(Color(1,1,1))
 	GameState.connect("game_won", self, "show_win_overlay")
-	GameState.connect("game_lost", self, "show_lose_overlay")
+	GameState.connect("gameover", self, "show_lose_overlay")
 	GameState.connect("level_ready", self, "set_hud_to_level_mode")
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
 	hide_gameoverlay()
@@ -58,11 +57,13 @@ func set_lives(number_of_lives):
 	pass
 
 func set_hud_to_level_mode():
+	get_node("CanvasModulate").set_color(Color(1,1,1))
 	show_hud()
 	show_gameoverlay()
 	hide_win_overlay()
 	win_overlay.hide()
 	animation_player.stop_all()
+	HUD.clear_log()
 	
 
 func show_hud():
@@ -97,10 +98,12 @@ func hide_win_overlay():
 
 func clear_log():
 	log_entries_label.set_text("")
+	log_string = ""
+	log_entries = []
 
 func _on_AnimationPlayer_finished():
 	if animation_player.get_current_animation() == "GameWonAnimation":
 		GameState.go_to_intermediate_scene()
 	elif animation_player.get_current_animation() == "GameLostAnimation":
-		GameState.go_to_game_over_scene()
+		GameState.handle_game_over()
 		

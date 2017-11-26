@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(float) var speed = 400
 var move_vector = Vector2(0,0)
 var height = 0
-var movement_enabled = true;
+var movement_enabled = true
 var time_passed= 0.0
 var current_stop_time = 0.0
 
@@ -15,12 +15,14 @@ onready var triple_bar = get_node("TripleBar")
 
 func _ready():
 	set_process(true)
+	set_process_input(true)
 	single_bar.show()
 	double_bar.hide()
 	triple_bar.hide()
 	#self.height = get_node("CollisionShape2D").get_shape().get_extents().height * get_scale().y
 	GameState.connect("powerup_collected", self, "handle_powerup", [])
 	GameState.connect("game_finished", self, "stop_movement", [-1])
+	
 	
 
 func _input(event):

@@ -8,9 +8,10 @@ func _ready():
 	initialize_game()
 	GameState.emit_signal("level_ready")
 	set_process(true)
+	GameState.connect("ball_killed", self, "spawn_player_and_ball")
 	
 func initialize_game():
-	spawn_ball()
+	spawn_player_and_ball(null)
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		enemy.move()
@@ -21,7 +22,9 @@ func initialize_game():
 
 
 # Kill all balls, create new ones and respawn one
-func spawn_ball():
+func spawn_player_and_ball(killed_ball):
+	if GameState.remaining_lives == 0:
+		return # No respawn when no remaining lives
 	var player = player_class.instance()
 	var ball = ball_class.instance()
 

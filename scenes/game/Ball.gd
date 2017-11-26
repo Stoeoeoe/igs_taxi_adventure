@@ -17,13 +17,14 @@ var current_power_up = ''
 var movement_enabled = true
 var power_mode_enabled = false
 
-onready var sound = get_node("SamplePlayer2D")
+onready var sample_player = get_node("SamplePlayer")
 
 func _ready():
 	set_process_input(true)
 	self.current_direction = initial_direction
 	self.current_speed = initial_speed
 	GameState.connect("game_finished", self, "disrupt_ball")
+	GameState.connect("powerup_collected", self, "handle_powerup", [])
 	set_process(true)
 
 func _process(delta):
@@ -68,10 +69,10 @@ func launch():
 		
 func _play_sound(collider):
 	if collider.is_in_group("player"):
-		sound.play("player_hit")
+		sample_player.play("player_hit")
 
 	elif collider.is_in_group("wall"):
-		sound.play("wall_hit")
+		sample_player.play("wall_hit")
 
 func player_bouncing():
 	var collider = get_collider()
@@ -104,8 +105,6 @@ func default_bouncing(bounce_variation = Vector(0,0)):
 	# Touched south-east
 	elif x_coll == 1 and y_coll == 1:
 		self.current_direction = Vector2(-self.current_direction.x, self.current_direction.y + bounce_variation.y)
-	else:
-		HUD.out("Bouncing buggy!")
 
 
 func _input(event):
@@ -114,3 +113,5 @@ func _input(event):
 	if event.is_action_released("slower"):
 		self.current_speed *= 0.5
 		
+func handle_powerup(powerup_data):
+	pass
