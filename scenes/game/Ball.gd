@@ -56,10 +56,11 @@ func kill():
 func disrupt_ball():
 	movement_enabled = false
 	get_node("Particles2D").set_emitting(true)
+	get_node("Particles2D2").set_emitting(true)
 	get_node("ExplosionSprite").show()
 	get_node("ExplosionSprite").play()
 	get_node("AnimatedSprite").hide()
-	#queue_free() # why?
+	#queue_free() # why does everything disappear?
 
 func launch():
 	self.initial_direction = Vector2(1, rand_range(0, 1))
