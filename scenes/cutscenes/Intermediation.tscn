@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://scenes/cutscenes/Intermediation.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
@@ -7,13 +7,14 @@
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=6]
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=7]
-[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=8]
-[ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_laughing.png" type="Texture" id=8]
+[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=9]
+[ext_resource path="res://scenes/cutscenes/Hyperspace.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -89,7 +90,6 @@ scale = Vector2( 1, 1 )
 
 [node name="ProcedeButton" type="Button" parent="CanvasLayer"]
 
-visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -164,11 +164,11 @@ bbcode/bbcode = "Cpt. Tungsten"
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="Hyperspace" parent="." instance=ExtResource( 9 )]
+[node name="Hyperspace" parent="." instance=ExtResource( 10 )]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
-color = Color( 0, 0, 0, 1 )
+color = Color( 1, 1, 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

@@ -14,6 +14,7 @@ export(int) var maximum_lines = 3
 
 func _ready():
 	GameState.connect("game_won", self, "show_win_overlay")
+	GameState.connect("game_lost", self, "show_lose_overlay")
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
 	hide_gameoverlay()
 
@@ -64,6 +65,10 @@ func enable_crt():
 	
 func show_win_overlay():
 	animation_player.play("GameWonAnimation")
+	
+func show_lose_overlay():
+	# TBD
+	GameState.go_to_game_over_scene()
 	
 func hide_win_overlay():
 	win_node.hide()	

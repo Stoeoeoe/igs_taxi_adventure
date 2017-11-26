@@ -62,7 +62,7 @@ func remove_block():
 		trigger_game_won()
 		
 func trigger_game_won():
-	HUD.write("You won!")
+	HUD.write("Circuit Defragmentation completed (You won!)")
 	emit_signal("game_finished")
 	emit_signal("game_won")
 	# MOVE ELSEWHERE PLEASE AND ALSO THE LAST LEVEL WILL CRASH
@@ -70,7 +70,7 @@ func trigger_game_won():
 	level_status[current_level] = "UNLOCKED" if level_status[current_level] else "COMPLETED"	
 
 func trigger_gameover():
-	HUD.write("GMAE OVER")
+	HUD.write("Circuit Defragmentation failed. Self-Destruction initiated (GAME OVER!)")
 	emit_signal("game_finished")
 	emit_signal("game_lost")
 	#get_tree().change_scene(game_over_scene)

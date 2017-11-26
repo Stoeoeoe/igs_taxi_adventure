@@ -14,6 +14,7 @@ var current_speed = 0
 var rotation_speed = 70
 var current_direction = Vector2(0,0)
 var current_power_up = ''
+var movement_enabled = true;
 
 onready var sound = get_node("SamplePlayer2D")
 
@@ -21,34 +22,40 @@ func _ready():
 	set_process_input(true)
 	self.current_direction = initial_direction
 	self.current_speed = initial_speed
+	GameState.connect("game_finished", self, "disrupt_ball")
 	set_process(true)
 
 func _process(delta):
-	if ball_launched:
-		# If position did not change, bounce back and slightly change 
-		if self.is_colliding() and get_collider():
-			var collider = get_collider()
-			_play_sound(collider)
-
-			if collider.is_in_group("player"):
-				player_bouncing()
-			else:
-				var bounce_variation = rand_range(-0.05, 0.05)
-				default_bouncing(Vector2(bounce_variation, bounce_variation))
-		
-		self.move(current_direction * current_speed * delta)			
+	if movement_enabled:
+		if ball_launched:
+			# If position did not change, bounce back and slightly change 
+			if self.is_colliding() and get_collider():
+				var collider = get_collider()
+				_play_sound(collider)
 	
-
-
-	else:
-		# Move the ball along the bar§
-		if current_player:
-			var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
-			set_pos(new_position)
+				if collider.is_in_group("player"):
+					player_bouncing()
+				else:
+					var bounce_variation = rand_range(-0.05, 0.05)
+					default_bouncing(Vector2(bounce_variation, bounce_variation))
+			self.move(current_direction * current_speed * delta)			
+		else:
+			# Move the ball along the bar§
+			if current_player:
+				var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
+				set_pos(new_position)
 
 func kill():
 	hide()
 	queue_free()
+	
+func disrupt_ball():
+	movement_enabled = false
+	get_node("Particles2D").set_emitting(true)
+	get_node("ExplosionSprite").show()
+	get_node("ExplosionSprite").play()
+	get_node("AnimatedSprite").hide()
+	#queue_free() # why?
 
 func launch():
 	self.initial_direction = Vector2(1, rand_range(0, 1))
