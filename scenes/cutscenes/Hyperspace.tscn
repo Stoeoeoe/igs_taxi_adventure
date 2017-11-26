@@ -62,7 +62,7 @@ ship_flash_length = 0.2
 [node name="IGSCamera" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 476.853, 392.147 )
-offset = Vector2( -0.319618, -1.82148 )
+offset = Vector2( 1.0165, 2.25329 )
 current = true
 shake_amount = 3.0
 is_shaking = true
@@ -156,7 +156,7 @@ transform/scale = Vector2( 5.57594, 2.43226 )
 z/z = -9
 texture = ExtResource( 7 )
 hframes = 15
-frame = 0
+frame = 8
 modulate = Color( 0.726563, 0.726563, 0.726563, 1 )
 duration = 2.0
 hframes = 15
@@ -173,14 +173,14 @@ region_rect = Rect2( 0, 0, 10, 10 )
 
 [node name="Lightning" parent="HyperspaceStage" instance=ExtResource( 9 )]
 
-visibility/opacity = 1.0
+visibility/opacity = 0.0
 transform/pos = Vector2( 30.0032, 292.583 )
-transform/scale = Vector2( 0.911901, 0.828595 )
+transform/scale = Vector2( 0.910388, 0.891884 )
 z/z = -8
 texture = ExtResource( 10 )
 centered = false
 hframes = 7
-frame = 3
+frame = 4
 sprite_texture = ExtResource( 10 )
 attack_time = 0.02
 sustain_time = 0.5
@@ -204,7 +204,6 @@ transform/pos = Vector2( 1050, 408 )
 transform/pos = Vector2( -29.047, -154.903 )
 transform/scale = Vector2( 2.19628, 2.19628 )
 texture = ExtResource( 11 )
-frame = 4
 region_rect = Rect2( 316, 68, 99, 7 )
 duration = 2.0
 
@@ -228,7 +227,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 12 )
 hframes = 9
-frame = 7
+frame = 8
 duration = 0.41
 hframes = 9
 
@@ -239,7 +238,7 @@ transform/scale = Vector2( 3, 1.5 )
 z/z = -1
 texture = ExtResource( 12 )
 hframes = 9
-frame = 7
+frame = 0
 duration = 0.39
 hframes = 9
 
@@ -251,7 +250,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 12 )
 hframes = 9
-frame = 0
+frame = 4
 duration = 0.36
 hframes = 9
 
@@ -263,7 +262,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 12 )
 hframes = 9
-frame = 7
+frame = 8
 duration = 0.41
 hframes = 9
 
@@ -275,7 +274,7 @@ transform/scale = Vector2( 4.0125, 1.6 )
 z/z = -1
 texture = ExtResource( 12 )
 hframes = 9
-frame = 4
+frame = 6
 duration = 0.4
 hframes = 9
 

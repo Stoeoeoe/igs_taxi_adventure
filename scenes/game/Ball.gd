@@ -14,7 +14,8 @@ var current_speed = 0
 var rotation_speed = 70
 var current_direction = Vector2(0,0)
 var current_power_up = ''
-var movement_enabled = true;
+var movement_enabled = true
+var power_mode_enabled = false
 
 onready var sound = get_node("SamplePlayer2D")
 
@@ -44,6 +45,9 @@ func _process(delta):
 			if current_player:
 				var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
 				set_pos(new_position)
+
+func set_power_mode(sate):
+	power_mode_enabled = state
 
 func kill():
 	hide()

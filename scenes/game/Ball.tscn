@@ -13,12 +13,12 @@
 custom_solver_bias = 0.0
 radius = 6.0
 
-[sub_resource type="ColorRamp" id=5]
+[sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.502688, 0.803763, 1 )
 colors = ColorArray( 0, 0.257813, 0.0100708, 1, 0.976589, 0.807144, 0.000235771, 1, 1, 0.445313, 0, 1, 1, 0, 0, 0 )
 
-[sub_resource type="SampleLibrary" id=2]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/enemy_hit = {
 "db": 0.0,
@@ -39,14 +39,13 @@ samples/wall_hit = {
 "sample": ExtResource( 5 )
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 6.78641
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource/name = "BallAnimation"
 length = 0.6
 loop = true
 step = 0.1
@@ -108,7 +107,7 @@ params/final_size = 10.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
-color/color_ramp = SubResource( 5 )
+color/color_ramp = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -121,7 +120,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 2 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 __meta__ = {
 "_edit_lock_": true
@@ -130,7 +129,7 @@ __meta__ = {
 [node name="InteractionArea" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -143,7 +142,7 @@ __meta__ = {
 
 [node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
 
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 trigger = true
 _update_shape_index = 0
 __meta__ = {
@@ -164,7 +163,7 @@ __meta__ = {
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/BallAnimation = SubResource( 4 )
+anims/BallAnimation = SubResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -175,7 +174,6 @@ autoplay = "BallAnimation"
 visibility/visible = false
 visibility/opacity = 0.0
 transform/pos = Vector2( -0.299725, -0.0495815 )
-transform/scale = Vector2( 0.09, 0.09 )
 z/z = -1
 texture = ExtResource( 7 )
 modulate = Color( 0.149586, 0.546875, 0.104675, 1 )
@@ -191,6 +189,29 @@ pause_variance = 0.0
 scale_min = Vector2( 0.09, 0.09 )
 scale_max = Vector2( 25, 25 )
 randomize_scale = false
+scale_fade_in_mode = 1
+scale_fade_out_mode = 3
+replay = false
+
+[node name="PowerHitSprite" parent="." instance=ExtResource( 6 )]
+
+visibility/visible = false
+visibility/opacity = 1.0
+transform/pos = Vector2( -0.228794, 0.0213509 )
+z/z = -1
+texture = ExtResource( 7 )
+modulate = Color( 0.961546, 0.964844, 0.542725, 1 )
+sprite_texture = ExtResource( 7 )
+attack_time = 0.01
+sustain_time = 0.0
+decay_time = 0.5
+pause_duration = 0.0
+attack_variance = 0.0
+sustain_variance = 0.0
+decay_variance = 0.0
+pause_variance = 0.0
+scale_min = Vector2( 0, 0 )
+scale_max = Vector2( 0.5, 0.5 )
 scale_fade_in_mode = 1
 scale_fade_out_mode = 3
 replay = false

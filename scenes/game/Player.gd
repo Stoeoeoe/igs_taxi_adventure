@@ -42,8 +42,8 @@ func _process(delta):
 		if time_passed >= current_stop_time and current_stop_time >= 0: # < 0 is infinite
 			movement_enabled = true
 
-func stop_movement(time):
-	current_stop_time = time
+func stop_movement(pause_time):
+	current_stop_time = pause_time
 	time_passed = 0.0
 	movement_enabled = false
 

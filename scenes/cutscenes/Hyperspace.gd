@@ -91,7 +91,7 @@ func set_normalspace_stage(enabled):
 		
 func set_normal_space_speed(speed):
 	normalspace_stage.get_node("Spacemap").speed = speed
-	normalspace_stage.get_node("ParallaxMap").speed = speed * 1.5
+	normalspace_stage.get_node("ParallaxMap").speed = speed * 1.25
 
 
 func set_ship_to_end_pos():
