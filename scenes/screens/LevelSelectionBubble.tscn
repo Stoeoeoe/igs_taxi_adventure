@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=1]
 
-[ext_resource path="res://scenes/screens/level_selection_bubble.gd" type="Script" id=1]
+[ext_resource path="res://scenes/screens/LevelSelectionBubble.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/screens/level_selection_circle.png" type="Texture" id=2]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/sound/select_level.wav" type="Sample" id=4]
 [ext_resource path="res://assets/sound/select_level_failed.wav" type="Sample" id=5]
+
 
 [sub_resource type="CircleShape2D" id=1]
 

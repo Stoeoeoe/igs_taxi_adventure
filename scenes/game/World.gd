@@ -5,14 +5,12 @@ var player_class = preload("player.tscn")
 var initial_player_pos = Vector2(80, 400)  
 
 func _ready():
-	HUD.show_hud()
-	HUD.show_gameoverlay()
-	set_process(true)
 	initialize_game()
-	GameState.initialize_game()
+	GameState.emit_signal("level_ready")
+	set_process(true)
 	
 func initialize_game():
-	respawn_ball()
+	spawn_ball()
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		enemy.move()
@@ -20,16 +18,10 @@ func initialize_game():
 	for powerup in get_tree().get_nodes_in_group("powerup"):
 		pass
 			
-	
-	# Create and count victory-relevant blocks
-	var all_blocks = get_node("Blocks").get_children()
-	for block in all_blocks:
-		if block.block_data.victory_relevant:
-			GameState.number_of_blocks_to_be_destroyed += 1
 
 
 # Kill all balls, create new ones and respawn one
-func respawn_ball():
+func spawn_ball():
 	var player = player_class.instance()
 	var ball = ball_class.instance()
 

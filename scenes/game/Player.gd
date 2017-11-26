@@ -15,7 +15,6 @@ onready var triple_bar = get_node("TripleBar")
 
 func _ready():
 	set_process(true)
-	set_process_input(true)
 	single_bar.show()
 	double_bar.hide()
 	triple_bar.hide()

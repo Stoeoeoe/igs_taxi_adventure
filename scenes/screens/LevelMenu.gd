@@ -41,6 +41,7 @@ func select_level(level):
 	GameState.current_level = level
 	SceneSwitcher.change_scene("res://scenes/levels/Level" + str(level) + ".tscn")
 
+
 func select_level_failed(level):
 	get_node("IGSCamera").shake(0.2, 5)
 	animation_player.play("ErrorAnimation")

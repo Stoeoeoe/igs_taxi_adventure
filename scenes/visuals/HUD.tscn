@@ -15,7 +15,7 @@
 offsets = FloatArray( 0, 0.709677, 1 )
 colors = ColorArray( 0.214844, 0, 0, 1, 1, 0.984436, 0.00390625, 1, 1, 1, 1, 0 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 resource/name = "GameLostAnimation"
 length = 4.0
@@ -42,14 +42,13 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.714844, 0.550095, 0.550095, 1 ), Color( 0.929688, 0.773529, 0.773529, 1 ), Color( 0.847656, 0.298004, 0.298004, 1 ), Color( 0.898438, 0.72998, 0.72998, 1 ), Color( 0.738281, 0.100937, 0.100937, 1 ), Color( 0.542969, 0.309662, 0.309662, 1 ), Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "GameWonAnimation"
 length = 5.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("RootControl/GameOverlay/WinNode/Particles3:config/emitting")
+tracks/0/path = NodePath("RootControl/GameOverlay/WinOverlay/Particles3:config/emitting")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
@@ -59,7 +58,7 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("RootControl/GameOverlay/WinNode/Particles2:config/emitting")
+tracks/1/path = NodePath("RootControl/GameOverlay/WinOverlay/Particles2:config/emitting")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
@@ -69,7 +68,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("RootControl/GameOverlay/WinNode/Particles1:config/emitting")
+tracks/2/path = NodePath("RootControl/GameOverlay/WinOverlay/Particles1:config/emitting")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
@@ -79,7 +78,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("RootControl/GameOverlay/WinNode/GameWonSprite:visibility/visible")
+tracks/3/path = NodePath("RootControl/GameOverlay/WinOverlay/GameWonSprite:visibility/visible")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = {
@@ -89,7 +88,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("RootControl/GameOverlay/WinNode/GameWonSprite:visibility/opacity")
+tracks/4/path = NodePath("RootControl/GameOverlay/WinOverlay/GameWonSprite:visibility/opacity")
 tracks/4/interp = 2
 tracks/4/imported = false
 tracks/4/keys = {
@@ -99,7 +98,7 @@ tracks/4/keys = {
 "values": [ 0.0, 1.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("RootControl/GameOverlay/WinNode:visibility/visible")
+tracks/5/path = NodePath("RootControl/GameOverlay/WinOverlay:visibility/visible")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = {
@@ -119,7 +118,7 @@ tracks/6/keys = {
 "values": [ "level_completed" ]
 }
 
-[sub_resource type="SampleLibrary" id=3]
+[sub_resource type="SampleLibrary" id=4]
 
 samples/game_lost = {
 "db": 0.0,
@@ -167,8 +166,9 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 
-[node name="WinNode" type="Control" parent="RootControl/GameOverlay"]
+[node name="WinOverlay" type="Control" parent="RootControl/GameOverlay"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -178,12 +178,13 @@ margin/top = 384.0
 margin/right = 552.0
 margin/bottom = 424.0
 
-[node name="GameWonSprite" type="Sprite" parent="RootControl/GameOverlay/WinNode"]
+[node name="GameWonSprite" type="Sprite" parent="RootControl/GameOverlay/WinOverlay"]
 
 visibility/opacity = 0.0
 texture = ExtResource( 4 )
+modulate = Color( 2, 2, 2, 1 )
 
-[node name="Particles1" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+[node name="Particles1" type="Particles2D" parent="RootControl/GameOverlay/WinOverlay"]
 
 z/z = -1
 config/amount = 128
@@ -210,7 +211,7 @@ params/anim_initial_pos = 0.0
 randomness/direction = 1.0
 color/color_ramp = SubResource( 1 )
 
-[node name="Particles2" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+[node name="Particles2" type="Particles2D" parent="RootControl/GameOverlay/WinOverlay"]
 
 transform/pos = Vector2( -170, 0 )
 z/z = -1
@@ -238,7 +239,7 @@ params/anim_initial_pos = 0.0
 randomness/direction = 1.0
 color/color_ramp = SubResource( 1 )
 
-[node name="Particles3" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
+[node name="Particles3" type="Particles2D" parent="RootControl/GameOverlay/WinOverlay"]
 
 transform/pos = Vector2( 130, 0 )
 z/z = -1
@@ -266,7 +267,7 @@ params/anim_initial_pos = 0.0
 randomness/direction = 1.0
 color/color_ramp = SubResource( 1 )
 
-[node name="Panel" type="Panel" parent="RootControl/GameOverlay"]
+[node name="TopPanel" type="Panel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -278,7 +279,7 @@ margin/top = 0.0
 margin/right = 1020.0
 margin/bottom = 90.0
 
-[node name="Panel1" type="Panel" parent="RootControl/GameOverlay"]
+[node name="LogPanel" type="Panel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -289,7 +290,7 @@ margin/top = 660.0
 margin/right = 1020.0
 margin/bottom = 770.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="RootControl/GameOverlay"]
+[node name="TitleLabel" type="RichTextLabel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -304,7 +305,7 @@ bbcode/bbcode = "^_~"
 visible_characters = -1
 percent_visible = 1.0
 
-[node name="RichTextLabel1" type="RichTextLabel" parent="RootControl/GameOverlay"]
+[node name="LogLabel" type="RichTextLabel" parent="RootControl/GameOverlay"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -406,14 +407,15 @@ max_lines_visible = -1
 
 margin/right = -1024.0
 margin/bottom = -768.0
+modulate = Color( 2, 2, 2, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/GameLostAnimation = SubResource( 4 )
-anims/GameWonAnimation = SubResource( 2 )
+anims/GameLostAnimation = SubResource( 2 )
+anims/GameWonAnimation = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -422,7 +424,7 @@ autoplay = ""
 [node name="CentralSamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 3 )
+config/samples = SubResource( 4 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

@@ -1,20 +1,25 @@
 extends CanvasLayer
 
+export(Texture) var life_texture = preload("res://assets/imgs/life.png")
+
 onready var log_entries_label = get_node("RootControl/GameOverlay/LogEntries")
 onready var score_label = get_node("RootControl//GameOverlay/ScoreLabel")
 onready var crt_shader_panel = get_node("RootControl/CRTShaderPanel")
-onready var win_node = get_node("RootControl/GameOverlay/WinNode")
+onready var win_overlay = get_node("RootControl/GameOverlay/WinOverlay")
 onready var animation_player = get_node("AnimationPlayer")
+onready var life_box = get_node("RootControl/GameOverlay/LifeBox")
+onready var title_label = get_node("RootControl/GameOverlay/TitleLabel")
 
-export(Texture) var life_texture = preload("res://assets/imgs/life.png")
 
 var log_entries = []
 var log_string = ""
 export(int) var maximum_lines = 3
 
 func _ready():
+	get_node("CanvasModulate").set_color(Color(1,1,1))
 	GameState.connect("game_won", self, "show_win_overlay")
 	GameState.connect("game_lost", self, "show_lose_overlay")
+	GameState.connect("level_ready", self, "set_hud_to_level_mode")
 	log_entries_label.set_text("Hyper Kernel v. 0.96 loaded!")
 	hide_gameoverlay()
 
@@ -31,16 +36,35 @@ func write(new_log_entry):
 		log_string += entry + "\n"
 	log_entries_label.set_text(log_string)
 
+func set_title(text):
+	title_label.set_text(text)
+
 func add_life():
 	var life_texture_frame = TextureFrame.new()
 	life_texture_frame.set_texture(life_texture)
 	life_texture_frame.set_size(life_texture.get_size())
-	get_node("RootControl/GameOverlay/LifeBox").add_child(life_texture_frame)
+	life_box.add_child(life_texture_frame)
 	
 func remove_life():
-	var first_child = get_node("RootControl/GameOverlay/LifeBox").get_child(0)
-	get_node("RootControl/GameOverlay/LifeBox").remove_child(first_child)
+	var first_child = life_box.get_child(0)
+	life_box.remove_child(first_child)
 	
+func set_lives(number_of_lives):
+	for child in life_box.get_children():
+		life_box.remove_child(child)
+	pass
+	for i in range(0, number_of_lives):
+		add_life()
+	pass
+
+func set_hud_to_level_mode():
+	show_hud()
+	show_gameoverlay()
+	hide_win_overlay()
+	win_overlay.hide()
+	animation_player.stop_all()
+	
+
 func show_hud():
 	get_node("RootControl").set_hidden(false)
 
@@ -49,7 +73,6 @@ func show_gameoverlay():
 
 func hide_gameoverlay():
 	get_node("RootControl/GameOverlay").hide()
-
 
 func hide_hud():
 	get_node("RootControl").set_hidden(true)
@@ -70,8 +93,10 @@ func show_lose_overlay():
 	animation_player.play("GameLostAnimation")
 	
 func hide_win_overlay():
-	win_node.hide()	
-	
+	win_overlay.hide()	
+
+func clear_log():
+	log_entries_label.set_text("")
 
 func _on_AnimationPlayer_finished():
 	if animation_player.get_current_animation() == "GameWonAnimation":

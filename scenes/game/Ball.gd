@@ -41,12 +41,12 @@ func _process(delta):
 					default_bouncing(Vector2(bounce_variation, bounce_variation))
 			self.move(current_direction * current_speed * delta)			
 		else:
-			# Move the ball along the bar§
+			# Move the ball along the bar
 			if current_player:
 				var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
 				set_pos(new_position)
 
-func set_power_mode(sate):
+func set_power_mode(state):
 	power_mode_enabled = state
 
 func kill():

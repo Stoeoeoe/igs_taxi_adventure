@@ -2,8 +2,8 @@
 
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/screens/LevelMenu.gd" type="Script" id=2]
-[ext_resource path="res://scenes/visuals/LevelEditorLines.gd" type="Script" id=3]
-[ext_resource path="res://scenes/screens/level_selection_bubble.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/visuals/LevelSelectionBubbleLine.gd" type="Script" id=3]
+[ext_resource path="res://scenes/screens/LevelSelectionBubble.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/visuals/IGSCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/music/select_level3.ogg" type="AudioStream" id=6]
 [ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=7]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/imgs/blinkenLights.png" type="Texture" id=10]
 [ext_resource path="res://assets/fonts/crystal_error2.fnt" type="BitmapFont" id=11]
 [ext_resource path="res://assets/fonts/crystal_error.fnt" type="BitmapFont" id=12]
+
+
+
 
 [sub_resource type="Animation" id=1]
 
