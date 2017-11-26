@@ -49,7 +49,7 @@ func setup_dialog1():
 	labels_texts.append("Cpt. Tungsten")
 	labels_texts.append("")
 	labels_texts.append("")
-	face_sets.append(0)
+	face_sets.append(3)
 	face_sets.append(1)
 	face_sets.append(2)
 	

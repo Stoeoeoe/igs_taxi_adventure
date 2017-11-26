@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=24 format=1]
 
 [ext_resource path="res://scenes/cutscenes/HyperspaceEnd.gd" type="Script" id=1]
 [ext_resource path="res://scenes/cutscenes/Terminal.tscn" type="PackedScene" id=2]
@@ -14,17 +14,18 @@
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_neutral.png" type="Texture" id=12]
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_aggressive.png" type="Texture" id=13]
 [ext_resource path="res://assets/imgs/cutscenes/captain_face_shocked.png" type="Texture" id=14]
-[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=15]
-[ext_resource path="res://assets/sound/space_warp.ogg" type="AudioStream" id=16]
-[ext_resource path="res://assets/sound/scary.ogg" type="AudioStream" id=17]
-[ext_resource path="res://assets/imgs/cutscenes/the_end.png" type="Texture" id=18]
-[ext_resource path="res://assets/imgs/cutscenes/questionmark.png" type="Texture" id=19]
-[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/imgs/cutscenes/captain_face_laughing.png" type="Texture" id=15]
+[ext_resource path="res://assets/imgs/cutscenes/celeste_face_neutral.png" type="Texture" id=16]
+[ext_resource path="res://assets/sound/space_warp.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/sound/scary.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/imgs/cutscenes/the_end.png" type="Texture" id=19]
+[ext_resource path="res://assets/imgs/cutscenes/questionmark.png" type="Texture" id=20]
+[ext_resource path="res://assets/music/epique_choir01.ogg" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -104,7 +105,7 @@ tracks/6/keys = {
 "times": FloatArray( 0, 8.9 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 16 ), ExtResource( 17 ) ]
+"values": [ ExtResource( 17 ), ExtResource( 18 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("TransitionPlayer:stream/play")
@@ -142,7 +143,7 @@ controlled_by_script = true
 [node name="BoomSprite" parent="." instance=ExtResource( 3 )]
 
 visibility/visible = false
-visibility/opacity = 1.0
+visibility/opacity = 0.0
 transform/pos = Vector2( 356.581, 418.5 )
 texture = ExtResource( 4 )
 sprite_texture = ExtResource( 4 )
@@ -272,7 +273,7 @@ visibility/visible = false
 visibility/opacity = 0.0
 transform/pos = Vector2( 254.147, 363.926 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 centered = false
 
 [node name="QuestionMarkSprite" type="Sprite" parent="EndPlayer"]
@@ -281,12 +282,12 @@ visibility/visible = false
 visibility/opacity = 0.0
 transform/pos = Vector2( 603.9, 361.531 )
 transform/scale = Vector2( 2, 2 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 centered = false
 
 [node name="TransitionPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 16 )
+stream/stream = ExtResource( 17 )
 stream/play = true
 stream/loop = false
 stream/volume_db = 0.0
@@ -302,7 +303,7 @@ is_sfx = true
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 20 )
+stream/stream = ExtResource( 21 )
 stream/play = false
 stream/loop = true
 stream/volume_db = -32.0

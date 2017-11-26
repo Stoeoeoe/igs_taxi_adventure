@@ -68,6 +68,7 @@ func switch_stage():
 	hyperspace.set_bgm_level(0.0)
 	hyperspace.set_hyperspace_stage(false)
 	hyperspace.set_normalspace_stage(true)
+	hyperspace.set_normal_space_speed(40)
 	space_player.play(0)
 	hyperspace.set_shake(0.0)
 	hyperspace.set_ship_modulatuion(Color(0.65,0.65,0.85))
@@ -97,14 +98,14 @@ func setup_dialog():
 	labels_texts.append("CELESTE")
 	labels_texts.append("") # dummy
 		
-	face_sets.append(0)
 	face_sets.append(3)
+	face_sets.append(4)
 	face_sets.append(0)
-	face_sets.append(3)
+	face_sets.append(4)
 	face_sets.append(0)
+	face_sets.append(4)
 	face_sets.append(3)
-	face_sets.append(0)
-	face_sets.append(3)
+	face_sets.append(4)
 	face_sets.append(-1) # dummy
 
 func _on_Terminal_text_finished():
@@ -117,6 +118,7 @@ func _on_ContinueButton_pressed():
 	continue_dialog()
 	
 func move_ship():
+	hyperspace.set_normal_space_speed(10)
 	movement_started = true
 	time_passed = 0.0
 	pass

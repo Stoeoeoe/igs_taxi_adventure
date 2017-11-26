@@ -2,7 +2,7 @@ extends Panel
 
 onready var stream_player = get_node("CentralStreamPlayer")
 onready var light_container = get_node("BlinkenLights")
-onready var animation_player = get_node("AnimationPlayer")
+onready var animation_player = get_node("AnimationPlayer2")
 
 var level_selection_bubbles = []
 var max_floating = 20
@@ -18,7 +18,7 @@ func _ready():
 	lights_time_to_wait.resize(lights.size())
 	for i in range(lights.size()):
 		lights_active[i] = 0
-	animation_player.play("TextAnimation")
+	#animation_player.play("TextAnimation")
 
 	var i = 0
 	for bubble in level_selection_bubbles:
@@ -31,7 +31,6 @@ func _ready():
 	set_process(true)
 		
 func _process(delta):
-	
 	handle_blinken_lights(delta)
 
 				
@@ -44,6 +43,7 @@ func select_level(level):
 
 func select_level_failed(level):
 	get_node("IGSCamera").shake(0.2, 5)
+	animation_player.play("ErrorAnimation")
 	
 func play_music():
 	stream_player.play()

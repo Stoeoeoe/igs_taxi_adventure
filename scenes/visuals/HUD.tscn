@@ -1,18 +1,46 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scenes/visuals/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/imgs/life.png" type="Texture" id=2]
 [ext_resource path="res://assets/theme/igs_taxi_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/imgs/cutscenes/game_won.png" type="Texture" id=4]
 [ext_resource path="res://scenes/visuals/CRTFrame.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sound/level_completed.wav" type="Sample" id=6]
-[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=7]
-[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=8]
+[ext_resource path="res://assets/sound/game_lost.wav" type="Sample" id=6]
+[ext_resource path="res://assets/sound/level_completed.wav" type="Sample" id=7]
+[ext_resource path="res://addons/central_sound_control/central_sound_sample_player.gd" type="Script" id=8]
+[ext_resource path="res://addons/central_sound_control/icon_sample_player.png" type="Texture" id=9]
 
 [sub_resource type="ColorRamp" id=1]
 
 offsets = FloatArray( 0, 0.709677, 1 )
 colors = ColorArray( 0.214844, 0, 0, 1, 1, 0.984436, 0.00390625, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "GameLostAnimation"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CentralSamplePlayer:play/play")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 2,
+"values": [ "game_lost" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.4, 0.8, 1.2, 1.8, 2.4, 3, 3.6, 4 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.714844, 0.550095, 0.550095, 1 ), Color( 0.929688, 0.773529, 0.773529, 1 ), Color( 0.847656, 0.298004, 0.298004, 1 ), Color( 0.898438, 0.72998, 0.72998, 1 ), Color( 0.738281, 0.100937, 0.100937, 1 ), Color( 0.542969, 0.309662, 0.309662, 1 ), Color( 1, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -93,11 +121,17 @@ tracks/6/keys = {
 
 [sub_resource type="SampleLibrary" id=3]
 
-samples/level_completed = {
+samples/game_lost = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 6 )
+}
+samples/level_completed = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
 }
 
 [node name="HUD" type="CanvasLayer"]
@@ -135,7 +169,6 @@ margin/bottom = 40.0
 
 [node name="WinNode" type="Control" parent="RootControl/GameOverlay"]
 
-visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -147,6 +180,7 @@ margin/bottom = 424.0
 
 [node name="GameWonSprite" type="Sprite" parent="RootControl/GameOverlay/WinNode"]
 
+visibility/opacity = 0.0
 texture = ExtResource( 4 )
 
 [node name="Particles1" type="Particles2D" parent="RootControl/GameOverlay/WinNode"]
@@ -378,6 +412,7 @@ margin/bottom = -768.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/GameLostAnimation = SubResource( 4 )
 anims/GameWonAnimation = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
@@ -400,11 +435,15 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-script/script = ExtResource( 7 )
+script/script = ExtResource( 8 )
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": ExtResource( 9 )
 }
 volume_factor = 1.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+color = Color( 1, 1, 1, 1 )
 
 [connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
