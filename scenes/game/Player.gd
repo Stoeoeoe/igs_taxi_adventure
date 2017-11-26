@@ -52,6 +52,7 @@ func kill():
 	hide()
 	queue_free()
 	
+# Change this to handling of game_mode_changed (standard)
 func handle_powerup(powerup_data):
 	var powerup_id = powerup_data._id
 	if "multiply_board" in powerup_id:

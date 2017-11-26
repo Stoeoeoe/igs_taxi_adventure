@@ -65,6 +65,7 @@ script/script = ExtResource( 4 )
 __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
+volume_factor = 1.0
 
 [connection signal="body_enter" from="EffectArea" to="." method="_on_EffectArea_body_enter"]
 

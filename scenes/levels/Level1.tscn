@@ -73,8 +73,18 @@ powerup_id = "multiply_board_2"
 
 [node name="PowerUp2" parent="." instance=ExtResource( 9 )]
 
-transform/pos = Vector2( 240, 360 )
+transform/pos = Vector2( 239, 370 )
 powerup_id = "multiply_board_1"
+
+[node name="PowerUp3" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 283, 204 )
+powerup_id = "multiply_speed_1"
+
+[node name="PowerUp4" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 611, 521 )
+powerup_id = "multiply_power_1"
 
 [node name="PowerUp1" parent="." instance=ExtResource( 9 )]
 

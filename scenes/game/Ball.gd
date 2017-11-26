@@ -16,15 +16,18 @@ var current_direction = Vector2(0,0)
 var current_power_up = ''
 var movement_enabled = true
 var power_mode_enabled = false
+var weak_mode_enabled = false
 
 onready var sample_player = get_node("SamplePlayer")
+onready var power_hit_sprite = get_node("PowerHitSprite")
 
 func _ready():
 	set_process_input(true)
 	self.current_direction = initial_direction
 	self.current_speed = initial_speed
 	GameState.connect("game_finished", self, "disrupt_ball")
-	GameState.connect("powerup_collected", self, "handle_powerup", [])
+	#GameState.connect("powerup_collected", self, "handle_powerup", [])
+	GameState.connect("game_mode_changed", self, "handle_game_mode")
 	set_process(true)
 
 func _process(delta):
@@ -34,7 +37,7 @@ func _process(delta):
 			if self.is_colliding() and get_collider():
 				var collider = get_collider()
 				_play_sound(collider)
-	
+
 				if collider.is_in_group("player"):
 					player_bouncing()
 				else:
@@ -46,9 +49,6 @@ func _process(delta):
 			if current_player:
 				var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
 				set_pos(new_position)
-
-func set_power_mode(state):
-	power_mode_enabled = state
 
 func kill():
 	hide()
@@ -75,17 +75,27 @@ func _play_sound(collider):
 		sample_player.play("wall_hit")
 
 func player_bouncing():
-	var collider = get_collider()
-	var delta_to_player_center = get_collision_pos().y - collider.get_pos().y
-	var height_of_player = collider.height
+	# --> The determination of height and position of the collider is buggy
+	var collider = get_collider().get_node("CollisionShape2D")
+	var delta_to_player_center = get_collision_pos().y - get_collider().get_parent().get_pos().y
+	var height_of_player = collider.get_shape().get_extents().height
+
 	var distance_ratio = delta_to_player_center/ height_of_player
 	self.current_direction = Vector2(initial_direction.x, distance_ratio)
+	if power_mode_enabled:
+		power_hit_sprite.set_modulate(Color(0,1,0,1))
+		power_hit_sprite.play()
 
 	
 func default_bouncing(bounce_variation = Vector(0,0)):
 	var collision_normal = self.get_collision_normal()
 	var x_coll = round(collision_normal.x)
 	var y_coll = round(collision_normal.y)
+	var collider = get_collider()
+	if power_mode_enabled and (collider.is_in_group("enemy") or collider.is_in_group("is_block")):
+		power_hit_sprite.set_modulate(Color(1,0,0,1))
+		power_hit_sprite.play()	
+	
 	
 	# Touched east
 	if (x_coll == -1 or x_coll == 1) and y_coll == 0:
@@ -115,3 +125,26 @@ func _input(event):
 		
 func handle_powerup(powerup_data):
 	pass
+
+# Handles power-ups and power-downs according to signal from GameState
+func handle_game_mode(mode, value, duration):
+	if mode == GameState.MODE_TYPE.speed:
+		if value == GameState.SPEED_MODE.double:
+			self.current_speed = initial_speed * 2
+		elif value == GameState.SPEED_MODE.half:
+			self.current_speed = initial_speed / 2
+		else:
+			self.current_speed = initial_speed
+	elif mode == GameState.MODE_TYPE.power:
+		if value == GameState.POWER_MODE.double:
+			power_hit_sprite.show()
+			power_mode_enabled = true
+			weak_mode_enabled = false
+		elif value == GameState.POWER_MODE.half:
+			power_hit_sprite.hide()
+			power_mode_enabled = false
+			weak_mode_enabled = true
+		else:
+			power_hit_sprite.hide()
+			power_mode_enabled = false
+			weak_mode_enabled = false
