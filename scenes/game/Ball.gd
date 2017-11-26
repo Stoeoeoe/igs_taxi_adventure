@@ -46,7 +46,7 @@ func _process(delta):
 				var new_position = current_player.get_pos() + Vector2(initial_margin_to_player, 0)
 				set_pos(new_position)
 
-func set_power_mode(sate):
+func set_power_mode(state):
 	power_mode_enabled = state
 
 func kill():
@@ -56,10 +56,11 @@ func kill():
 func disrupt_ball():
 	movement_enabled = false
 	get_node("Particles2D").set_emitting(true)
+	get_node("Particles2D2").set_emitting(true)
 	get_node("ExplosionSprite").show()
 	get_node("ExplosionSprite").play()
 	get_node("AnimatedSprite").hide()
-	#queue_free() # why?
+	#queue_free() # why does everything disappear?
 
 func launch():
 	self.initial_direction = Vector2(1, rand_range(0, 1))
