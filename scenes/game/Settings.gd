@@ -10,6 +10,9 @@ var visuals_crt_color_bleeding_distance = 1.0
 var visuals_color_bleeding = 0.0
 var sound_sfx_volume = 1.0
 var sound_music_volume = 1.0
+var server_highscore_server_url = "http://localhost"
+var server_highscore_server_port = 8085
+
 
 signal config_updated(section, key, old_value, new_value)
 

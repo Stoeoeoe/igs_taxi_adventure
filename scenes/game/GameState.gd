@@ -23,6 +23,9 @@ var number_of_levels = 8
 signal powerup_collected(powerup_data)
 
 func _ready():
+	var highscore = preload("res://scenes/misc/Highscore.gd")
+	Highscore.post_highscore("RAB20", 1000)
+	
 	for i in range(0, number_of_levels):
 		level_status.append("LOCKED")
 	level_status[0] = "UNLOCKED"
