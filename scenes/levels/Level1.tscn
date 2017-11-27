@@ -5,10 +5,10 @@
 [ext_resource path="res://addons/central_sound_control/central_sound_stream_player.gd" type="Script" id=3]
 [ext_resource path="res://addons/central_sound_control/icon_stream_player.png" type="Texture" id=4]
 [ext_resource path="res://scenes/game/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/imgs/enemies/default_enemy.png" type="Texture" id=6]
-[ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/game/PowerUp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/Level.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/PowerUp.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/EnemySpawner.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node" groups=[
 "world",
@@ -35,60 +35,57 @@ is_sfx = false
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 639, 257 )
-default_texture = ExtResource( 6 )
-flash_frquency = 50.0
-flash_length = 0.5
-flash_on_ball_hit = true
 
 [node name="Enemy 2" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 350, 500 )
-default_texture = ExtResource( 6 )
-flash_on_ball_hit = true
 
 [node name="Enemy 3" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 470, 234 )
-default_texture = ExtResource( 6 )
-flash_frquency = 100.0
-flash_length = 0.2
-flash_on_ball_hit = true
 
 [node name="Blocks" type="Node2D" parent="."]
 
 editor/display_folded = true
 
-[node name="Block" parent="Blocks" instance=ExtResource( 7 )]
+[node name="Block" parent="Blocks" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 210, 290 )
 
-[node name="Stage" parent="." instance=ExtResource( 8 )]
+[node name="Stage" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 2.27344, 83.3906 )
 
-[node name="PowerUp" parent="." instance=ExtResource( 9 )]
+[node name="PowerUp" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 240, 440 )
 powerup_id = "multiply_board_2"
 
-[node name="PowerUp2" parent="." instance=ExtResource( 9 )]
+[node name="PowerUp2" parent="." instance=ExtResource( 8 )]
 
-transform/pos = Vector2( 239, 370 )
+transform/pos = Vector2( 239, 365.919 )
 powerup_id = "multiply_board_1"
 
-[node name="PowerUp3" parent="." instance=ExtResource( 9 )]
+[node name="PowerUp3" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 283, 204 )
 powerup_id = "multiply_speed_1"
 
-[node name="PowerUp4" parent="." instance=ExtResource( 9 )]
+[node name="PowerUp4" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 611, 521 )
 powerup_id = "multiply_power_1"
 
-[node name="PowerUp1" parent="." instance=ExtResource( 9 )]
+[node name="PowerUp1" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 240, 530 )
 powerup_id = "multiply_board_3"
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 773.299, 411.356 )
+enemy_scene_path = "res://scenes/game/Enemy.tscn"
+auto_spwan = true
+max_number_of_entities = 3
 
 

@@ -10,6 +10,8 @@ export(float) var random_factor = 50.0 setget set_random_factor
 export(float) var flash_frquency = 5.0 setget set_flash_frequency
 export(float) var flash_length = 1.0 setget set_flash_length
 export(bool) var flash_on_ball_hit setget set_flash_on_ball_hit
+export(int) var number_of_hits_to_destroy = -1 setget set_number_of_hits_to_destroy
+export(String) var enemy_type = "default" setget set_enemy_type
 
 onready var sample_player = get_node("SamplePlayer2D")
 onready var sprites = get_node("AnimatedSprite")
@@ -24,6 +26,14 @@ var flash_sub_duration = 0.0
 var time_delta = 0.0
 var time_sub_delta = 0.0
 var original_modulation = Color(1,1,1)
+var number_of_hits = 0
+
+
+func set_enemy_type(new_enemy_type):
+	enemy_type = new_enemy_type
+
+func set_number_of_hits_to_destroy(number_of_hits):
+	number_of_hits_to_destroy = number_of_hits
 
 func set_hit_sound(new_hit_sound):
 	hit_sound = new_hit_sound
@@ -141,6 +151,14 @@ func _on_enemy_hit( body ):
 	if body.is_in_group("ball"):
 		sample_player.play("hit_sound")
 		flash_enemy()
+		number_of_hits += 1
 	if movement_behavior == 1 and body.is_in_group("obstacles"):
 		var pos_enemy = get_pos()
 		set_new_random_position(pos_enemy, true)
+	if number_of_hits >= number_of_hits_to_destroy:
+		GameState.kill_enemy(enemy_type, self.get_instance_ID())
+		kill()
+		
+func kill():
+	hide()
+	queue_free()

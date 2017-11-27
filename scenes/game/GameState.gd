@@ -45,6 +45,7 @@ signal life_added
 signal powerup_collected(powerup_data)
 signal game_mode_changed(mode, value, duration)
 signal ball_killed(ball)
+signal enemy_killed(enemy_type, enemy_id)
 
 
 
@@ -218,3 +219,7 @@ func handle_game_over():
 
 func go_to_intermediate_scene():
 	SceneSwitcher.change_scene(intermediate_scene)
+	
+func kill_enemy(type, id):
+	#Add here code to kill the actual enemy?
+	emit_signal("enemy_killed", type, id)	

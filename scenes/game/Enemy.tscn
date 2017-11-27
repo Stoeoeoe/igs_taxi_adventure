@@ -18,7 +18,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SampleLibrary" id=5]
+[sub_resource type="SampleLibrary" id=3]
 
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -39,14 +39,6 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-hit_sound = null
-default_texture = null
-movement_behavior = 0
-movement_speed = 1.0
-random_factor = 50.0
-flash_frquency = 5.0
-flash_length = 1.0
-flash_on_ball_hit = null
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
@@ -114,7 +106,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 5 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
 [node name="InteractionArea" type="Area2D" parent="."]

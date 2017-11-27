@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/game/EnemySpawner.gd" type="Script" id=1]
+
+[node name="EnemySpawner" type="Node2D"]
+
+script/script = ExtResource( 1 )
+spawn_rate = 10
+enemy_scene_path = ""
+auto_spwan = false
+max_number_of_entities = 2
+
+
