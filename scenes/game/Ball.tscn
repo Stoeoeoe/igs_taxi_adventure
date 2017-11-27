@@ -213,6 +213,7 @@ autoplay = "BallAnimation"
 visibility/visible = false
 visibility/opacity = 0.0
 transform/pos = Vector2( -0.299725, -0.0495815 )
+transform/scale = Vector2( 23.1012, 23.1012 )
 z/z = -1
 texture = ExtResource( 9 )
 modulate = Color( 0.149586, 0.546875, 0.104675, 1 )

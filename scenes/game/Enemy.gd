@@ -152,12 +152,12 @@ func _on_enemy_hit( body ):
 		sample_player.play("hit_sound")
 		flash_enemy()
 		number_of_hits += 1
-	if movement_behavior == 1 and body.is_in_group("obstacles"):
-		var pos_enemy = get_pos()
-		set_new_random_position(pos_enemy, true)
-	if number_of_hits >= number_of_hits_to_destroy:
-		GameState.kill_enemy(enemy_type, self.get_instance_ID())
-		kill()
+		if movement_behavior == 1 and body.is_in_group("obstacles"):
+			var pos_enemy = get_pos()
+			set_new_random_position(pos_enemy, true)
+		if number_of_hits >= number_of_hits_to_destroy:
+			GameState.kill_enemy(enemy_type, self.get_instance_ID())
+			kill()
 		
 func kill():
 	hide()

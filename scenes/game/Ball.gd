@@ -75,10 +75,11 @@ func _play_sound(collider):
 		sample_player.play("wall_hit")
 
 func player_bouncing():
-	# --> The determination of height and position of the collider is buggy
-	var collider = get_collider().get_node("CollisionShape2D")
-	var delta_to_player_center = get_collision_pos().y - get_collider().get_parent().get_pos().y
-	var height_of_player = collider.get_shape().get_extents().height
+	var collider = get_collider()
+	var collision_pos = get_collision_pos().y
+	var collider_pos = collider.get_global_pos().y
+	var delta_to_player_center = collision_pos / collider_pos
+	var height_of_player = collider.get_parent().get_parent().height
 
 	var distance_ratio = delta_to_player_center/ height_of_player
 	self.current_direction = Vector2(initial_direction.x, distance_ratio)

@@ -50,7 +50,7 @@ editor/display_folded = true
 
 [node name="Block" parent="Blocks" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 210, 290 )
+transform/pos = Vector2( 110, 200 )
 
 [node name="Stage" parent="." instance=ExtResource( 7 )]
 
@@ -83,9 +83,12 @@ powerup_id = "multiply_board_3"
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 9 )]
 
-transform/pos = Vector2( 773.299, 411.356 )
-enemy_scene_path = "res://scenes/game/Enemy.tscn"
+transform/pos = Vector2( 810, 370 )
+spawn_rate = 50
+enemy_scene = ExtResource( 5 )
 auto_spwan = true
 max_number_of_entities = 3
+
+[node name="Enemies" type="Node" parent="."]
 
 
