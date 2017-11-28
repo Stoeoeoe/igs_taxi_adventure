@@ -3,6 +3,7 @@ extends Panel
 onready var stream_player = get_node("CentralStreamPlayer")
 onready var light_container = get_node("BlinkenLights")
 onready var animation_player = get_node("AnimationPlayer2")
+onready var sample_player = get_node("CentralSamplePlayer")
 
 var level_selection_bubbles = []
 var max_floating = 20
@@ -53,6 +54,8 @@ func stop_music():
 	stream_player.stop()
 	
 func handle_blinken_lights(delta):
+	if not self.is_visible():
+		return
 	for i in range(lights.size()):
 		if lights_active[i] == 1:
 			lights_time_to_wait[i] -= delta
@@ -64,11 +67,18 @@ func handle_blinken_lights(delta):
 			if randi() % 75 == 0:
 				lights_active[j] = 1
 				lights[j].show()
+				if j > 12:
+					sample_player.set_default_pan(0.5)
+					sample_player.set_default_pitch_scale(rand_range(0.2,0.5))
+				else:
+					sample_player.set_default_pan(-0.5)
+					sample_player.set_default_pitch_scale(rand_range(0.6,1.2))
+				sample_player.play("blinkenlights")
 				lights_time_to_wait[j] = rand_range(1,5)
 	#ligts = light_container.get_children()
 
 func _on_LevelMenu_visibility_changed():
 	if is_hidden():
-		stream_player.stop()
+		stop_music()
 	else:
-		stream_player.play()
+		play_music()
